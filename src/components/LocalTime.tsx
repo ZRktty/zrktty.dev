@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const LocalTime: React.FC = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [formattedTime, setFormattedTime] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,15 +13,27 @@ const LocalTime: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const formattedTime = new Intl.DateTimeFormat(
-    typeof navigator !== 'undefined' ? navigator.language : 'en-US',
-    {
-      hour: 'numeric',
-      minute: 'numeric',
-      timeZone: 'Atlantic/Canary',
-      timeZoneName: 'short',
-    }
-  ).format(currentTime);
+  useEffect(() => {
+    const formatTime = () => {
+      if (typeof navigator !== 'undefined') {
+        return new Intl.DateTimeFormat(navigator.language, {
+          hour: 'numeric',
+          minute: 'numeric',
+          timeZone: 'Atlantic/Canary',
+          timeZoneName: 'short',
+        }).format(currentTime);
+      } else {
+        return new Intl.DateTimeFormat('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          timeZone: 'Atlantic/Canary',
+          timeZoneName: 'short',
+        }).format(currentTime);
+      }
+    };
+
+    setFormattedTime(formatTime());
+  }, [currentTime]);
 
   return (
     <div>
