@@ -1,10 +1,12 @@
 import React from 'react';
 import Nav from "@/components/Nav";
+import ThemeSelector from "@/components/ThemeSelector";
 
 const Header: React.FC = () => {
   return (
-    <header className="w-full p-4 bg-gray-800 text-white">
+    <header className="w-full p-4 flex justify-between">
       <Nav/>
+      <ThemeSelector/>
     </header>
   );
 };
