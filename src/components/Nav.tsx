@@ -1,8 +1,12 @@
 import Link from 'next/link';
 
-const Nav: React.FC = () => {
+interface NavProps {
+  className?: string;
+}
+
+const Nav: React.FC<NavProps> = ({ className = "" }) => {
   return (
-    <nav className="flex space-x-4">
+    <nav className={className}>
       <Link href="/" className="text-blue-500 hover:underline">
         Home
       </Link>
