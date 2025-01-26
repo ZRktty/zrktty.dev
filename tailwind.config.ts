@@ -9,6 +9,24 @@ export default {
   ],
   theme: {
   	extend: {
+			fontSize: {
+				h1: '2.5rem',
+				h2: '2rem',
+				h3: '1.75rem',
+				h4: '1.5rem',
+				h5: '1.25rem',
+				h6: '1rem',
+				p: '0.875rem', // 14px
+			},
+			fontWeight: {
+				h1: '700',
+				h2: '600',
+				h3: '500',
+				h4: '500',
+				h5: '400',
+				h6: '400',
+				p: '400',
+			},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
