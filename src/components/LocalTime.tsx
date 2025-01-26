@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react';
 
 const LocalTime: React.FC = () => {
@@ -11,12 +12,15 @@ const LocalTime: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const formattedTime = new Intl.DateTimeFormat(navigator.language, {
-    hour: 'numeric',
-    minute: 'numeric',
-    timeZone: 'Atlantic/Canary',
-    timeZoneName: 'short',
-  }).format(currentTime);
+  const formattedTime = new Intl.DateTimeFormat(
+    typeof navigator !== 'undefined' ? navigator.language : 'en-US',
+    {
+      hour: 'numeric',
+      minute: 'numeric',
+      timeZone: 'Atlantic/Canary',
+      timeZoneName: 'short',
+    }
+  ).format(currentTime);
 
   return (
     <div>
