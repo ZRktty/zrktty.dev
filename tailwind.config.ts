@@ -9,6 +9,14 @@ export default {
   ],
   theme: {
   	extend: {
+			screens: {
+				'xs': '375px',     // Small mobile devices
+				'sm': '640px',     // Large mobile devices
+				'md': '768px',     // Tablets
+				'lg': '1024px',    // Small laptops
+				'xl': '1280px',    // Desktop
+				'2xl': '1536px',   // Large screens
+			},
 			fontSize: {
 				h1: '2.5rem',
 				h2: '2rem',
