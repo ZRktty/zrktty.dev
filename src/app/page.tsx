@@ -1,8 +1,10 @@
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <Hero/>
         <h1 className="text-h1 font-h1">Heading 1</h1>
         <h2 className="text-h2 font-h2">Heading 2</h2>
         <h3 className="text-h3 font-h3">Heading 3</h3>
