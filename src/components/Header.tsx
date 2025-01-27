@@ -1,4 +1,3 @@
-"use client"
 
 import {
   Sheet,
@@ -12,13 +11,13 @@ import ThemeSelector from "./ThemeSelector"
 import Logo from "./Logo"
 import {Button} from "./ui/button"
 import {Menu} from "lucide-react"
-import {Separator} from "@/components/ui/separator";
+import {MainNav} from "@/components/MainNav";
 
 export default function Header() {
   return (
     <header className="w-full p-4 flex justify-between items-center">
       <Logo/>
-      <Nav className="hidden md:flex gap-6"/>
+      <MainNav />
       <div className="flex items-center gap-4">
         <ThemeSelector/>
         <Sheet>
