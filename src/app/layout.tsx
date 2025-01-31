@@ -4,7 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider"
-
+import {ReactNode} from "react";
+import StoryblokProvider from "@/components/StoryblokProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,26 +25,28 @@ export const metadata: Metadata = {
 export default function RootLayout({
                                      children,
                                    }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-    <body
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-    >
+    <StoryblokProvider>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
 
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-    >
-      <Header/>
-      {children}
-      <Footer/>
-    </ThemeProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Header/>
+        {children}
+        <Footer/>
+      </ThemeProvider>
 
-    </body>
+      </body>
+    </StoryblokProvider>
     </html>
   );
 }
