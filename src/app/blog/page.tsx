@@ -1,22 +1,8 @@
 import PostItem from "@/components/Blog/PostItem";
 import {client} from "@/sanity/client";
+import { POSTS_QUERY } from "@/sanity/queries";
 import {Post} from "@/sanity/types";
-import React from "react";
 
-const POSTS_QUERY = `*[
-  _type == "post" 
-  && defined(slug.current)
-] | order(publishedAt desc)[0...12] {
-  _id,
-  title,
-  slug,
-  publishedAt,
-  mainImage,
-  "excerpt": array::join(
-    string::split(pt::text(body), "")[0..255], 
-    ""
-  ) + "..."
-}`;
 
 const options = {next: {revalidate: 30}};
 export default async function BlogPage() {

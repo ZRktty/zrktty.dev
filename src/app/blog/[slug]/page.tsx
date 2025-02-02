@@ -3,8 +3,8 @@ import { client } from "@/sanity/client";
 import Link from "next/link";
 import Image  from "next/image";
 import { urlFor } from "@/sanity/utils";
+import { POST_QUERY } from "@/sanity/queries";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
 const options = { next: { revalidate: 30 } };
 
