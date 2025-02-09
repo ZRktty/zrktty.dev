@@ -10,8 +10,8 @@ const Nav: React.FC<NavProps> = ({ className = "" }) => {
       <Link href="/" className="text-blue-500 hover:underline">
         Home
       </Link>
-      <Link href="/contact" className="text-blue-500 hover:underline">
-        Contact
+      <Link href="/about" className="text-blue-500 hover:underline">
+        About
       </Link>
     </nav>
   );
