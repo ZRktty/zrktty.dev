@@ -23,7 +23,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
     : null;
 
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 ">
       <CardHeader>
         {post.mainImage && (
           <Image
@@ -35,7 +35,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
           />
         )}
       </CardHeader>
-      <CardContent>
+      <CardContent className="prose dark:prose-invert">
         <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
         <p>{post.excerpt}</p>
       </CardContent>
