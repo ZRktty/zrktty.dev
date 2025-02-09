@@ -1,16 +1,16 @@
-import { PortableText, type SanityDocument } from "next-sanity";
-import { client } from "@/sanity/client";
+import {PortableText, type SanityDocument} from "next-sanity";
+import {client} from "@/sanity/client";
 import Link from "next/link";
-import Image  from "next/image";
-import { urlFor } from "@/sanity/utils";
-import { POST_QUERY } from "@/sanity/queries";
+import Image from "next/image";
+import {urlFor} from "@/sanity/utils";
+import {POST_QUERY} from "@/sanity/queries";
 
 
-const options = { next: { revalidate: 30 } };
+const options = {next: {revalidate: 30}};
 
 export default async function PostPage({
-   params,
-}: {
+                                         params,
+                                       }: {
   params: Promise<{ slug: string }>;
 }) {
   const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
@@ -23,20 +23,22 @@ export default async function PostPage({
       <Link href="/blog" className="hover:underline">
         ← Back to posts
       </Link>
-      {postImageUrl && (
-        <Image
-          src={postImageUrl}
-          alt={post.title}
-          className="aspect-video rounded-xl"
-          width="550"
-          height="310"
-        />
-      )}
-      <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
-      <div className="prose">
-        <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-        {Array.isArray(post.body) && <PortableText value={post.body} />}
-      </div>
+      <article>
+        {postImageUrl && (
+          <Image
+            src={postImageUrl}
+            alt={post.title}
+            className="aspect-video rounded-xl"
+            width="550"
+            height="310"
+          />
+        )}
+        <h1 className="text-4xl font-bold mb-8">{post.title}</h1>
+        <div className="prose">
+          <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
+          {Array.isArray(post.body) && <PortableText value={post.body}/>}
+        </div>
+      </article>
     </main>
   );
 }
