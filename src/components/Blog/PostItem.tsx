@@ -3,9 +3,16 @@ import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card'
 import Image from 'next/image';
 import {Post} from "@/sanity/types";
 import {urlFor} from "@/sanity/utils";
+import Link from "next/link";
+
+
+// Type for the fetched data with the excerpt field
+export interface PostWithExcerpt extends Post {
+  excerpt: string;
+}
 
 interface BlogPostItemProps {
-  post: Post
+  post: PostWithExcerpt
 }
 
 const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
@@ -20,7 +27,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
       <CardHeader>
         {post.mainImage && (
           <Image
-            src={postImageUrl}
+            src={postImageUrl || ''}
             alt={post.title || `Post cover image`}
             width={550}
             height={310}
@@ -30,13 +37,14 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
       </CardHeader>
       <CardContent>
         <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
-        <p>{post?.excerpt}</p>
+        <p>{post.excerpt}</p>
       </CardContent>
       <CardFooter>
-        <p>{new Date(post?.publishedAt).toLocaleDateString()}</p>
-        {/*<Link href={`/blog/${post.slug}`} className="text-blue-500 hover:underline">*/}
-        {/*  Read more*/}
-        {/*</Link>*/}
+        {post.slug && (
+          <Link href={`/blog/${post.slug.current}`} className="text-blue-500 hover:underline">
+            Read more
+          </Link>
+        )}
       </CardFooter>
     </Card>
   );
