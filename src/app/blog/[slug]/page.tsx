@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {urlFor} from "@/sanity/utils";
 import {POST_QUERY} from "@/sanity/queries";
+import {RenderBodyContent} from "@/components/RenderBodyContent";
 
 
 const options = {next: {revalidate: 30}};
@@ -36,7 +37,7 @@ export default async function PostPage({
         <h1 className="mt-4 text-4xl font-bold mb-8">{post.title}</h1>
         <div className="prose dark:prose-invert">
           <p>Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
-          {Array.isArray(post.body) && <PortableText value={post.body}/>}
+          {Array.isArray(post.body) && <RenderBodyContent value={post.body} />}
         </div>
       </article>
     </main>
