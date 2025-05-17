@@ -1,4 +1,4 @@
-import {PortableText, type SanityDocument} from "next-sanity";
+import { type SanityDocument} from "next-sanity";
 import {client} from "@/sanity/client";
 import Link from "next/link";
 import Image from "next/image";
