@@ -1,39 +1,48 @@
-'use client';
+'use client'
 
-import { useState } from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from 'react'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { prism as lightTheme } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 interface CodeBlockProps {
-  language?: string;
-  code: string;
+  language?: string
+  code: string
+  filename?: string
 }
 
-export const CodeBlock = ({ language, code }: CodeBlockProps) => {
-  const [copied, setCopied] = useState(false);
+export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps) => {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(code || '');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Avoid hydration mismatch by skipping SSR render
+  if (!mounted) return null
+
+  const selectedTheme = resolvedTheme === 'dark' ? oneDark : lightTheme
 
   return (
-    <div className="relative group">
+    <div className="my-4">
+      {filename && (
+        <div className="bg-gray-800 text-gray-100 text-sm px-4 py-2 rounded-t-md font-mono">
+          {filename}
+        </div>
+      )}
       <SyntaxHighlighter
-        language={language || 'text'}
-        style={oneDark}
-        className="rounded-md"
+        language={language}
+        style={selectedTheme}
+        customStyle={{
+          margin: 0,
+          padding: '1rem',
+          borderRadius: filename ? '0 0 0.5rem 0.5rem' : '0.5rem',
+        }}
       >
         {code}
       </SyntaxHighlighter>
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white px-2 py-1 rounded text-sm opacity-0 group-hover:opacity-100 transition-opacity"
-        aria-label="Copy code to clipboard"
-      >
-        {copied ? '✓ Copied!' : 'Copy'}
-      </button>
     </div>
   )
 }
