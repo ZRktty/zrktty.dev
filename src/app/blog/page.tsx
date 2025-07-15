@@ -1,14 +1,13 @@
 import PostItem, {PostWithExcerpt} from "@/components/Blog/PostItem";
 import {client} from "@/sanity/client";
 import {POSTS_QUERY} from "@/sanity/queries";
-import {Post} from "@/sanity/types";
 
 
 const options = {next: {revalidate: 30}};
 export default async function BlogPage() {
   // @TODO: Implement pagination
   // @TODO: figure out how to generate types for the query
-  const posts = await client.fetch<Post[]>(POSTS_QUERY, {}, options) as PostWithExcerpt[];
+  const posts = await client.fetch<PostWithExcerpt[]>(POSTS_QUERY, {}, options);
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8">
