@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
         />
       </div>
       <h1 className="text-4xl font-bold mb-4">Zoltan Rakottyai</h1>
-      <p className="text-lg mb-8">Software Engineer & Web Developer</p>
+      <p className="text-lg mb-8">Software Engineer / Frontend  / Backend / Full-stack</p>
       <p className="text-md mb-8">I specialize in creating dynamic and beautiful web pages. I have been in the field for nearly 10 years, and have been loving every minute of it.</p>
       <div className="flex gap-4">
         <Button size="lg">Get in Touch</Button>

@@ -12,7 +12,7 @@ import {
 
 export function MainNav() {
     return (
-        <NavigationMenu className="hidden md:flex">
+        <NavigationMenu className="hidden md:flex p-6">
             <NavigationMenuList>
                 <NavigationMenuItem>
                     <Link href="/" legacyBehavior passHref>
@@ -21,24 +21,24 @@ export function MainNav() {
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                {/*<NavigationMenuItem>*/}
-                {/*    <Link href="/work" legacyBehavior passHref>*/}
-                {/*        <NavigationMenuLink className={navigationMenuTriggerStyle()}>*/}
-                {/*            Work*/}
-                {/*        </NavigationMenuLink>*/}
-                {/*    </Link>*/}
-                {/*</NavigationMenuItem>*/}
                 <NavigationMenuItem>
-                    <Link href="/blog" legacyBehavior passHref>
+                    <Link href="/projects" passHref>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            Projects
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <Link href="/blog" passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             Blog
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/about" legacyBehavior passHref>
+                    <Link href="/about" passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            About
+                            About me
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
