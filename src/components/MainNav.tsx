@@ -15,7 +15,7 @@ export function MainNav() {
         <NavigationMenu className="hidden md:flex p-6">
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <Link href="/" legacyBehavior passHref>
+                    <Link href="/"  passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             Home
                         </NavigationMenuLink>
