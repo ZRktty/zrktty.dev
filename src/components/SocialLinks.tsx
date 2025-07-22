@@ -25,7 +25,7 @@ const SocialLinks: React.FC = () => {
       <div className="flex flex-row items-center space-x-4">
         {links.map((link) => (
           <Link key={link.name} href={link.url} target="_blank" rel="noopener noreferrer"
-                className={`text-${link.color} hover:underline`}>
+                className={`text-${link.color} line-grow`}>
             {link.name}
           </Link>
         ))}

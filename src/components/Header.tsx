@@ -1,4 +1,3 @@
-
 import {
   Sheet,
   SheetContent,
@@ -15,7 +14,7 @@ import {MainNav} from "@/components/MainNav";
 
 export default function Header() {
   return (
-    <header className="w-full p-4 flex justify-between items-center">
+    <header className="fixed w-full left-1/2 -translate-x-1/2 mx-auto max-w-6xl top-0 flex items-center justify-between z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Logo/>
       <MainNav />
       <div className="flex items-center gap-4">
