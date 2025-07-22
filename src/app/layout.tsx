@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider"
-import {ibmPLexSans, vinProMono} from "@/app/fonts";
+import {codersCrux, ibmPLexSans, vinProMono} from "@/app/fonts";
 
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
     <body
-      className={`${ibmPLexSans.variable}  ${vinProMono.className} antialiased`}
+      className={`${ibmPLexSans.variable} ${vinProMono.variable} ${codersCrux.variable} antialiased`}
     >
 
     <ThemeProvider

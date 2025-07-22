@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 const Hero: React.FC = () => {
   return (
     <div className="flex flex-col w-full  justify-center h-screen text-left p-8 ">
-      <h1 className={`text-6xl sm:text-6xl  mb-4 font-sans text-gray-900 dark:text-white`}>
+      <h1 className={`text-6xl sm:text-6xl  mb-4 font-vin-pro-mono  text-gray-900 dark:text-white`}>
         Zoltan Rakottyai
       </h1>
       <span className="text-lg sm:text-xl text-red-700 mb-8 font-mono text-left"> Software Engineer / Frontend  / Backend / Full-stack</span>
