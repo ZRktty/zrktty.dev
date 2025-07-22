@@ -1,7 +1,5 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider"
 import {codersCrux, ibmPLexSans, vinProMono} from "@/app/fonts";
 
@@ -30,11 +28,9 @@ export default function RootLayout({
       enableSystem
       disableTransitionOnChange
     >
-      <Header/>
       <main className="container mx-auto">
         {children}
       </main>
-      <Footer/>
     </ThemeProvider>
 
     </body>
