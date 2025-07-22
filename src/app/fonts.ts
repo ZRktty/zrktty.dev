@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import {IBM_Plex_Sans} from "next/font/google";
 
+// todo: Crux  still not working, need to fix it
 export const codersCrux = localFont({
   src: [
     {
