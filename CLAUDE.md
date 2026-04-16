@@ -35,13 +35,14 @@
 | MCP | Setup | When to use |
 |-----|-------|-------------|
 | **Sanity** | `sanity mcp configure` from repo root (after `sanity login`), or: `claude mcp add Sanity -t http https://mcp.sanity.io --scope project` then `/mcp` to OAuth | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
-| **GitHub** | `claude mcp add github -t http https://api.githubcopilot.com/mcp/ --scope project` | Branch creation, PR creation, CI status — used in Steps 3 and 6 of workflow |
+
+> **GitHub**: do NOT add a GitHub MCP. Use `gh` CLI via Bash for all GitHub operations (branch push, PR create, CI status). The Copilot MCP endpoint does not support Claude Code's OAuth flow.
 
 ### Verify MCPs before starting work
 ```
 /mcp
 ```
-All 7 servers must show as connected before starting any ticket.
+All 6 servers must show as connected before starting any ticket.
 
 ---
 
@@ -241,7 +242,7 @@ Do not write any production code until the owner says "approved".
 Once approved:
 
 1. **Atlassian MCP**: move ticket → **In Progress**
-2. **GitHub MCP**: `git checkout -b ZRxx_short-description`
+2. `git checkout -b ZRxx_short-description`
 3. Implement per the plan — lint hook runs automatically after each file write
 4. For schema changes: use **Sanity MCP** to verify schema is valid before writing queries
 5. When done: `bun run build` — fix all errors before proceeding to Step 4
@@ -282,22 +283,27 @@ Apply changes, re-run Playwright check, then:
 ### Step 6 — Create PR
 
 1. Push branch: `git push -u origin ZRxx_...`
-2. **GitHub MCP**: create PR
-   - Title: `feat(ZR-XX): {ticket title lowercase}`
-   - Body:
-     ```
-     Closes ZR-XX
-     {Jira URL}
+2. **`gh` CLI**: create PR
 
-     ## What was built
-     - ...
+   ```bash
+   gh pr create --title "feat(ZR-XX): {ticket title lowercase}" --base main --body "..."
+   ```
 
-     ## Tested
-     - Playwright: 375px ✓ 393px ✓ 360px ✓ 768px ✓ 1280px ✓
-     - bun run build ✓
-     - bun run lint ✓
-     ```
-   - Base: `main`
+   Body must include:
+
+   ```markdown
+   Closes ZR-XX
+   {Jira URL}
+
+   ## What was built
+   - ...
+
+   ## Tested
+   - Playwright: 375px ✓ 393px ✓ 360px ✓ 768px ✓ 1280px ✓
+   - bun run build ✓
+   - bun run lint ✓
+   ```
+
 3. Say: **"PR ready: {URL}. Please review and merge."**
 
 ---
