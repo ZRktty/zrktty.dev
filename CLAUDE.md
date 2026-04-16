@@ -10,7 +10,7 @@
 **Name:** zrktty.dev — Personal portfolio website  
 **Owner:** Zoltan Rakottyai  
 **Stack:** Next.js (latest) · TypeScript · Sanity CMS · shadcn/ui · Tailwind CSS · Bun  
-**Repo:** https://github.com/[YOUR_GITHUB_USERNAME]/zrktty.dev  
+**Repo:** https://github.com/ZRktty/zrktty.dev  
 **Jira board:** https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board  
 **Epic:** ZR-21
 
@@ -26,7 +26,7 @@
 |-----|-------------|
 | **Atlassian** | Every session — read/transition Jira tickets, update status, add comments |
 | **Playwright** | Every UI ticket — self-QA responsive check after implementation, before owner handoff |
-| **next-devtools-mcp** (`mcp/next-devtools-mcp`) | Every session with dev server running — query live Next.js errors, routes, hydration issues. Official Vercel image. |
+| **next-devtools-mcp** | Every session with dev server running — query live Next.js errors, routes, hydration issues. Configured in `.mcp.json` via `bunx next-devtools-mcp@latest`. |
 | **Fetch** | When reading a URL inline — shadcn docs, Next.js API reference, etc. |
 | **Sequential Thinking** | Complex planning — use before writing the plan for any ticket with >5 implementation steps |
 
@@ -42,7 +42,7 @@
 ```
 /mcp
 ```
-All 6 servers must show as connected before starting any ticket.
+Project-scoped MCPs (vercel, sanity, next-devtools from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, Playwright, etc.) only need to be enabled for tickets that use them.
 
 ---
 
@@ -57,7 +57,7 @@ bun add -d <pkg>                     # add dev dependency
 bun run dev                          # local dev server
 bun run build                        # production build check
 bun run lint                         # eslint
-bun run typegen                      # sanity typegen generate
+bunx sanity typegen generate         # generate Sanity TypeScript types
 bunx shadcn@latest add <component>   # add shadcn component
 ```
 
@@ -69,7 +69,7 @@ Non-negotiable. A PR that violates these will be rejected.
 
 ### General
 - **TypeScript strict mode** — no `any`, no `// @ts-ignore`, no `as unknown as X`
-- **No magic numbers or strings** — all constants in `src/constants/index.ts`
+- **No magic numbers or strings** — extract shared values into the appropriate constants/module file for that area; never duplicate literals
 - **Single source of truth** — never duplicate data, config, or logic
 - **Small components** — one component per file, one responsibility per component
 - **No inline GROQ** — all Sanity queries in `src/lib/sanity/queries.ts` as named exports
@@ -83,13 +83,11 @@ src/
     ui/                     # shadcn/ui primitives — DO NOT edit manually
     [feature]/              # e.g. hero/, services/, blog/, projects/
     shared/                 # reusable: SocialLinks, SectionHeading, etc.
-  lib/
-    sanity/
-      client.ts             # Sanity client singleton
-      queries.ts            # ALL GROQ queries — named exports only
-      image.ts              # @sanity/image-url builder
-  constants/
-    index.ts                # all app-wide constants
+  sanity/
+    client.ts               # Sanity client singleton
+    queries.ts              # ALL GROQ queries — named exports only
+    types.ts                # generated types via `bunx sanity typegen generate`
+    utils.ts                # @sanity/image-url builder + helpers
   types/
     index.ts                # all shared TypeScript types
   hooks/                    # custom React hooks
@@ -103,26 +101,24 @@ docs/                       # agent plan files: ZR-XX-plan.md per ticket
 - Props typed with `interface` (use `type` only for unions)
 - Named exports only — default exports only for Next.js pages/layouts
 - Use `shadcn/ui` before writing any custom UI primitive
-- Import order (ESLint enforced): React → Next → third-party → internal (`@/`)
+- Import order convention: React → Next → third-party → internal (`@/`)
 
 ### Mobile-first responsive
 
-Every UI component is mobile-first. Target viewports (also in `src/constants/index.ts`):
+Every UI component is mobile-first. Target viewports:
 
-```ts
-export const VIEWPORTS = {
-  mobile_min:     375,  // minimum — older iPhones, safe floor
-  mobile_s23:     360,  // Samsung Galaxy S23
-  mobile_iphone14: 393, // iPhone 14 Pro — primary mobile target
-  tablet:         768,
-  desktop:        1280,
-} as const
-```
+| Name | Width | Device |
+|------|-------|--------|
+| mobile_min | 375px | safe floor — older iPhones |
+| mobile_s23 | 360px | Samsung Galaxy S23 |
+| mobile_iphone14 | 393px | iPhone 14 Pro — primary mobile target |
+| tablet | 768px | |
+| desktop | 1280px | |
 
 Tailwind convention: default = mobile (`375px`), `md:` = tablet, `lg:` = desktop.  
 **Never write desktop-first styles.** A layout broken at 375px is a broken layout.
 
-### Commits — conventional commits (enforced by Husky)
+### Commits — conventional commits (recommended)
 ```
 feat(ZR-XX): short description
 fix(ZR-XX): short description
@@ -242,7 +238,7 @@ Do not write any production code until the owner says "approved".
 Once approved:
 
 1. **Atlassian MCP**: move ticket → **In Progress**
-2. `git checkout -b ZRxx_short-description`
+2. `git checkout -b ZR{number}_{kebab-case-description}`
 3. Implement per the plan — lint hook runs automatically after each file write
 4. For schema changes: use **Sanity MCP** to verify schema is valid before writing queries
 5. When done: `bun run build` — fix all errors before proceeding to Step 4
@@ -343,20 +339,21 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 | `service` | title, icon, bullets[], isHighlighted |
 | `skillGroup` | title, skills[]: { name, logo } |
 
-- All GROQ → `src/lib/sanity/queries.ts` (no inline GROQ anywhere else)
-- Generated types → `src/sanity/types.ts` via `bun run typegen`
+- All GROQ → `src/sanity/queries.ts` (no inline GROQ anywhere else)
+- Generated types → `src/sanity/types.ts` via `bunx sanity typegen generate`
 - Always use **Sanity MCP** to verify a query before writing TypeScript around it
 
 ---
 
 ## Environment variables
 
-`.env.local` — never commit:
+`.env.local` — never commit (see `.env.example` for the canonical list):
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-02-09
+NEXT_PUBLIC_MAINTENANCE_MODE=false
 SANITY_API_TOKEN=
-RESEND_API_KEY=
 ```
 
 ---

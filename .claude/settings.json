@@ -14,7 +14,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bun run lint --max-warnings=0 2>&1 | tail -20"
+            "command": "bash -o pipefail -c \"bun run lint --max-warnings=0 2>&1 | tail -20\""
           }
         ]
       }
