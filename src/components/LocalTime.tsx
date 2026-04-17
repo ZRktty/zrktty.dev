@@ -12,27 +12,14 @@ const formatTimeString = (date: Date, locale: string = 'en-US') => {
 };
 
 const LocalTime: React.FC = () => {
-  const [mounted, setMounted] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-
     return () => clearInterval(timer);
   }, []);
-
-  if (!mounted) {
-    return (
-      <div>
-        <h5>Local time</h5>
-        <div>Loading...</div>
-      </div>
-    );
-  }
 
   const locale = typeof navigator !== 'undefined' ? navigator.language : 'en-US';
   const formattedTime = formatTimeString(currentTime, locale);
@@ -40,7 +27,7 @@ const LocalTime: React.FC = () => {
   return (
     <div>
       <h5>Local time</h5>
-      <div>{formattedTime}</div>
+      <div suppressHydrationWarning>{formattedTime}</div>
     </div>
   );
 };
