@@ -22,9 +22,9 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
   return (
     <Card className="mb-4 ">
       <CardHeader>
-        {post.mainImage && (
+        {postImageUrl && (
           <Image
-            src={postImageUrl || ''}
+            src={postImageUrl}
             alt={post.title || `Post cover image`}
             width={550}
             height={310}

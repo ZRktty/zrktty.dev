@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
+const COLOR_CLASS_MAP: Record<string, string> = {
+  'blue-600': 'text-blue-600',
+  'gray-800': 'text-gray-800',
+  black: 'text-black',
+  'orange-600': 'text-orange-600',
+}
+
 interface SocialLink {
   name: string
   url: string
@@ -29,7 +36,7 @@ const SocialLinks: React.FC = () => {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`text-${link.color} line-grow`}
+            className={`${COLOR_CLASS_MAP[link.color] ?? ''} line-grow`}
           >
             {link.name}
           </Link>
