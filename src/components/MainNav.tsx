@@ -2,42 +2,38 @@
 
 import * as React from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
+import { NAV_ITEMS } from '@/constants'
+import { cn } from '@/lib/utils'
 
 export function MainNav() {
+  const pathname = usePathname()
+
   return (
     <NavigationMenu className="hidden md:flex p-6">
       <NavigationMenuList>
-        <NavigationMenuItem>
-          <Link href="/" passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Home</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/projects" passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Projects
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/blog" passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Blog</NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <Link href="/about" passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              About me
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        {NAV_ITEMS.map(({ label, href }) => {
+          const isActive = href === '/' ? pathname === '/' : pathname.startsWith(href)
+          return (
+            <NavigationMenuItem key={href}>
+              <NavigationMenuLink
+                asChild
+                className={cn(
+                  'line-grow inline-flex h-10 items-center px-3 py-2 text-sm font-medium text-foreground',
+                  isActive && 'line-grow-active',
+                )}
+              >
+                <Link href={href}>{label}</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          )
+        })}
       </NavigationMenuList>
     </NavigationMenu>
   )

@@ -41,7 +41,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
       </CardContent>
       <CardFooter>
         {post.slug && (
-          <Link href={`/blog/${post.slug.current}`} className="text-blue-500 hover:underline">
+          <Link href={`/blog/${post.slug.current}`} className="line-grow text-foreground">
             Read more
           </Link>
         )}
