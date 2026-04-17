@@ -1,5 +1,5 @@
-import localFont from "next/font/local";
-import {IBM_Plex_Sans} from "next/font/google";
+import localFont from 'next/font/local'
+import { IBM_Plex_Sans } from 'next/font/google'
 
 // todo: Crux  still not working, need to fix it
 export const codersCrux = localFont({
@@ -8,14 +8,13 @@ export const codersCrux = localFont({
       path: '../fonts/coders-crux.ttf',
       weight: '500',
       style: 'normal',
-    }
+    },
   ],
   variable: '--font-coders-crux',
-});
+})
 
 export const vinProMono = localFont({
   src: [
-
     {
       path: '../fonts/vinProMono/VinMonoPro-Light.ttf',
       weight: '300',
@@ -36,8 +35,6 @@ export const vinProMono = localFont({
 })
 
 export const ibmPLexSans = IBM_Plex_Sans({
-  variable: "--font-ibm-plex-sans",
-  subsets: ["latin"],
-});
-
-
+  variable: '--font-ibm-plex-sans',
+  subsets: ['latin'],
+})
