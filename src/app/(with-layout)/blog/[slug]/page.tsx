@@ -5,12 +5,15 @@ import Image from 'next/image'
 import { urlFor } from '@/sanity/utils'
 import { POST_QUERY } from '@/sanity/queries'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
+import { POST_COVER_IMAGE_WIDTH, POST_COVER_IMAGE_HEIGHT } from '@/constants'
 
 const options = { next: { revalidate: 30 } }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const post = await client.fetch<SanityDocument>(POST_QUERY, await params, options)
-  const postImageUrl = post.mainImage ? urlFor(post.mainImage)?.width(550).height(310).url() : null
+  const postImageUrl = post.mainImage
+    ? urlFor(post.mainImage)?.width(POST_COVER_IMAGE_WIDTH).height(POST_COVER_IMAGE_HEIGHT).url()
+    : null
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
@@ -23,8 +26,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             src={postImageUrl}
             alt={post.title}
             className="aspect-video rounded-xl"
-            width="550"
-            height="310"
+            width={POST_COVER_IMAGE_WIDTH}
+            height={POST_COVER_IMAGE_HEIGHT}
           />
         )}
         <h1 className="mt-4 text-4xl font-bold mb-8">{post.title}</h1>

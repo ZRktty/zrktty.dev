@@ -13,8 +13,8 @@
     "security:baseline": "gitleaks detect --source . --report-path .gitleaks-report.json"
   },
   "lint-staged": {
-    "src/components/ui/**/*.{ts,tsx}": [],
-    "src/!(components/ui)/**/*.{ts,tsx,js,jsx,mjs,cjs}": [
+    "src/components/ui/**": [],
+    "src/**/*.{ts,tsx,js,jsx,mjs,cjs}": [
       "prettier --write",
       "eslint --fix"
     ],

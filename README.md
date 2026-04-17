@@ -49,15 +49,15 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Available scripts
 
-| Command                     | Description                                    |
-| --------------------------- | ---------------------------------------------- |
-| `bun run dev`               | Start the local development server (Turbopack) |
-| `bun run build`             | Production build — run before opening a PR     |
-| `bun run start`             | Start the production server locally            |
-| `bun run lint`              | Run ESLint across `src/`                       |
-| `bun run format`            | Run Prettier across the project                |
-| `bun run security:scan`     | Run a full gitleaks scan on the repo           |
-| `bun run security:baseline` | Generate a gitleaks baseline report            |
+| Command                     | Description                                |
+| --------------------------- | ------------------------------------------ |
+| `bun run dev`               | Start the local development server         |
+| `bun run build`             | Production build — run before opening a PR |
+| `bun run start`             | Start the production server locally        |
+| `bun run lint`              | Run ESLint across `src/`                   |
+| `bun run format`            | Run Prettier across the project            |
+| `bun run security:scan`     | Run a full gitleaks scan on the repo       |
+| `bun run security:baseline` | Generate a gitleaks baseline report        |
 
 ## Pre-commit hooks
 
