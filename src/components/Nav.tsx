@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 interface NavProps {
-  className?: string;
+  className?: string
 }
 
-const Nav: React.FC<NavProps> = ({ className = "" }) => {
+const Nav: React.FC<NavProps> = ({ className = '' }) => {
   return (
     <nav className={className}>
       <Link href="/" className="text-blue-500 hover:underline">
@@ -14,7 +14,7 @@ const Nav: React.FC<NavProps> = ({ className = "" }) => {
         About
       </Link>
     </nav>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav
