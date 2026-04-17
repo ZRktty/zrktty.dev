@@ -1,7 +1,6 @@
 'use client'
 
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { prism as lightTheme } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -15,14 +14,9 @@ interface CodeBlockProps {
 
 export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps) => {
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  // Avoid hydration mismatch by skipping SSR render
-  if (!mounted) return null
+  // resolvedTheme is undefined until next-themes hydrates on the client
+  if (!resolvedTheme) return null
 
   const selectedTheme = resolvedTheme === 'dark' ? oneDark : lightTheme
 
