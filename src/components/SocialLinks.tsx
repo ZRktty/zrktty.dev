@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import type { SocialLink } from '@/types'
 
 const COLOR_CLASS_MAP: Record<string, string> = {
   'blue-600': 'text-blue-600',
   'gray-800': 'text-gray-800',
   black: 'text-black',
   'orange-600': 'text-orange-600',
-}
-
-interface SocialLink {
-  name: string
-  url: string
-  color: string
 }
 
 const SocialLinks: React.FC = () => {
