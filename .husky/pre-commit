@@ -1,0 +1,2 @@
+./.husky/pre-commit-gitleaks
+bunx lint-staged
