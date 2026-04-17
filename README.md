@@ -1,39 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# zrktty.dev
 
-## Getting Started
+Personal portfolio website for Zoltan Rakottyai — built with Next.js, TypeScript, Sanity CMS, shadcn/ui, and Tailwind CSS.
 
-First, run the development server:
+## Prerequisites
+
+- **[Node.js](https://nodejs.org/)** ≥ 20 (required by Next.js 16)
+- **[Bun](https://bun.sh/)** — used as the package manager and runtime
+- **[gitleaks](https://github.com/gitleaks/gitleaks)** — required for the pre-commit secret scanning hook
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+brew install bun
+brew install gitleaks
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. Clone and install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone https://github.com/ZRktty/zrktty.dev.git
+cd zrktty.dev
+bun install
+```
 
-## Learn More
+### 2. Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+Copy the example file and fill in your Sanity project values:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp .env.example .env.local
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable                         | Description                                |
+| -------------------------------- | ------------------------------------------ |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Your Sanity project ID                     |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Dataset name (e.g. `production`)           |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | API version date (e.g. `2024-02-09`)       |
+| `NEXT_PUBLIC_MAINTENANCE_MODE`   | Set to `true` to show the maintenance page |
+| `SANITY_API_TOKEN`               | Read token for server-side Sanity queries  |
 
-## Deploy on Vercel
+### 3. Run the dev server
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+bun run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Available scripts
+
+| Command                     | Description                                    |
+| --------------------------- | ---------------------------------------------- |
+| `bun run dev`               | Start the local development server (Turbopack) |
+| `bun run build`             | Production build — run before opening a PR     |
+| `bun run start`             | Start the production server locally            |
+| `bun run lint`              | Run ESLint across `src/`                       |
+| `bun run format`            | Run Prettier across the project                |
+| `bun run security:scan`     | Run a full gitleaks scan on the repo           |
+| `bun run security:baseline` | Generate a gitleaks baseline report            |
+
+## Pre-commit hooks
+
+[Husky](https://typicode.github.io/husky/) runs two checks on every commit:
+
+1. **gitleaks** — scans staged files for secrets before they are committed
+2. **lint-staged** — runs ESLint (and Prettier, if installed) on staged source files
+
+Make sure `gitleaks` is installed locally (see Prerequisites above) or the hook will block all commits.
+
+## Content management
+
+Content is managed in [Sanity Studio](https://www.sanity.io/). To run the studio locally:
+
+```bash
+bunx sanity dev
+```
+
+After making schema changes, regenerate TypeScript types:
+
+```bash
+bunx sanity typegen generate
+```
+
+## Tech stack
+
+| Layer           | Technology               |
+| --------------- | ------------------------ |
+| Framework       | Next.js 16 (App Router)  |
+| Language        | TypeScript (strict mode) |
+| CMS             | Sanity v3                |
+| UI components   | shadcn/ui                |
+| Styling         | Tailwind CSS v4          |
+| Package manager | Bun                      |
 
 # Feature
 

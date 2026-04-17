@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Post } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
 import Link from 'next/link'
+import { POST_COVER_IMAGE_WIDTH, POST_COVER_IMAGE_HEIGHT } from '@/constants'
 
 // Type for the fetched data with the excerpt field
 export interface PostWithExcerpt extends Post {
@@ -17,7 +18,9 @@ interface BlogPostItemProps {
 const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
   // @TODO: Fix adding excerpt prop to posts query line 30
 
-  const postImageUrl = post.mainImage ? urlFor(post.mainImage)?.width(550).height(310).url() : null
+  const postImageUrl = post.mainImage
+    ? urlFor(post.mainImage)?.width(POST_COVER_IMAGE_WIDTH).height(POST_COVER_IMAGE_HEIGHT).url()
+    : null
 
   return (
     <Card className="mb-4 ">
@@ -26,8 +29,8 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post }) => {
           <Image
             src={postImageUrl}
             alt={post.title || `Post cover image`}
-            width={550}
-            height={310}
+            width={POST_COVER_IMAGE_WIDTH}
+            height={POST_COVER_IMAGE_HEIGHT}
             className="rounded-t-lg"
           />
         )}
