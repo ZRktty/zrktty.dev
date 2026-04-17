@@ -8,7 +8,7 @@ import SocialLinks from '@/components/SocialLinks'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full p-4 ">
+    <footer className="w-full p-4 sticky bottom-0 z-0 bg-background">
       <SocialLinks />
       <Separator />
       <div className="p-4 flex justify-between">
