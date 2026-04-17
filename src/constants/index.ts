@@ -10,6 +10,7 @@ export const POST_COVER_IMAGE_HEIGHT = 310
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Projects', href: '/projects' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Experience', href: '/experience' },
   { label: 'About me', href: '/about' },
 ] as const
