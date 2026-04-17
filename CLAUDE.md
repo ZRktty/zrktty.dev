@@ -22,26 +22,28 @@
 
 ### Via Docker MCP (enable in Docker Desktop MCP profile)
 
-| MCP | When to use |
-|-----|-------------|
-| **Atlassian** | Every session — read/transition Jira tickets, update status, add comments |
-| **Playwright** | Every UI ticket — self-QA responsive check after implementation, before owner handoff |
-| **next-devtools-mcp** | Every session with dev server running — query live Next.js errors, routes, hydration issues. Configured in `.mcp.json` via `bunx next-devtools-mcp@latest`. |
-| **Fetch** | When reading a URL inline — shadcn docs, Next.js API reference, etc. |
-| **Sequential Thinking** | Complex planning — use before writing the plan for any ticket with >5 implementation steps |
+| MCP                     | When to use                                                                                                                                                 |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Atlassian**           | Every session — read/transition Jira tickets, update status, add comments                                                                                   |
+| **Playwright**          | Every UI ticket — self-QA responsive check after implementation, before owner handoff                                                                       |
+| **next-devtools-mcp**   | Every session with dev server running — query live Next.js errors, routes, hydration issues. Configured in `.mcp.json` via `bunx next-devtools-mcp@latest`. |
+| **Fetch**               | When reading a URL inline — shadcn docs, Next.js API reference, etc.                                                                                        |
+| **Sequential Thinking** | Complex planning — use before writing the plan for any ticket with >5 implementation steps                                                                  |
 
 ### Must be added manually (not in Docker catalog)
 
-| MCP | Setup | When to use |
-|-----|-------|-------------|
+| MCP        | Setup                                                                                                                                                        | When to use                                                                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
 | **Sanity** | `sanity mcp configure` from repo root (after `sanity login`), or: `claude mcp add Sanity -t http https://mcp.sanity.io --scope project` then `/mcp` to OAuth | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
 
 > **GitHub**: do NOT add a GitHub MCP. Use `gh` CLI via Bash for all GitHub operations (branch push, PR create, CI status). The Copilot MCP endpoint does not support Claude Code's OAuth flow.
 
 ### Verify MCPs before starting work
+
 ```
 /mcp
 ```
+
 Project-scoped MCPs (vercel, sanity, next-devtools from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, Playwright, etc.) only need to be enabled for tickets that use them.
 
 ---
@@ -68,6 +70,7 @@ bunx shadcn@latest add <component>   # add shadcn component
 Non-negotiable. A PR that violates these will be rejected.
 
 ### General
+
 - **TypeScript strict mode** — no `any`, no `// @ts-ignore`, no `as unknown as X`
 - **No magic numbers or strings** — extract shared values into the appropriate constants/module file for that area; never duplicate literals
 - **Single source of truth** — never duplicate data, config, or logic
@@ -76,6 +79,7 @@ Non-negotiable. A PR that violates these will be rejected.
 - **No unit tests** — skip test files entirely
 
 ### File & folder conventions
+
 ```
 src/
   app/                      # Next.js App Router pages + layouts
@@ -97,6 +101,7 @@ docs/                       # agent plan files: ZR-XX-plan.md per ticket
 ```
 
 ### Component rules
+
 - Functional components only, no class components
 - Props typed with `interface` (use `type` only for unions)
 - Named exports only — default exports only for Next.js pages/layouts
@@ -107,27 +112,43 @@ docs/                       # agent plan files: ZR-XX-plan.md per ticket
 
 Every UI component is mobile-first. Target viewports:
 
-| Name | Width | Device |
-|------|-------|--------|
-| mobile_min | 375px | safe floor — older iPhones |
-| mobile_s23 | 360px | Samsung Galaxy S23 |
-| mobile_iphone14 | 393px | iPhone 14 Pro — primary mobile target |
-| tablet | 768px | |
-| desktop | 1280px | |
+| Name            | Width  | Device                                |
+| --------------- | ------ | ------------------------------------- |
+| mobile_min      | 375px  | safe floor — older iPhones            |
+| mobile_s23      | 360px  | Samsung Galaxy S23                    |
+| mobile_iphone14 | 393px  | iPhone 14 Pro — primary mobile target |
+| tablet          | 768px  |                                       |
+| desktop         | 1280px |                                       |
 
 Tailwind convention: default = mobile (`375px`), `md:` = tablet, `lg:` = desktop.  
 **Never write desktop-first styles.** A layout broken at 375px is a broken layout.
 
 ### Commits — conventional commits (recommended)
+
 ```
 feat(ZR-XX): short description
 fix(ZR-XX): short description
 chore(ZR-XX): tooling, config, deps
 refactor(ZR-XX): restructure without behaviour change
 ```
+
 Jira ticket key always in scope. Message in lowercase.
 
+### When to commit
+
+Commit when you reach a clean, working milestone — a logical unit that compiles, lints, and stands alone as a correct step forward. Ask: "if this were the last commit, would the codebase be in a valid state?" If yes, commit.
+
+Good commit points:
+
+- A new file or module is fully wired up and lint-clean
+- A dependency is installed and its config is complete
+- A component renders correctly at all viewports
+- A bug is fixed and verified
+
+Never commit a broken build. Never commit mid-thought.
+
 ### Branch naming
+
 ```
 ZR{number}_{kebab-case-description}
 
@@ -135,6 +156,7 @@ ZR33_mcp-setup-claude-md
 ZR22_project-setup-nextjs-upgrade
 ZR24_homepage-hero-section
 ```
+
 No type prefix. No slash. Underscore after ticket number. Kebab-case description.
 
 ---
@@ -199,24 +221,31 @@ Create `docs/ZR-{KEY}-plan.md` before touching any code:
 # Plan: ZR-XX — {Ticket title}
 
 ## Ticket
+
 {Jira URL}
 
 ## Summary
+
 {1-2 sentences}
 
 ## Files to create
+
 - `src/...` — reason
 
 ## Files to modify
+
 - `src/...` — reason
 
 ## Implementation steps
+
 1. ...
 
 ## Mobile considerations
+
 - Viewports to test: 375, 393, 360, 768, 1280
 
 ## Questions / blockers
+
 - (list anything unclear before starting)
 ```
 
@@ -251,13 +280,13 @@ For any ticket that touches UI, run this automatically before notifying the owne
 
 **Using Playwright MCP**, navigate to `localhost:3000` (or the relevant route) and check each viewport:
 
-| Viewport | Size | Device |
-|----------|------|--------|
-| 375×667  | mobile min | safe floor |
+| Viewport | Size           | Device        |
+| -------- | -------------- | ------------- |
+| 375×667  | mobile min     | safe floor    |
 | 393×852  | mobile primary | iPhone 14 Pro |
-| 360×780  | mobile | Samsung S23 |
-| 768×1024 | tablet | |
-| 1280×800 | desktop | |
+| 360×780  | mobile         | Samsung S23   |
+| 768×1024 | tablet         |               |
+| 1280×800 | desktop        |               |
 
 Check for: layout overflow, broken flex/grid, cut-off text, images not loading, elements overlapping.
 
@@ -272,6 +301,7 @@ Fix any issues found. Then say:
 ### Step 5 — Apply feedback
 
 Apply changes, re-run Playwright check, then:
+
 > **"Changes applied and re-checked at all viewports. Please confirm 'looks good'."**
 
 ---
@@ -292,9 +322,11 @@ Apply changes, re-run Playwright check, then:
    {Jira URL}
 
    ## What was built
+
    - ...
 
    ## Tested
+
    - Playwright: 375px ✓ 393px ✓ 360px ✓ 768px ✓ 1280px ✓
    - bun run build ✓
    - bun run lint ✓
@@ -316,14 +348,14 @@ When owner confirms merge:
 
 ## Design system reference
 
-| Token | Value |
-|-------|-------|
-| Primary accent (red) | `#E53935` — CTAs, active states, borders, links |
-| Secondary accent (green) | `#00E676` — photo circle, decorative element |
-| Heading font | JetBrains Mono, bold |
-| Body font | System sans |
-| Dark mode strategy | `next-themes`, class-based, `dark:` Tailwind prefix |
-| Component library | shadcn/ui — always check before writing custom UI |
+| Token                    | Value                                               |
+| ------------------------ | --------------------------------------------------- |
+| Primary accent (red)     | `#E53935` — CTAs, active states, borders, links     |
+| Secondary accent (green) | `#00E676` — photo circle, decorative element        |
+| Heading font             | JetBrains Mono, bold                                |
+| Body font                | System sans                                         |
+| Dark mode strategy       | `next-themes`, class-based, `dark:` Tailwind prefix |
+| Component library        | shadcn/ui — always check before writing custom UI   |
 
 Add shadcn component: `bunx shadcn@latest add <name>`
 
@@ -331,13 +363,13 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 
 ## Sanity content model
 
-| Document type | Key fields |
-|---------------|-----------|
-| `homepage` | heading, subtitle, ctaLabel, bio, photo |
-| `post` | title, slug, publishedAt, excerpt, coverImage, body (PortableText), category |
-| `project` | title, slug, thumbnail, shortDescription, techStack[], body, liveUrl, githubUrl, featured, order |
-| `service` | title, icon, bullets[], isHighlighted |
-| `skillGroup` | title, skills[]: { name, logo } |
+| Document type | Key fields                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------------ |
+| `homepage`    | heading, subtitle, ctaLabel, bio, photo                                                          |
+| `post`        | title, slug, publishedAt, excerpt, coverImage, body (PortableText), category                     |
+| `project`     | title, slug, thumbnail, shortDescription, techStack[], body, liveUrl, githubUrl, featured, order |
+| `service`     | title, icon, bullets[], isHighlighted                                                            |
+| `skillGroup`  | title, skills[]: { name, logo }                                                                  |
 
 - All GROQ → `src/sanity/queries.ts` (no inline GROQ anywhere else)
 - Generated types → `src/sanity/types.ts` via `bunx sanity typegen generate`
@@ -348,6 +380,7 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 ## Environment variables
 
 `.env.local` — never commit (see `.env.example` for the canonical list):
+
 ```
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=production
@@ -360,16 +393,16 @@ SANITY_API_TOKEN=
 
 ## Never do
 
-| ❌ | Why |
-|----|-----|
-| Skip plan or either approval checkpoint | Quality gate |
-| Merge own PR | Owner reviews |
-| Use npm / yarn — always `bun` | Lockfile consistency |
-| Write inline GROQ outside `queries.ts` | Single source of truth |
-| Use magic numbers or hardcoded strings | Maintainability |
-| Add `any` to TypeScript | Type safety |
-| Write unit tests | Out of scope |
-| Edit `src/components/ui/` | shadcn-managed |
-| Commit to `main` directly | Feature branches only |
-| Skip Playwright self-QA on UI tickets | Catch responsive bugs before owner sees them |
-| Write desktop-first CSS | 375px is the baseline, always |
+| ❌                                      | Why                                          |
+| --------------------------------------- | -------------------------------------------- |
+| Skip plan or either approval checkpoint | Quality gate                                 |
+| Merge own PR                            | Owner reviews                                |
+| Use npm / yarn — always `bun`           | Lockfile consistency                         |
+| Write inline GROQ outside `queries.ts`  | Single source of truth                       |
+| Use magic numbers or hardcoded strings  | Maintainability                              |
+| Add `any` to TypeScript                 | Type safety                                  |
+| Write unit tests                        | Out of scope                                 |
+| Edit `src/components/ui/`               | shadcn-managed                               |
+| Commit to `main` directly               | Feature branches only                        |
+| Skip Playwright self-QA on UI tickets   | Catch responsive bugs before owner sees them |
+| Write desktop-first CSS                 | 375px is the baseline, always                |

@@ -1,26 +1,24 @@
-import type {Metadata} from "next";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
-
+import type { Metadata } from 'next'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: "Zoltan Rakottyai - Software Engineer & Web Developer",
-  description: "Personal website of Zoltan Rakottyai",
-};
+  title: 'Zoltan Rakottyai - Software Engineer & Web Developer',
+  description: 'Personal website of Zoltan Rakottyai',
+}
 
 // ${vinProMono.className} `${ibmPLexSans.variable}
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
-  children: React.ReactNode;
+  children,
+}: Readonly<{
+  children: React.ReactNode
 }>) {
   return (
     <>
-      <Header/>
+      <Header />
       {children}
-      <Footer/>
+      <Footer />
     </>
-  );
+  )
 }

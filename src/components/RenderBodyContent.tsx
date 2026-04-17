@@ -1,5 +1,5 @@
 import { PortableText, PortableTextComponents } from '@portabletext/react'
-import {CodeBlock} from "@/components/CodeBlock";
+import { CodeBlock } from '@/components/CodeBlock'
 const components: PortableTextComponents = {
   types: {
     code: ({ value }) => {
