@@ -1,0 +1,5 @@
+echo "Running GitLeaks scan on entire repository..."
+gitleaks detect --verbose --config=.gitleaks.toml || {
+  echo "GitLeaks found secrets! Fix them before pushing."
+  exit 1
+}

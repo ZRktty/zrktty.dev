@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+if ! command -v gitleaks > /dev/null 2>&1; then
+  echo "GitLeaks not found, installing..."
+  brew install gitleaks || {
+    echo "Failed to install GitLeaks. Please install it manually: https://github.com/zricethezav/gitleaks#installation"
+    exit 1
+  }
+fi
+
+echo "Running GitLeaks to check for secrets..."
+gitleaks protect --staged --verbose --config=.gitleaks.toml
