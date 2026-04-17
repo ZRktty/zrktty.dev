@@ -127,6 +127,18 @@ refactor(ZR-XX): restructure without behaviour change
 ```
 Jira ticket key always in scope. Message in lowercase.
 
+### When to commit
+
+Commit when you reach a clean, working milestone — a logical unit that compiles, lints, and stands alone as a correct step forward. Ask: "if this were the last commit, would the codebase be in a valid state?" If yes, commit.
+
+Good commit points:
+- A new file or module is fully wired up and lint-clean
+- A dependency is installed and its config is complete
+- A component renders correctly at all viewports
+- A bug is fixed and verified
+
+Never commit a broken build. Never commit mid-thought.
+
 ### Branch naming
 ```
 ZR{number}_{kebab-case-description}
