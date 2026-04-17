@@ -4,7 +4,11 @@
       "Bash(git add *)",
       "Bash(git commit -m '*)",
       "Bash(git push *)",
-      "Bash(gh pr *)"
+      "Bash(gh pr *)",
+      "Bash(bun run lint)",
+      "mcp__MCP_DOCKER__jira_get_issue",
+      "mcp__claude_ai_Atlassian__getJiraIssue",
+      "mcp__MCP_DOCKER__fetch"
     ]
   },
   "hooks": {
