@@ -1,4 +1,3 @@
-
 export const POSTS_QUERY = `*[
   _type == "post" 
   && defined(slug.current)
@@ -12,6 +11,6 @@ export const POSTS_QUERY = `*[
     string::split(pt::text(body), "")[0..255], 
     ""
   ) + "..."
-}`;
+}`
 
-export const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
+export const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`
