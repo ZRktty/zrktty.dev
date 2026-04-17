@@ -1,0 +1,44 @@
+# GitLeaks configuration
+title = "GitLeaks Config"
+
+[allowlist]
+regexes = [
+  "EXAMPLE_KEY",
+  "TEST_SECRET",
+  "PLACEHOLDER",
+  "(?i)(JWT_SECRET|DATABASE_URL|API_KEY|SECRET_KEY|REDIS_PASSWORD|AWS_SECRET_ACCESS_KEY|WEBSHIPPY_API_KEY)=\\s*$",
+  "(?i)(JWT_SECRET|DATABASE_URL|API_KEY|SECRET_KEY|REDIS_PASSWORD|AWS_SECRET_ACCESS_KEY|WEBSHIPPY_API_KEY)=your-.*",
+  "(?i)(JWT_SECRET|DATABASE_URL|API_KEY|SECRET_KEY|REDIS_PASSWORD|AWS_SECRET_ACCESS_KEY|WEBSHIPPY_API_KEY)=[\"']?[\"']?$"
+]
+files = [
+  ".gitleaks-report.json",
+  ".env.example"
+]
+paths = [
+  "node_modules/",
+  "dist/"
+]
+commits = []
+
+[[rules]]
+id = "env-file"
+description = "Check for .env files"
+regex = "(?i)\\.env"
+path = "\\.env$"
+tags = ["env", "environment", "config"]
+
+[[rules]]
+id = "nestjs-secrets"
+description = "NestJS configuration secrets"
+regex = "(?i)(JWT_SECRET|DATABASE_URL|API_KEY|SECRET_KEY|REDIS_PASSWORD|AWS_SECRET_ACCESS_KEY|WEBSHIPPY_API_KEY)=[\"']?([a-zA-Z0-9+/]{16,}|[a-zA-Z0-9_-]{20,})[\"']?"
+path = "(?i)(\\.env$|\\.env\\.local$|\\.env\\.production$)"
+tags = ["nestjs", "config"]
+
+  [rules.allowlist]
+  regexes = [
+    "(?i)\\.env\\.example",
+    "(?i)(JWT_SECRET|DATABASE_URL|API_KEY|SECRET_KEY|REDIS_PASSWORD|AWS_SECRET_ACCESS_KEY|WEBSHIPPY_API_KEY)=\\s*$",
+    "(?i)(JWT_SECRET|DATABASE_URL|API_KEY|SECRET_KEY|REDIS_PASSWORD|AWS_SECRET_ACCESS_KEY|WEBSHIPPY_API_KEY)=your-.*"
+  ]
+  files = [".env.example"]
+  paths = [".env.example"]
