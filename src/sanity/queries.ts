@@ -31,7 +31,7 @@ export const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) {
 
 export const PROJECTS_SLUGS_QUERY = `*[_type == "project" && defined(slug.current)] { "slug": slug.current }`
 
-export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(order asc) {
+export const HOMEPAGE_PROJECTS_QUERY = `*[_type == "project" && defined(slug.current) && (featured == true || highlighted == true)] | order(order asc) {
   _id,
   title,
   slug,
@@ -44,6 +44,22 @@ export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | 
   liveUrl,
   githubUrl
 }`
+
+export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(_createdAt desc) [$offset...$offset + $limit] {
+  _id,
+  title,
+  slug,
+  shortDescription,
+  thumbnail,
+  techStack,
+  featured,
+  highlighted,
+  order,
+  liveUrl,
+  githubUrl
+}`
+
+export const PROJECTS_COUNT_QUERY = `count(*[_type == "project" && defined(slug.current)])`
 
 export const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0] {
   _id,
