@@ -2,7 +2,7 @@ import React from 'react'
 
 const ContactPage: React.FC = () => {
   return (
-    <div className="container mx-auto p-4  min-h-screen max-w-3xl prose dark:prose-invert">
+    <div className="container mx-auto px-4 py-6 min-h-screen max-w-3xl md:px-8 md:py-12 prose dark:prose-invert">
       <h1 className=" mb-4">About me</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi
