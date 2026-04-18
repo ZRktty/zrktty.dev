@@ -10,8 +10,10 @@
 **Name:** zrktty.dev — Personal portfolio website  
 **Owner:** Zoltan Rakottyai  
 **Stack:** Next.js (latest) · TypeScript · Sanity CMS · shadcn/ui · Tailwind CSS · Bun  
-**Repo:** https://github.com/ZRktty/zrktty.dev  
-**Jira board:** https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board  
+**Repo:** <https://github.com/ZRktty/zrktty.dev>  
+**Studio repo:** <https://github.com/ZRktty/studio-zoltanrakottyai.dev>  
+**Sanity project ID:** `8tbsip27` · dataset: `production`  
+**Jira board:** <https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board>  
 **Epic:** ZR-21
 
 ---
@@ -363,17 +365,102 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 
 ## Sanity content model
 
-| Document type | Key fields                                                                                       |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `homepage`    | heading, subtitle, ctaLabel, bio, photo                                                          |
-| `post`        | title, slug, publishedAt, excerpt, coverImage, body (PortableText), category                     |
-| `project`     | title, slug, thumbnail, shortDescription, techStack[], body, liveUrl, githubUrl, featured, order |
-| `service`     | title, icon, bullets[], isHighlighted                                                            |
-| `skillGroup`  | title, skills[]: { name, logo }                                                                  |
+| Document type | Key fields                                                                                                                                             |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `homepage`    | heading, subtitle, ctaLabel, bio, photo                                                                                                                |
+| `post`        | title, slug, publishedAt, excerpt, coverImage, body (PortableText), category                                                                           |
+| `project`     | title, slug, shortDescription, thumbnail, liveUrl, githubUrl, client, timeline, role[], techStack[], body (PortableText), featured, highlighted, order |
+| `experience`  | company, role, webUrl, type, startDate, endDate, description, techStack[], logo, order                                                                 |
+| `service`     | title, icon, bullets[], isHighlighted                                                                                                                  |
+| `skillGroup`  | title, skills[]: { name, logo }                                                                                                                        |
 
 - All GROQ → `src/sanity/queries.ts` (no inline GROQ anywhere else)
-- Generated types → `src/sanity/types.ts` via `bunx sanity typegen generate`
-- Always use **Sanity MCP** to verify a query before writing TypeScript around it
+- TypeScript types are written manually in `src/types/index.ts` (no local studio = no typegen)
+- Always use **Sanity MCP** (`get_schema`, `query_documents`) to verify schema and queries before writing code
+
+---
+
+## Sanity Studio repo
+
+The Sanity Studio lives in a **separate repository**: <https://github.com/ZRktty/studio-zoltanrakottyai.dev>
+
+There is no local studio in this Next.js repo. The `gh` CLI is authenticated — clone and push directly:
+
+```bash
+gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio-zoltanrakottyai
+```
+
+### Studio repo structure
+
+```text
+schemaTypes/
+  index.ts          # registers all types — import + add to schemaTypes array
+  blockContent.ts
+  post.ts
+  author.ts
+  category.ts
+  experience.ts
+  project.ts        # added ZR-28
+  aboutMe.ts
+  structure.ts
+sanity.config.ts
+sanity.types.ts     # auto-generated — do not edit manually
+```
+
+### Adding a new Sanity document type — full workflow
+
+1. **Clone the studio repo** (if not already local):
+
+   ```bash
+   gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio-zoltanrakottyai
+   ```
+
+2. **Create the schema file** — follow the pattern in `experience.ts`: use `defineType` / `defineField`, export a named const:
+
+   ```ts
+   // schemaTypes/myType.ts
+   import { defineField, defineType } from 'sanity'
+   export const myType = defineType({ name: 'myType', type: 'document', fields: [...] })
+   ```
+
+3. **Register it in `schemaTypes/index.ts`**:
+
+   ```ts
+   import { myType } from './myType'
+   export const schemaTypes = [...existing, myType]
+   ```
+
+4. **Push to `main`**:
+
+   ```bash
+   cd /tmp/studio-zoltanrakottyai
+   git add schemaTypes/myType.ts schemaTypes/index.ts
+   git commit -m "feat(ZR-XX): add myType schema"
+   git push origin main
+   ```
+
+5. **Deploy the Studio** (run from the studio directory):
+
+   ```bash
+   npx sanity deploy
+   ```
+
+   Or push triggers CI/CD if configured.
+
+6. **Also deploy schema via Sanity MCP** so the cloud registry is in sync and GROQ queries work immediately (without waiting for studio deploy):
+
+   ```text
+   mcp__sanity__deploy_schema
+   ```
+
+7. **Write TypeScript types manually** in this repo's `src/types/index.ts` — `bunx sanity typegen generate` requires a local studio and won't work here.
+
+### ⚠️ Important: keep studio repo and MCP schema in sync
+
+The Sanity MCP `deploy_schema` tool updates the **cloud schema registry** independently of the studio repo files. If you use it alone, the studio UI and cloud registry get out of sync. Always do both:
+
+- Push the `.ts` file to the studio repo (source of truth for the Studio UI)
+- Call `mcp__sanity__deploy_schema` (makes GROQ queries work immediately)
 
 ---
 

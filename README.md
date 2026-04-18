@@ -70,17 +70,40 @@ Make sure `gitleaks` is installed locally (see Prerequisites above) or the hook 
 
 ## Content management
 
-Content is managed in [Sanity Studio](https://www.sanity.io/). To run the studio locally:
+Content is managed via **Sanity** (hosted, no local studio in this repo).
+
+|             |                                                        |
+| ----------- | ------------------------------------------------------ |
+| Project ID  | `8tbsip27`                                             |
+| Dataset     | `production`                                           |
+| Studio repo | <https://github.com/ZRktty/studio-zoltanrakottyai.dev> |
+
+### Editing content
+
+Open the hosted Sanity Studio (deploy URL) or run the studio locally from its own repo:
 
 ```bash
-bunx sanity dev
+gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio
+cd /tmp/studio && npx sanity dev
 ```
 
-After making schema changes, regenerate TypeScript types:
+### Adding a new document type (schema change)
 
-```bash
-bunx sanity typegen generate
-```
+The Sanity Studio lives in a **separate repo** — there is no local studio here.
+`bunx sanity typegen generate` will not work in this repo.
+
+Full workflow:
+
+1. Clone the studio repo: `gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio`
+2. Add a new file in `schemaTypes/myType.ts` using `defineType` / `defineField`
+3. Register it in `schemaTypes/index.ts`
+4. Push to `main` and run `npx sanity deploy` from the studio dir
+5. Also call `mcp__sanity__deploy_schema` (Sanity MCP) so GROQ queries work immediately
+6. Write TypeScript types manually in `src/types/index.ts` in this repo
+
+> ⚠️ Always keep both in sync: the studio repo `.ts` file is the source of truth for the Studio UI; the Sanity MCP `deploy_schema` updates the cloud registry used by GROQ at runtime. Using only one will cause a desync.
+
+See [CLAUDE.md](CLAUDE.md) for the full agent workflow including schema patterns.
 
 ## Tech stack
 
