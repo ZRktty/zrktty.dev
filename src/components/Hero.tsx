@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 
 const Hero: React.FC = () => {
   return (
-    <div className="flex flex-col w-full  justify-center h-screen text-left p-8 ">
+    <div className="flex flex-col w-full justify-center h-screen text-left">
       <h1 className={`text-6xl sm:text-6xl  mb-4 font-vin-pro-mono  text-gray-900 dark:text-white`}>
         Zoltan Rakottyai
       </h1>

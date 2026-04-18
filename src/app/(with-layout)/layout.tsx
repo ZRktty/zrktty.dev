@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <>
       <Header />
-      <div className="relative z-10 bg-background">{children}</div>
+      <div className="relative z-10 bg-background pt-14 px-4 md:px-8">{children}</div>
       <Footer />
     </>
   )
