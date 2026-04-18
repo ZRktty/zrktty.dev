@@ -23,7 +23,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
         {imageUrl ? (
           <Image
             src={imageUrl}
-            alt={project.title ?? ''}
+            alt={project.title ? `${project.title} thumbnail` : 'Project thumbnail'}
             fill
             priority
             className="object-cover transition-transform duration-500 group-hover:scale-105"

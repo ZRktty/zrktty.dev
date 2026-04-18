@@ -376,92 +376,85 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 | `skillGroup`  | title, skills[]: { name, logo }                                                                                                                        |
 
 - All GROQ → `src/sanity/queries.ts` (no inline GROQ anywhere else)
-- TypeScript types are written manually in `src/types/index.ts` (no local studio = no typegen)
+- Sanity document types are **generated** into `src/sanity/types.ts` — never write them manually there
+- `src/types/index.ts` is for shared app-level types only (GROQ projections, UI interfaces)
 - Always use **Sanity MCP** (`get_schema`, `query_documents`) to verify schema and queries before writing code
 
 ---
 
-## Sanity Studio repo
+## Sanity Studio
 
-The Sanity Studio lives in a **separate repository**: <https://github.com/ZRktty/studio-zoltanrakottyai.dev>
+The Sanity Studio lives in `studio/` as a **git submodule** sourced from <https://github.com/ZRktty/studio-zoltanrakottyai.dev>.
 
-There is no local studio in this Next.js repo. The `gh` CLI is authenticated — clone and push directly:
+It is already checked out — no cloning needed. Always work with `studio/` directly.
 
-```bash
-gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio-zoltanrakottyai
-```
-
-### Studio repo structure
+### Studio structure
 
 ```text
-schemaTypes/
-  index.ts          # registers all types — import + add to schemaTypes array
-  blockContent.ts
-  post.ts
-  author.ts
-  category.ts
-  experience.ts
-  project.ts        # added ZR-28
-  aboutMe.ts
-  structure.ts
-sanity.config.ts
-sanity.types.ts     # auto-generated — do not edit manually
+studio/
+  schemaTypes/
+    index.ts        # registers all types — import + add to schemaTypes array
+    blockContent.ts
+    post.ts
+    author.ts
+    category.ts
+    experience.ts
+    project.ts
+    aboutMe.ts
+    structure.ts
+  sanity.config.ts
+  sanity.types.ts   # auto-generated — do not edit manually
+  schema.json       # extracted schema — do not edit manually
 ```
 
 ### Adding a new Sanity document type — full workflow
 
-1. **Clone the studio repo** (if not already local):
-
-   ```bash
-   gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio-zoltanrakottyai
-   ```
-
-2. **Create the schema file** — follow the pattern in `experience.ts`: use `defineType` / `defineField`, export a named const:
+1. **Create the schema file** in `studio/schemaTypes/myType.ts` — follow the pattern in `experience.ts`:
 
    ```ts
-   // schemaTypes/myType.ts
    import { defineField, defineType } from 'sanity'
    export const myType = defineType({ name: 'myType', type: 'document', fields: [...] })
    ```
 
-3. **Register it in `schemaTypes/index.ts`**:
+2. **Register it** in `studio/schemaTypes/index.ts`:
 
    ```ts
    import { myType } from './myType'
    export const schemaTypes = [...existing, myType]
    ```
 
-4. **Push to `main`**:
+3. **Commit and push** the studio submodule:
 
    ```bash
-   cd /tmp/studio-zoltanrakottyai
-   git add schemaTypes/myType.ts schemaTypes/index.ts
-   git commit -m "feat(ZR-XX): add myType schema"
-   git push origin main
+   git -C studio add schemaTypes/myType.ts schemaTypes/index.ts
+   git -C studio commit -m "feat(ZR-XX): add myType schema"
+   git -C studio push origin main
    ```
 
-5. **Deploy the Studio** (run from the studio directory):
-
-   ```bash
-   npx sanity deploy
-   ```
-
-   Or push triggers CI/CD if configured.
-
-6. **Also deploy schema via Sanity MCP** so the cloud registry is in sync and GROQ queries work immediately (without waiting for studio deploy):
+4. **Deploy schema via Sanity MCP** so GROQ queries work immediately:
 
    ```text
    mcp__sanity__deploy_schema
    ```
 
-7. **Write TypeScript types manually** in this repo's `src/types/index.ts` — `bunx sanity typegen generate` requires a local studio and won't work here.
+5. **Regenerate TypeScript types** and copy to this repo:
 
-### ⚠️ Important: keep studio repo and MCP schema in sync
+   ```bash
+   bunx sanity schema extract
+   bunx sanity typegen generate
+   cp studio/sanity.types.ts src/sanity/types.ts
+   ```
 
-The Sanity MCP `deploy_schema` tool updates the **cloud schema registry** independently of the studio repo files. If you use it alone, the studio UI and cloud registry get out of sync. Always do both:
+6. **Update the submodule pointer** in this repo:
 
-- Push the `.ts` file to the studio repo (source of truth for the Studio UI)
-- Call `mcp__sanity__deploy_schema` (makes GROQ queries work immediately)
+   ```bash
+   git add studio src/sanity/types.ts
+   git commit -m "chore: update studio submodule, regenerate types"
+   ```
+
+### ⚠️ Keep studio submodule and MCP schema in sync
+
+The Sanity MCP `deploy_schema` updates the **cloud registry** used by GROQ at runtime. The `studio/` files are the source of truth for the Studio UI. Always do both — push to `studio/` and call `mcp__sanity__deploy_schema`.
 
 ---
 

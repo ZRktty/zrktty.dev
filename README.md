@@ -70,7 +70,7 @@ Make sure `gitleaks` is installed locally (see Prerequisites above) or the hook 
 
 ## Content management
 
-Content is managed via **Sanity** (hosted, no local studio in this repo).
+Content is managed via **Sanity**. The Studio lives in `studio/` as a git submodule.
 
 |             |                                                        |
 | ----------- | ------------------------------------------------------ |
@@ -78,32 +78,24 @@ Content is managed via **Sanity** (hosted, no local studio in this repo).
 | Dataset     | `production`                                           |
 | Studio repo | <https://github.com/ZRktty/studio-zoltanrakottyai.dev> |
 
-### Editing content
-
-Open the hosted Sanity Studio (deploy URL) or run the studio locally from its own repo:
+### Running the studio locally
 
 ```bash
-gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio
-cd /tmp/studio && npx sanity dev
+cd studio && bunx sanity dev
 ```
 
 ### Adding a new document type (schema change)
 
-The Sanity Studio lives in a **separate repo** — there is no local studio here.
-`bunx sanity typegen generate` will not work in this repo.
+1. Add `studio/schemaTypes/myType.ts` using `defineType` / `defineField`
+2. Register it in `studio/schemaTypes/index.ts`
+3. Commit + push the studio submodule: `git -C studio add . && git -C studio commit -m "..." && git -C studio push`
+4. Call `mcp__sanity__deploy_schema` (Sanity MCP) so GROQ queries work immediately
+5. Regenerate types and copy: `bunx sanity schema extract && bunx sanity typegen generate && cp studio/sanity.types.ts src/sanity/types.ts`
+6. Commit the submodule pointer + updated `src/sanity/types.ts` in this repo
 
-Full workflow:
+> ⚠️ Always keep both in sync: `studio/` schema files are the source of truth for the Studio UI; `mcp__sanity__deploy_schema` updates the cloud registry used by GROQ at runtime.
 
-1. Clone the studio repo: `gh repo clone ZRktty/studio-zoltanrakottyai.dev /tmp/studio`
-2. Add a new file in `schemaTypes/myType.ts` using `defineType` / `defineField`
-3. Register it in `schemaTypes/index.ts`
-4. Push to `main` and run `npx sanity deploy` from the studio dir
-5. Also call `mcp__sanity__deploy_schema` (Sanity MCP) so GROQ queries work immediately
-6. Write TypeScript types manually in `src/types/index.ts` in this repo
-
-> ⚠️ Always keep both in sync: the studio repo `.ts` file is the source of truth for the Studio UI; the Sanity MCP `deploy_schema` updates the cloud registry used by GROQ at runtime. Using only one will cause a desync.
-
-See [CLAUDE.md](CLAUDE.md) for the full agent workflow including schema patterns.
+See [CLAUDE.md](CLAUDE.md) for the full agent workflow.
 
 ## Tech stack
 

@@ -29,6 +29,8 @@ export const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) {
   order
 }`
 
+export const PROJECTS_SLUGS_QUERY = `*[_type == "project" && defined(slug.current)] { "slug": slug.current }`
+
 export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(order asc) {
   _id,
   title,

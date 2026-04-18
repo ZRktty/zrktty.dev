@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {imageUrl ? (
           <Image
             src={imageUrl}
-            alt={project.title ?? ''}
+            alt={project.title ? `${project.title} thumbnail` : 'Project thumbnail'}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
