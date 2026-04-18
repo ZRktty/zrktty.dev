@@ -27,3 +27,30 @@ export interface ExperienceItem {
   } | null
   order?: number
 }
+
+interface SanityImageAsset {
+  asset?: { _ref: string; _type: 'reference' }
+  hotspot?: { x: number; y: number; height: number; width: number }
+  crop?: { top: number; bottom: number; left: number; right: number }
+}
+
+export interface ProjectItem {
+  _id: string
+  title: string
+  slug: { current: string }
+  shortDescription?: string
+  thumbnail?: SanityImageAsset
+  techStack?: string[]
+  featured?: boolean
+  highlighted?: boolean
+  order?: number
+  liveUrl?: string
+  githubUrl?: string
+}
+
+export interface ProjectDetail extends ProjectItem {
+  client?: string
+  timeline?: string
+  role?: string[]
+  body?: import('@/sanity/types').BlockContent
+}
