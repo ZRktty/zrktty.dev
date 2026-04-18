@@ -19,7 +19,7 @@ export interface ExperienceItem {
   type: ExperienceType
   startDate: string
   endDate?: string | null
-  description?: Array<{ _type: string; _key: string; [key: string]: unknown }>
+  description?: import('@/sanity/types').BlockContent
   techStack?: string[]
   logo?: {
     asset: { url: string }

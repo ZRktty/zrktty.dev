@@ -4,7 +4,11 @@ import { ExperienceList } from '@/components/experience/ExperienceList'
 import type { ExperienceItem } from '@/types'
 
 export default async function ExperiencePage() {
-  const items = await client.fetch<ExperienceItem[]>(EXPERIENCE_QUERY)
+  const items = await client.fetch<ExperienceItem[]>(
+    EXPERIENCE_QUERY,
+    {},
+    { next: { revalidate: 30 } },
+  )
 
   return (
     <div className="container mx-auto min-h-screen max-w-3xl py-6 md:py-12">
