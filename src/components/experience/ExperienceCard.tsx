@@ -76,9 +76,9 @@ export function ExperienceCard({ item }: Props) {
 
       {techStack && techStack.length > 0 && (
         <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
-          {techStack.map((tech) => (
+          {techStack.map((tech, i) => (
             <li
-              key={tech}
+              key={`${tech}-${i}`}
               className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground"
             >
               {tech}
