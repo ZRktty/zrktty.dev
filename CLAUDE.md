@@ -42,7 +42,7 @@
 
 ### Verify MCPs before starting work
 
-```
+```text
 /mcp
 ```
 
@@ -61,7 +61,8 @@ bun add -d <pkg>                     # add dev dependency
 bun run dev                          # local dev server
 bun run build                        # production build check
 bun run lint                         # eslint
-bunx sanity typegen generate         # generate Sanity TypeScript types
+bunx sanity schema extract           # extract schema from studio/ submodule
+bunx sanity typegen generate         # generate types → studio/sanity.types.ts, then cp to src/sanity/types.ts
 bunx shadcn@latest add <component>   # add shadcn component
 ```
 
@@ -82,7 +83,7 @@ Non-negotiable. A PR that violates these will be rejected.
 
 ### File & folder conventions
 
-```
+```text
 src/
   app/                      # Next.js App Router pages + layouts
   components/
@@ -127,7 +128,7 @@ Tailwind convention: default = mobile (`375px`), `md:` = tablet, `lg:` = desktop
 
 ### Commits — conventional commits (recommended)
 
-```
+```text
 feat(ZR-XX): short description
 fix(ZR-XX): short description
 chore(ZR-XX): tooling, config, deps
@@ -151,7 +152,7 @@ Never commit a broken build. Never commit mid-thought.
 
 ### Branch naming
 
-```
+```text
 ZR{number}_{kebab-case-description}
 
 ZR33_mcp-setup-claude-md
@@ -205,7 +206,7 @@ Commit this file. It makes the agent self-correct automatically.
 
 ### Step 0 — Orient yourself
 
-1. Via **Atlassian MCP**: check the board https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board
+1. Via **Atlassian MCP**: check the board <https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board>
 2. Find the first ticket that is:
    - **In Progress** → resume it (check if `docs/ZR-XX-plan.md` exists)
    - **To Do** → pick the next one by board order within epic ZR-21
@@ -468,7 +469,7 @@ The Sanity MCP `deploy_schema` tool updates the **cloud schema registry** indepe
 
 `.env.local` — never commit (see `.env.example` for the canonical list):
 
-```
+```text
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-02-09

@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ProjectItem } from '@/types'
+import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
 import { TechTag } from './TechTag'
 import { PROJECT_FEATURED_IMAGE_WIDTH, PROJECT_FEATURED_IMAGE_HEIGHT } from '@/constants'
 
 interface FeaturedProjectCardProps {
-  project: ProjectItem
+  project: Project
 }
 
 export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
@@ -23,7 +23,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
         {imageUrl ? (
           <Image
             src={imageUrl}
-            alt={project.title}
+            alt={project.title ?? ''}
             fill
             priority
             className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -54,7 +54,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
           </div>
         )}
         <Link
-          href={`/projects/${project.slug.current}`}
+          href={`/projects/${project.slug?.current ?? ''}`}
           className="mt-2 text-sm font-mono text-foreground hover:text-primary transition-colors self-start"
         >
           View Case Study →

@@ -1,9 +1,9 @@
-import { ProjectItem } from '@/types'
+import { Project } from '@/sanity/types'
 import { ProjectCard } from './ProjectCard'
 import { FeaturedProjectCard } from './FeaturedProjectCard'
 
 interface ProjectsGridProps {
-  projects: ProjectItem[]
+  projects: Project[]
 }
 
 export function ProjectsGrid({ projects }: ProjectsGridProps) {

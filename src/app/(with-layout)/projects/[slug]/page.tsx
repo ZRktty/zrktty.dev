@@ -4,7 +4,8 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { client } from '@/sanity/client'
 import { PROJECT_QUERY, PROJECTS_QUERY, NEXT_PROJECT_QUERY } from '@/sanity/queries'
-import { ProjectDetail, ProjectItem } from '@/types'
+import { Project } from '@/sanity/types'
+import { NextProjectRef } from '@/types'
 import { urlFor } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
 import { TechTag } from '@/components/projects/TechTag'
@@ -16,13 +17,13 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const projects = await client.fetch<ProjectItem[]>(PROJECTS_QUERY)
-  return projects.map((p) => ({ slug: p.slug.current }))
+  const projects = await client.fetch<Project[]>(PROJECTS_QUERY)
+  return projects.map((p) => ({ slug: p.slug?.current ?? '' })).filter((p) => p.slug)
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const project = await client.fetch<ProjectDetail | null>(PROJECT_QUERY, { slug })
+  const project = await client.fetch<Project | null>(PROJECT_QUERY, { slug })
   if (!project) return {}
   return {
     title: project.title,
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params
-  const project = await client.fetch<ProjectDetail | null>(PROJECT_QUERY, { slug })
+  const project = await client.fetch<Project | null>(PROJECT_QUERY, { slug })
 
   if (!project) notFound()
 
@@ -45,10 +46,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   const nextProject =
     typeof project.order === 'number'
-      ? await client.fetch<{ title: string; slug: { current: string } } | null>(
-          NEXT_PROJECT_QUERY,
-          { order: project.order },
-        )
+      ? await client.fetch<NextProjectRef | null>(NEXT_PROJECT_QUERY, { order: project.order })
       : null
 
   return (
@@ -97,7 +95,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           <div className="relative w-full aspect-video overflow-hidden bg-muted">
             <Image
               src={heroUrl}
-              alt={project.title}
+              alt={project.title ?? ''}
               fill
               priority
               className="object-cover"

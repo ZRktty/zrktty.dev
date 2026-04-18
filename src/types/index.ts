@@ -11,6 +11,7 @@ export interface SocialLink {
 
 export type ExperienceType = 'fulltime' | 'freelance' | 'contract'
 
+/** Shape returned by EXPERIENCE_QUERY — logo asset is resolved via -> */
 export interface ExperienceItem {
   _id: string
   company: string
@@ -28,29 +29,8 @@ export interface ExperienceItem {
   order?: number
 }
 
-interface SanityImageAsset {
-  asset?: { _ref: string; _type: 'reference' }
-  hotspot?: { x: number; y: number; height: number; width: number }
-  crop?: { top: number; bottom: number; left: number; right: number }
-}
-
-export interface ProjectItem {
-  _id: string
+/** Minimal shape returned by NEXT_PROJECT_QUERY */
+export interface NextProjectRef {
   title: string
   slug: { current: string }
-  shortDescription?: string
-  thumbnail?: SanityImageAsset
-  techStack?: string[]
-  featured?: boolean
-  highlighted?: boolean
-  order?: number
-  liveUrl?: string
-  githubUrl?: string
-}
-
-export interface ProjectDetail extends ProjectItem {
-  client?: string
-  timeline?: string
-  role?: string[]
-  body?: import('@/sanity/types').BlockContent
 }

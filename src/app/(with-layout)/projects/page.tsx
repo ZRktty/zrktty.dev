@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { client } from '@/sanity/client'
 import { PROJECTS_QUERY } from '@/sanity/queries'
-import { ProjectItem } from '@/types'
+import { Project } from '@/sanity/types'
 import { ProjectsGrid } from '@/components/projects/ProjectsGrid'
 
 const options = { next: { revalidate: 60 } }
 
 export default async function ProjectsPage() {
-  const projects = await client.fetch<ProjectItem[]>(PROJECTS_QUERY, {}, options)
+  const projects = await client.fetch<Project[]>(PROJECTS_QUERY, {}, options)
 
   return (
     <main className="container mx-auto min-h-screen max-w-6xl py-12 md:py-16 px-4 md:px-6">

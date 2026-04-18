@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ProjectItem } from '@/types'
+import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
 import { TechTag } from './TechTag'
 import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
 
 interface ProjectCardProps {
-  project: ProjectItem
+  project: Project
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
@@ -23,7 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         {imageUrl ? (
           <Image
             src={imageUrl}
-            alt={project.title}
+            alt={project.title ?? ''}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -47,7 +47,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
         )}
         <Link
-          href={`/projects/${project.slug.current}`}
+          href={`/projects/${project.slug?.current ?? ''}`}
           className="mt-1 text-sm font-mono text-foreground hover:text-primary transition-colors self-end"
         >
           View Project →
