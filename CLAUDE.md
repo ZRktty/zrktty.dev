@@ -32,9 +32,9 @@
 
 ### Must be added manually (not in Docker catalog)
 
-| MCP        | Setup                                                                                                                                                        | When to use                                                                                                                         |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Sanity** | `sanity mcp configure` from repo root (after `sanity login`), or: `claude mcp add Sanity -t http https://mcp.sanity.io --scope project` then `/mcp` to OAuth | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
+| MCP        | Setup                                                             | When to use                                                                                                                         |
+| ---------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Sanity** | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
 
 > **GitHub**: do NOT add a GitHub MCP. Use `gh` CLI via Bash for all GitHub operations (branch push, PR create, CI status). The Copilot MCP endpoint does not support Claude Code's OAuth flow.
 
