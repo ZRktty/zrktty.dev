@@ -1,12 +1,15 @@
-import React from 'react'
+import { client } from '@/sanity/client'
+import { EXPERIENCE_QUERY } from '@/sanity/queries'
+import { ExperienceList } from '@/components/experience/ExperienceList'
+import type { ExperienceItem } from '@/types'
 
-const ExperiencePage: React.FC = () => {
+export default async function ExperiencePage() {
+  const items = await client.fetch<ExperienceItem[]>(EXPERIENCE_QUERY)
+
   return (
-    <div className="container mx-auto py-6 min-h-screen max-w-3xl md:py-12">
-      <h1 className="mb-4">Experience</h1>
-      <p className="text-muted-foreground">Coming soon.</p>
+    <div className="container mx-auto min-h-screen max-w-3xl py-6 md:py-12">
+      <h1 className="mb-6 font-bold md:mb-8">Experience</h1>
+      <ExperienceList items={items} />
     </div>
   )
 }
-
-export default ExperiencePage

@@ -8,3 +8,22 @@ export interface SocialLink {
   url: string
   color: string
 }
+
+export type ExperienceType = 'fulltime' | 'freelance' | 'contract'
+
+export interface ExperienceItem {
+  _id: string
+  company: string
+  role: string
+  webUrl?: string
+  type: ExperienceType
+  startDate: string
+  endDate?: string | null
+  description?: Array<{ _type: string; _key: string; [key: string]: unknown }>
+  techStack?: string[]
+  logo?: {
+    asset: { url: string }
+    alt?: string
+  } | null
+  order?: number
+}
