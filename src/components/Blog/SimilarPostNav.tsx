@@ -11,10 +11,12 @@ export function SimilarPostNav({ title, slug }: SimilarPostNavProps) {
     <div className="border-t border-border pt-12 md:pt-16">
       <div className="flex items-end justify-between">
         <div className="flex flex-col gap-3">
-          <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+          <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
             Read Next
           </span>
-          <h2 className="font-bold text-3xl md:text-5xl text-foreground tracking-tight">{title}</h2>
+          <h2 className="font-vin-pro-mono font-bold text-3xl md:text-5xl text-foreground tracking-tight uppercase">
+            {title}
+          </h2>
         </div>
         <Link
           href={`/blog/${slug}`}

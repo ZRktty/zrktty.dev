@@ -67,8 +67,10 @@ export default async function BlogPostPage({ params }: Props) {
       {/* Hero */}
       <section className="flex flex-col gap-8 mb-12 md:mb-16">
         <div className="flex flex-col gap-4">
-          <span className="font-mono text-xs tracking-widest uppercase text-primary">Article</span>
-          <h1 className="font-bold text-4xl md:text-6xl text-foreground tracking-tight">
+          <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-[#E53935]">
+            Article
+          </span>
+          <h1 className="font-vin-pro-mono font-bold text-4xl md:text-6xl text-foreground tracking-tight uppercase">
             {post.title}
           </h1>
         </div>
@@ -93,23 +95,23 @@ export default async function BlogPostPage({ params }: Props) {
         <aside className="md:col-span-3 flex flex-col gap-8">
           {post.author?.name && (
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
                 Author
               </span>
-              <span className="font-mono text-sm text-foreground">{post.author.name}</span>
+              <span className="font-ibm-plex-mono text-sm text-foreground">{post.author.name}</span>
             </div>
           )}
           {formattedDate && (
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
                 Published On
               </span>
-              <span className="font-mono text-sm text-foreground">{formattedDate}</span>
+              <span className="font-ibm-plex-mono text-sm text-foreground">{formattedDate}</span>
             </div>
           )}
           {post.categories && post.categories.length > 0 && (
             <div className="flex flex-col gap-3">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
                 Categories
               </span>
               <div className="flex flex-wrap gap-2">
@@ -121,15 +123,17 @@ export default async function BlogPostPage({ params }: Props) {
           )}
           {readTime > 0 && (
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
                 Read Time
               </span>
-              <span className="font-mono text-sm text-foreground">{readTime} min read</span>
+              <span className="font-ibm-plex-mono text-sm text-foreground">
+                {readTime} min read
+              </span>
             </div>
           )}
           <Link
             href="/blog"
-            className="font-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mt-2"
+            className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mt-2"
           >
             ← All Posts
           </Link>
