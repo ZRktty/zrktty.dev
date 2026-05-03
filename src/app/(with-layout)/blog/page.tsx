@@ -1,13 +1,13 @@
 import { client } from '@/sanity/client'
 import { POSTS_QUERY, BLOG_CATEGORIES_QUERY } from '@/sanity/queries'
-import type { PostListItem } from '@/types'
+import type { BlogPost } from '@/types'
 import BlogArchiveClient from '@/components/Blog/BlogArchiveClient'
 
 const options = { next: { revalidate: 30 } }
 
 export default async function BlogPage() {
   const [posts, categories] = await Promise.all([
-    client.fetch<PostListItem[]>(POSTS_QUERY, {}, options),
+    client.fetch<BlogPost[]>(POSTS_QUERY, {}, options),
     client.fetch<Array<{ _id: string; title: string }>>(BLOG_CATEGORIES_QUERY, {}, options),
   ])
 

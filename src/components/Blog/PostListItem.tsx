@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import type { PostListItem } from '@/types'
+import type { BlogPost } from '@/types'
 
 interface Props {
-  post: PostListItem
+  post: BlogPost
   index: number
 }
 

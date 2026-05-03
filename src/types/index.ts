@@ -36,7 +36,7 @@ export interface NextProjectRef {
 }
 
 /** Shape returned by POSTS_QUERY — includes resolved categories and computed excerpt */
-export interface PostListItem {
+export interface BlogPost {
   _id: string
   title: string
   slug: { current: string }

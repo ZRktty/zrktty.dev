@@ -1,15 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import type { PostListItem } from '@/types'
+import type { BlogPost } from '@/types'
 import { BLOG_PAGE_SIZE } from '@/constants'
 import CategoryFilter, { ALL_LABEL } from './CategoryFilter'
-import PostListItemComponent from './PostListItem'
+import PostListItem from './PostListItem'
 
 const IBM_MONO = 'font-ibm-plex-mono'
 
 interface Props {
-  posts: PostListItem[]
+  posts: BlogPost[]
   categories: Array<{ _id: string; title: string }>
 }
 
@@ -40,7 +40,7 @@ export default function BlogArchiveClient({ posts, categories }: Props) {
 
       <div className="flex flex-col">
         {visible.length > 0 ? (
-          visible.map((post, i) => <PostListItemComponent key={post._id} post={post} index={i} />)
+          visible.map((post, i) => <PostListItem key={post._id} post={post} index={i} />)
         ) : (
           <p className={`${IBM_MONO} text-muted-foreground text-sm py-12`}>
             No transmissions found.
