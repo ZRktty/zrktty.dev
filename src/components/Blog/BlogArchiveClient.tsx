@@ -6,7 +6,7 @@ import { BLOG_PAGE_SIZE } from '@/constants'
 import CategoryFilter, { ALL_LABEL } from './CategoryFilter'
 import PostListItemComponent from './PostListItem'
 
-const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
+const IBM_MONO = 'font-ibm-plex-mono'
 
 interface Props {
   posts: PostListItem[]

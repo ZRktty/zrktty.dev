@@ -1,7 +1,7 @@
 'use client'
 
 const ALL_LABEL = 'ALL'
-const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
+const IBM_MONO = 'font-ibm-plex-mono'
 
 interface CategoryOption {
   _id: string

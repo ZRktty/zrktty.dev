@@ -16,7 +16,7 @@ function formatDate(iso: string): string {
     .toUpperCase()
 }
 
-const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
+const IBM_MONO = 'font-ibm-plex-mono'
 
 export default function PostListItem({ post, index }: Props) {
   const entryNumber = String(index + 1).padStart(2, '0')

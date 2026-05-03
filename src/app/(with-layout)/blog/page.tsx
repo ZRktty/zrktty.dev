@@ -3,8 +3,6 @@ import { POSTS_QUERY, BLOG_CATEGORIES_QUERY } from '@/sanity/queries'
 import type { PostListItem } from '@/types'
 import BlogArchiveClient from '@/components/Blog/BlogArchiveClient'
 
-const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
-
 const options = { next: { revalidate: 30 } }
 
 export default async function BlogPage() {
@@ -19,7 +17,7 @@ export default async function BlogPage() {
         <h1 className="font-vin-pro-mono text-5xl md:text-7xl font-bold uppercase tracking-tight text-foreground mb-4">
           TRANSMISSIONS
         </h1>
-        <p className={`${IBM_MONO} text-base text-muted-foreground max-w-xl`}>
+        <p className="font-ibm-plex-mono text-base text-muted-foreground max-w-xl">
           Thoughts, tutorials, and engineering deep dives from the terminal to the canvas.
         </p>
       </div>
