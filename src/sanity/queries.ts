@@ -13,9 +13,10 @@ export const POSTS_QUERY = `*[
   ) + "..."
 }`
 
-export const BLOG_CATEGORIES_QUERY = `array::unique(*[
-  _type == "post" && defined(slug.current) && defined(categories)
-].categories[]->{ _id, title })`
+export const BLOG_CATEGORIES_QUERY = `*[
+  _type == "category"
+  && _id in *[_type == "post" && defined(slug.current)].categories[]._ref
+] | order(title asc) { _id, title }`
 
 export const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`
 
