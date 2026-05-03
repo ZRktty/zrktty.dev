@@ -45,7 +45,7 @@ export default function PostListItem({ post, index }: Props) {
           <span className="hidden md:block md:flex-1" />
           {firstCategory && (
             <span
-              className={`${IBM_MONO} text-xs uppercase tracking-widest text-[#E53935] md:mt-8`}
+              className={`hidden md:block ${IBM_MONO} text-xs uppercase tracking-widest text-[#E53935] md:mt-8`}
             >
               {firstCategory}
             </span>
