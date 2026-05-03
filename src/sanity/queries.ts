@@ -43,7 +43,7 @@ export const SIMILAR_POSTS_BY_CATEGORY_QUERY = `*[
   && count((categories[]->_id)[@ in $categoryIds]) > 0
 ] | order(publishedAt desc)[0] {
   title,
-  slug,
+  "slug": slug.current,
   publishedAt,
   "categories": categories[]->{ _id, title },
   mainImage
