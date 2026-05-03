@@ -6,6 +6,10 @@
 export const POST_COVER_IMAGE_WIDTH = 550
 export const POST_COVER_IMAGE_HEIGHT = 310
 
+/** Dimensions for the full-width hero image on the blog post detail page */
+export const POST_HERO_IMAGE_WIDTH = 1400
+export const POST_HERO_IMAGE_HEIGHT = 700
+
 /** Dimensions for project card thumbnails */
 export const PROJECT_CARD_IMAGE_WIDTH = 800
 export const PROJECT_CARD_IMAGE_HEIGHT = 450

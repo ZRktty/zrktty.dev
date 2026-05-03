@@ -44,3 +44,25 @@ export interface BlogPost {
   categories: Array<{ _id: string; title: string }> | null
   excerpt: string
 }
+
+/** Minimal blog post shape used in the "Read Next" similar-post block */
+export interface BlogPostSimilar {
+  title: string
+  slug: { current: string }
+  publishedAt: string | null
+  categories: Array<{ _id: string; title: string }> | null
+  mainImage?: import('@/sanity/types').Post['mainImage']
+}
+
+/** Full shape returned by POST_DETAIL_QUERY — used on the blog post detail page */
+export interface BlogPostDetail {
+  _id: string
+  title: string
+  slug: { current: string }
+  publishedAt: string | null
+  mainImage?: import('@/sanity/types').Post['mainImage']
+  body?: import('@/sanity/types').BlockContent
+  author: { name: string } | null
+  categories: Array<{ _id: string; title: string }> | null
+  similarPost?: BlogPostSimilar | null
+}

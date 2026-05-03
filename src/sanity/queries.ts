@@ -20,6 +20,33 @@ export const BLOG_CATEGORIES_QUERY = `*[
 
 export const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`
 
+export const POST_SLUGS_QUERY = `*[_type == "post" && defined(slug.current)] { "slug": slug.current }`
+
+export const POST_DETAIL_QUERY = `*[_type == "post" && slug.current == $slug][0] {
+  _id,
+  title,
+  slug,
+  publishedAt,
+  mainImage,
+  body,
+  "author": author->{ name },
+  "categories": categories[]->{ _id, title },
+  "similarPost": similarPost->{ title, slug, publishedAt, "categories": categories[]->{ _id, title }, mainImage }
+}`
+
+export const SIMILAR_POSTS_BY_CATEGORY_QUERY = `*[
+  _type == "post"
+  && defined(slug.current)
+  && _id != $excludeId
+  && count((categories[]->_id)[@ in $categoryIds]) > 0
+] | order(publishedAt desc)[0] {
+  title,
+  slug,
+  publishedAt,
+  "categories": categories[]->{ _id, title },
+  mainImage
+}`
+
 export const EXPERIENCE_QUERY = `*[_type == "experience"] | order(order asc) {
   _id,
   company,
