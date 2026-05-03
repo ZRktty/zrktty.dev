@@ -1,6 +1,7 @@
 # Global Design System: The Technical Editorial
 
 ## 1. Overview & Creative North Star
+
 **Creative North Star: "The Brutalist Architect"**
 This system moves away from "friendly SaaS" aesthetics toward a high-density, high-contrast, and technically honest interface. It celebrates the underlying structure of information.
 
@@ -9,6 +10,7 @@ This system moves away from "friendly SaaS" aesthetics toward a high-density, hi
 ## 2. Visual Language
 
 ### Typography
+
 | Role | Font | Variable |
 |------|------|----------|
 | Display / Headings | VineMonoPro | `--font-vin-pro-mono` |
@@ -16,17 +18,20 @@ This system moves away from "friendly SaaS" aesthetics toward a high-density, hi
 | Code snippets | Coders Crux | `--font-coders-crux` |
 
 **Loading fonts** — `src/app/fonts.ts`:
+
 - `vinProMono` → `variable: '--font-vin-pro-mono'` (weights: 300 / 500 / 700)
 - `ibmPlexMono` → `variable: '--font-ibm-plex-mono'` (add via `next/font/google`)
 - `codersCrux` → `variable: '--font-coders-crux'` (local)
 
 **Tailwind usage:**
+
 - `font-vin-pro-mono` for all headings / display text
 - `font-[family-name:var(--font-ibm-plex-mono)]` for body / labels / meta
 
 ### Color Palette
 
 #### Light mode (default)
+
 | Role | Token | Value |
 |------|-------|-------|
 | Background | `bg-background` | `#ffffff` |
@@ -39,6 +44,7 @@ This system moves away from "friendly SaaS" aesthetics toward a high-density, hi
 | Interactive hover | `bg-accent` | `#f3f4f6` |
 
 #### Dark mode
+
 | Role | Token | Value |
 |------|-------|-------|
 | Background | `bg-background` | `#0e0e0e` |
@@ -51,6 +57,7 @@ This system moves away from "friendly SaaS" aesthetics toward a high-density, hi
 > Note: CLAUDE.md mentions `#E53935` red as CTA colour — this belongs to a previous iteration. The active design system uses `#0052FF` blue as the primary accent. Update CLAUDE.md if consensus is reached.
 
 ### Atmosphere
+
 - Blending modes (Difference/Exclusion) on cursor
 - Monochromatic layering; sharp edges — zero border-radius on editorial elements
 - Use `rounded-none` explicitly to override shadcn defaults on blog/data components
@@ -70,6 +77,7 @@ This system moves away from "friendly SaaS" aesthetics toward a high-density, hi
 **Convention:** Always write mobile-first. `default` = 375px. `md:` = tablet. `lg:` = desktop.
 
 **Page width standard (all pages):**
+
 ```
 container mx-auto max-w-6xl px-4 md:px-6 py-12 md:py-16
 ```
@@ -79,17 +87,21 @@ container mx-auto max-w-6xl px-4 md:px-6 py-12 md:py-16
 ## 4. Global Components
 
 ### TopNavBar
+
 Fixed position, `backdrop-blur`, uppercase navigation, prominent "Book a Call" CTA. Includes the theme switcher.
 
 ### Footer
+
 Minimalist, uppercase tracking. Social links + "Engineered with Precision" branding.
 
 ### Custom Cursor
+
 Circular blending-mode cursor reacting to underlying content.
 
 ---
 
 ## 5. Interaction Principles
+
 - **Transitions:** Fast, rhythmic — `duration-150` or `duration-200`. No bouncy animations; linear or `ease-in-out` only.
 - **Hover states:** Scale-down or tonal shifts, not simple opacity changes.
 - **Micro-copy tone:** Technical terminology — "Initializing…", "Loading Buffer…", "Source…", "Transmission".
@@ -104,6 +116,7 @@ Circular blending-mode cursor reacting to underlying content.
 **Figma reference:** `Vfm78oUNf2DGiPQrUsgAVU`, node `513:251`
 
 #### Header section
+
 ```
 TRANSMISSIONS                    ← VineMonoPro, bold, 4xl (mobile) → 6xl (desktop), uppercase
 Thoughts, tutorials, and         ← IBM Plex Mono Regular, muted-foreground, 18px
@@ -112,6 +125,7 @@ the terminal to the canvas.
 ```
 
 #### Filter bar
+
 Tonal button-based filters. Categories loaded live from Sanity.
 
 | State | Background | Text | Border |
@@ -122,7 +136,7 @@ Tonal button-based filters. Categories loaded live from Sanity.
 
 - `rounded-none px-4 py-2`
 - Font: IBM Plex Mono SemiBold, `text-xs uppercase tracking-widest`
-- Default selected: "ALL SYSTEMS"
+- Default selected: "ALL"
 
 #### Article row — two-column (Figma structure)
 
@@ -136,6 +150,7 @@ Desktop (`md:` and up) — `grid grid-cols-[1fr_3fr] gap-12`:
 | Category: IBM Plex Mono Regular, `#E53935`, `text-xs uppercase tracking-widest` | |
 
 Mobile (default) — stacked:
+
 ```
 01 · OCT 24, 2024
 TITLE OF THE POST
@@ -148,12 +163,14 @@ ENGINEERING
 **Entry numbers:** Sequential (01, 02, 03…) — not prefixed.
 
 #### Pagination — "Load Archive"
+
 - Centred button, `rounded-none border border-border`
 - Text: IBM Plex Mono Bold, `#0052FF`, `text-sm uppercase tracking-[0.2em]`
 - Label: `LOAD ARCHIVE`
 - Behaviour: client-side — increments visible count by `BLOG_PAGE_SIZE`
 
 #### Dark mode colours (Figma source)
+
 | Element | Dark value |
 |---------|-----------|
 | Entry number | `#95aaff` |
@@ -163,6 +180,7 @@ ENGINEERING
 | LOAD ARCHIVE text | `#95aaff` |
 
 #### Mobile considerations
+
 - 375px: Stack entry metadata above title. Entry number + date on one line (`01 · OCT 2024`).
 - 393px / 360px: Same as 375px.
 - 768px: Two-column grid begins.

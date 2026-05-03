@@ -2,7 +2,7 @@
 
 ## Ticket
 
-https://zoltanrakottyai.atlassian.net/browse/ZR-42
+<https://zoltanrakottyai.atlassian.net/browse/ZR-42>
 
 ## Summary
 
@@ -90,7 +90,7 @@ Based on Figma row structure:
 ### 5. Create `CategoryFilter`
 
 - `'use client'`
-- "ALL SYSTEMS" + one per Sanity category
+- "ALL" + one per Sanity category
 - Active: `bg-foreground text-background`
 - Inactive: `bg-muted text-muted-foreground hover:bg-accent`
 - `rounded-none px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors`
@@ -100,7 +100,7 @@ Based on Figma row structure:
 
 - `'use client'`
 - Props: `posts: PostWithCategories[]`, `categories: string[]`
-- State: `activeCategory: string` (default `'ALL SYSTEMS'`), `visibleCount: number` (default `BLOG_PAGE_SIZE`)
+- State: `activeCategory: string` (default `'ALL'`), `visibleCount: number` (default `BLOG_PAGE_SIZE`)
 - Filters posts client-side; increments `visibleCount` on "Load Archive" click
 - Renders `CategoryFilter` + feed of `PostListItem` rows + Load Archive button
 

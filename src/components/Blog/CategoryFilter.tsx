@@ -1,6 +1,6 @@
 'use client'
 
-const ALL_LABEL = 'ALL SYSTEMS'
+const ALL_LABEL = 'ALL'
 const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
 
 interface Props {

@@ -7,7 +7,7 @@ The "Transmissions" archive is designed as a technical log. It prioritizes infor
 ## 2. Layout Structure
 
 - **Header Section:** Large display heading ("TRANSMISSIONS") using `VineMonoPro`. Subtext provides the "Terminal to Canvas" mission statement.
-- **Filtering System:** Tonal, button-based filters (All Systems, Engineering, Tutorials, Thoughts) to allow quick sorting.
+- **Filtering System:** Tonal, button-based filters (All, Engineering, Tutorials, Thoughts) to allow quick sorting.
 - **Article Feed:**
   - **Left Column:** Chronological metadata (Entry ID, Date, Category).
   - **Right Column:** Article Title (Large, bold) and a concise technical abstract.
