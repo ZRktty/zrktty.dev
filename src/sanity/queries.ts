@@ -1,7 +1,7 @@
 export const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-] | order(publishedAt desc) {
+] | order(publishedAt desc)[0...100] {
   _id,
   title,
   slug,
@@ -15,7 +15,7 @@ export const POSTS_QUERY = `*[
 
 export const BLOG_CATEGORIES_QUERY = `array::unique(*[
   _type == "post" && defined(slug.current) && defined(categories)
-].categories[]->title)`
+].categories[]->{ _id, title })`
 
 export const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`
 

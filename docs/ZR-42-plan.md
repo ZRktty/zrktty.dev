@@ -45,7 +45,7 @@ Redesign the `/blog` page to implement the "Transmissions" archive layout: a two
 
 - `src/app/(with-layout)/blog/page.tsx` — server component: fetches all posts + categories, renders shell
 - `src/sanity/queries.ts` — extend `POSTS_QUERY` with `categories[]->{ _id, title }`, add `BLOG_CATEGORIES_QUERY`
-- `src/constants.ts` — add `BLOG_PAGE_SIZE = 10`
+- `src/constants/index.ts` — add `BLOG_PAGE_SIZE = 10`
 - `src/app/fonts.ts` — add `IBM_Plex_Mono` font
 - `src/app/globals.css` — register `--font-ibm-plex-mono` in `@theme`
 - `src/app/layout.tsx` — add IBM Plex Mono variable class to `<body>`

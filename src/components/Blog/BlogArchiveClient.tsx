@@ -10,7 +10,7 @@ const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
 
 interface Props {
   posts: PostListItem[]
-  categories: string[]
+  categories: Array<{ _id: string; title: string }>
 }
 
 export default function BlogArchiveClient({ posts, categories }: Props) {
@@ -20,7 +20,7 @@ export default function BlogArchiveClient({ posts, categories }: Props) {
   const filtered =
     activeCategory === ALL_LABEL
       ? posts
-      : posts.filter((p) => p.categories?.some((c) => c.title === activeCategory))
+      : posts.filter((p) => p.categories?.some((c) => c._id === activeCategory))
 
   const visible = filtered.slice(0, visibleCount)
   const hasMore = visibleCount < filtered.length
@@ -51,6 +51,7 @@ export default function BlogArchiveClient({ posts, categories }: Props) {
       {hasMore && (
         <div className="flex justify-center pt-8 border-t border-border">
           <button
+            type="button"
             onClick={() => setVisibleCount((n) => n + BLOG_PAGE_SIZE)}
             className={`${IBM_MONO} px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-[#0052FF] border border-border rounded-none hover:bg-accent transition-colors duration-150`}
           >

@@ -21,7 +21,7 @@ const IBM_MONO = 'font-[family-name:var(--font-ibm-plex-mono)]'
 export default function PostListItem({ post, index }: Props) {
   const entryNumber = String(index + 1).padStart(2, '0')
   const firstCategory = post.categories?.[0]?.title ?? null
-  const href = post.slug ? `/blog/${post.slug.current}` : '#'
+  const href = `/blog/${post.slug.current}`
 
   return (
     <Link
