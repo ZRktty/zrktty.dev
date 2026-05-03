@@ -68,6 +68,7 @@
   --radius-sm: calc(var(--radius) - 4px);
 
   --font-vin-pro-mono: var(--font-vin-pro-mono), monospace;
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
   --font-mono: var(--font-coders-crux, Menlo, monospace);
 }
 

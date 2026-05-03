@@ -1,17 +1,21 @@
 export const POSTS_QUERY = `*[
-  _type == "post" 
+  _type == "post"
   && defined(slug.current)
-] | order(publishedAt desc)[0...12] {
+] | order(publishedAt desc) {
   _id,
   title,
   slug,
   publishedAt,
-  mainImage,
+  "categories": categories[]->{ _id, title },
   "excerpt": array::join(
-    string::split(pt::text(body), "")[0..255], 
+    string::split(pt::text(body), "")[0..200],
     ""
   ) + "..."
 }`
+
+export const BLOG_CATEGORIES_QUERY = `array::unique(*[
+  _type == "post" && defined(slug.current) && defined(categories)
+].categories[]->title)`
 
 export const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`
 

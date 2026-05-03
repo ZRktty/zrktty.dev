@@ -17,6 +17,9 @@ export const PROJECT_FEATURED_IMAGE_HEIGHT = 700
 /** Number of projects shown per page on /projects */
 export const PROJECTS_PAGE_SIZE = 10
 
+/** Number of blog posts revealed per "Load Archive" click on /blog */
+export const BLOG_PAGE_SIZE = 10
+
 /** Site-wide navigation items — single source of truth for header and mobile menu */
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },

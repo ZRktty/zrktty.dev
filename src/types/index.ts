@@ -34,3 +34,13 @@ export interface NextProjectRef {
   title: string
   slug: { current: string }
 }
+
+/** Shape returned by POSTS_QUERY — includes resolved categories and computed excerpt */
+export interface PostListItem {
+  _id: string
+  title: string | null
+  slug: { current: string } | null
+  publishedAt: string | null
+  categories: Array<{ _id: string; title: string }> | null
+  excerpt: string
+}
