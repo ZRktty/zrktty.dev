@@ -70,17 +70,32 @@ Make sure `gitleaks` is installed locally (see Prerequisites above) or the hook 
 
 ## Content management
 
-Content is managed in [Sanity Studio](https://www.sanity.io/). To run the studio locally:
+Content is managed via **Sanity**. The Studio lives in `studio/` as a git submodule.
+
+|             |                                                        |
+| ----------- | ------------------------------------------------------ |
+| Project ID  | `8tbsip27`                                             |
+| Dataset     | `production`                                           |
+| Studio repo | <https://github.com/ZRktty/studio-zoltanrakottyai.dev> |
+
+### Running the studio locally
 
 ```bash
-bunx sanity dev
+cd studio && bunx sanity dev
 ```
 
-After making schema changes, regenerate TypeScript types:
+### Adding a new document type (schema change)
 
-```bash
-bunx sanity typegen generate
-```
+1. Add `studio/schemaTypes/myType.ts` using `defineType` / `defineField`
+2. Register it in `studio/schemaTypes/index.ts`
+3. Commit + push the studio submodule: `git -C studio add . && git -C studio commit -m "..." && git -C studio push`
+4. Call `mcp__sanity__deploy_schema` (Sanity MCP) so GROQ queries work immediately
+5. Regenerate types and copy: `bunx sanity schema extract && bunx sanity typegen generate && cp studio/sanity.types.ts src/sanity/types.ts`
+6. Commit the submodule pointer + updated `src/sanity/types.ts` in this repo
+
+> ⚠️ Always keep both in sync: `studio/` schema files are the source of truth for the Studio UI; `mcp__sanity__deploy_schema` updates the cloud registry used by GROQ at runtime.
+
+See [CLAUDE.md](CLAUDE.md) for the full agent workflow.
 
 ## Tech stack
 

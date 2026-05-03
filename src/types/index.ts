@@ -11,6 +11,7 @@ export interface SocialLink {
 
 export type ExperienceType = 'fulltime' | 'freelance' | 'contract'
 
+/** Shape returned by EXPERIENCE_QUERY — logo asset is resolved via -> */
 export interface ExperienceItem {
   _id: string
   company: string
@@ -26,4 +27,10 @@ export interface ExperienceItem {
     alt?: string
   } | null
   order?: number
+}
+
+/** Minimal shape returned by NEXT_PROJECT_QUERY */
+export interface NextProjectRef {
+  title: string
+  slug: { current: string }
 }

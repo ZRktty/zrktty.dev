@@ -47,4 +47,4 @@ next-env.d.ts
 
 # claude
 .claude/settings.local.json
-.claude/todos.json
+.claude/todos.jsontmp/

@@ -6,6 +6,17 @@
 export const POST_COVER_IMAGE_WIDTH = 550
 export const POST_COVER_IMAGE_HEIGHT = 310
 
+/** Dimensions for project card thumbnails */
+export const PROJECT_CARD_IMAGE_WIDTH = 800
+export const PROJECT_CARD_IMAGE_HEIGHT = 450
+
+/** Dimensions for the full-width featured project card */
+export const PROJECT_FEATURED_IMAGE_WIDTH = 1400
+export const PROJECT_FEATURED_IMAGE_HEIGHT = 700
+
+/** Number of projects shown per page on /projects */
+export const PROJECTS_PAGE_SIZE = 10
+
 /** Site-wide navigation items — single source of truth for header and mobile menu */
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },

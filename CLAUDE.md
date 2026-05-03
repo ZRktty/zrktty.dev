@@ -10,8 +10,10 @@
 **Name:** zrktty.dev — Personal portfolio website  
 **Owner:** Zoltan Rakottyai  
 **Stack:** Next.js (latest) · TypeScript · Sanity CMS · shadcn/ui · Tailwind CSS · Bun  
-**Repo:** https://github.com/ZRktty/zrktty.dev  
-**Jira board:** https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board  
+**Repo:** <https://github.com/ZRktty/zrktty.dev>  
+**Studio repo:** <https://github.com/ZRktty/studio-zoltanrakottyai.dev>  
+**Sanity project ID:** `8tbsip27` · dataset: `production`  
+**Jira board:** <https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board>  
 **Epic:** ZR-21
 
 ---
@@ -40,7 +42,7 @@
 
 ### Verify MCPs before starting work
 
-```
+```text
 /mcp
 ```
 
@@ -59,7 +61,8 @@ bun add -d <pkg>                     # add dev dependency
 bun run dev                          # local dev server
 bun run build                        # production build check
 bun run lint                         # eslint
-bunx sanity typegen generate         # generate Sanity TypeScript types
+bunx sanity schema extract           # extract schema from studio/ submodule
+bunx sanity typegen generate         # generate types → studio/sanity.types.ts, then cp to src/sanity/types.ts
 bunx shadcn@latest add <component>   # add shadcn component
 ```
 
@@ -80,7 +83,7 @@ Non-negotiable. A PR that violates these will be rejected.
 
 ### File & folder conventions
 
-```
+```text
 src/
   app/                      # Next.js App Router pages + layouts
   components/
@@ -125,7 +128,7 @@ Tailwind convention: default = mobile (`375px`), `md:` = tablet, `lg:` = desktop
 
 ### Commits — conventional commits (recommended)
 
-```
+```text
 feat(ZR-XX): short description
 fix(ZR-XX): short description
 chore(ZR-XX): tooling, config, deps
@@ -149,7 +152,7 @@ Never commit a broken build. Never commit mid-thought.
 
 ### Branch naming
 
-```
+```text
 ZR{number}_{kebab-case-description}
 
 ZR33_mcp-setup-claude-md
@@ -203,7 +206,7 @@ Commit this file. It makes the agent self-correct automatically.
 
 ### Step 0 — Orient yourself
 
-1. Via **Atlassian MCP**: check the board https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board
+1. Via **Atlassian MCP**: check the board <https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board>
 2. Find the first ticket that is:
    - **In Progress** → resume it (check if `docs/ZR-XX-plan.md` exists)
    - **To Do** → pick the next one by board order within epic ZR-21
@@ -363,17 +366,95 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 
 ## Sanity content model
 
-| Document type | Key fields                                                                                       |
-| ------------- | ------------------------------------------------------------------------------------------------ |
-| `homepage`    | heading, subtitle, ctaLabel, bio, photo                                                          |
-| `post`        | title, slug, publishedAt, excerpt, coverImage, body (PortableText), category                     |
-| `project`     | title, slug, thumbnail, shortDescription, techStack[], body, liveUrl, githubUrl, featured, order |
-| `service`     | title, icon, bullets[], isHighlighted                                                            |
-| `skillGroup`  | title, skills[]: { name, logo }                                                                  |
+| Document type | Key fields                                                                                                                                             |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `homepage`    | heading, subtitle, ctaLabel, bio, photo                                                                                                                |
+| `post`        | title, slug, publishedAt, excerpt, coverImage, body (PortableText), category                                                                           |
+| `project`     | title, slug, shortDescription, thumbnail, liveUrl, githubUrl, client, timeline, role[], techStack[], body (PortableText), featured, highlighted, order |
+| `experience`  | company, role, webUrl, type, startDate, endDate, description, techStack[], logo, order                                                                 |
+| `service`     | title, icon, bullets[], isHighlighted                                                                                                                  |
+| `skillGroup`  | title, skills[]: { name, logo }                                                                                                                        |
 
 - All GROQ → `src/sanity/queries.ts` (no inline GROQ anywhere else)
-- Generated types → `src/sanity/types.ts` via `bunx sanity typegen generate`
-- Always use **Sanity MCP** to verify a query before writing TypeScript around it
+- Sanity document types are **generated** into `src/sanity/types.ts` — never write them manually there
+- `src/types/index.ts` is for shared app-level types only (GROQ projections, UI interfaces)
+- Always use **Sanity MCP** (`get_schema`, `query_documents`) to verify schema and queries before writing code
+
+---
+
+## Sanity Studio
+
+The Sanity Studio lives in `studio/` as a **git submodule** sourced from <https://github.com/ZRktty/studio-zoltanrakottyai.dev>.
+
+It is already checked out — no cloning needed. Always work with `studio/` directly.
+
+### Studio structure
+
+```text
+studio/
+  schemaTypes/
+    index.ts        # registers all types — import + add to schemaTypes array
+    blockContent.ts
+    post.ts
+    author.ts
+    category.ts
+    experience.ts
+    project.ts
+    aboutMe.ts
+    structure.ts
+  sanity.config.ts
+  sanity.types.ts   # auto-generated — do not edit manually
+  schema.json       # extracted schema — do not edit manually
+```
+
+### Adding a new Sanity document type — full workflow
+
+1. **Create the schema file** in `studio/schemaTypes/myType.ts` — follow the pattern in `experience.ts`:
+
+   ```ts
+   import { defineField, defineType } from 'sanity'
+   export const myType = defineType({ name: 'myType', type: 'document', fields: [...] })
+   ```
+
+2. **Register it** in `studio/schemaTypes/index.ts`:
+
+   ```ts
+   import { myType } from './myType'
+   export const schemaTypes = [...existing, myType]
+   ```
+
+3. **Commit and push** the studio submodule:
+
+   ```bash
+   git -C studio add schemaTypes/myType.ts schemaTypes/index.ts
+   git -C studio commit -m "feat(ZR-XX): add myType schema"
+   git -C studio push origin main
+   ```
+
+4. **Deploy schema via Sanity MCP** so GROQ queries work immediately:
+
+   ```text
+   mcp__sanity__deploy_schema
+   ```
+
+5. **Regenerate TypeScript types** and copy to this repo:
+
+   ```bash
+   bunx sanity schema extract
+   bunx sanity typegen generate
+   cp studio/sanity.types.ts src/sanity/types.ts
+   ```
+
+6. **Update the submodule pointer** in this repo:
+
+   ```bash
+   git add studio src/sanity/types.ts
+   git commit -m "chore: update studio submodule, regenerate types"
+   ```
+
+### ⚠️ Keep studio submodule and MCP schema in sync
+
+The Sanity MCP `deploy_schema` updates the **cloud registry** used by GROQ at runtime. The `studio/` files are the source of truth for the Studio UI. Always do both — push to `studio/` and call `mcp__sanity__deploy_schema`.
 
 ---
 
@@ -381,7 +462,7 @@ Add shadcn component: `bunx shadcn@latest add <name>`
 
 `.env.local` — never commit (see `.env.example` for the canonical list):
 
-```
+```text
 NEXT_PUBLIC_SANITY_PROJECT_ID=
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2024-02-09
