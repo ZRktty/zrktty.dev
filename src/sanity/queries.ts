@@ -29,9 +29,11 @@ export const POST_DETAIL_QUERY = `*[_type == "post" && slug.current == $slug][0]
   publishedAt,
   mainImage,
   body,
-  "author": author->{ name },
+  "author": author->{ name, image { asset->{ url } } },
   "categories": categories[]->{ _id, title },
-  "similarPost": similarPost->{ title, slug, publishedAt, "categories": categories[]->{ _id, title }, mainImage }
+  "similarPost": select(
+    defined(similarPost->slug.current) => similarPost->{ title, "slug": slug.current, publishedAt, "categories": categories[]->{ _id, title }, mainImage }
+  )
 }`
 
 export const SIMILAR_POSTS_BY_CATEGORY_QUERY = `*[

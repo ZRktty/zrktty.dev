@@ -10,6 +10,9 @@ export const POST_COVER_IMAGE_HEIGHT = 310
 export const POST_HERO_IMAGE_WIDTH = 1400
 export const POST_HERO_IMAGE_HEIGHT = 700
 
+/** Average reading speed used to estimate blog post read time */
+export const WORDS_PER_MINUTE = 200
+
 /** Dimensions for project card thumbnails */
 export const PROJECT_CARD_IMAGE_WIDTH = 800
 export const PROJECT_CARD_IMAGE_HEIGHT = 450

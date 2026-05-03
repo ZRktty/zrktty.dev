@@ -48,7 +48,7 @@ export interface BlogPost {
 /** Minimal blog post shape used in the "Read Next" similar-post block */
 export interface BlogPostSimilar {
   title: string
-  slug: { current: string }
+  slug: string
   publishedAt: string | null
   categories: Array<{ _id: string; title: string }> | null
   mainImage?: import('@/sanity/types').Post['mainImage']
@@ -62,7 +62,10 @@ export interface BlogPostDetail {
   publishedAt: string | null
   mainImage?: import('@/sanity/types').Post['mainImage']
   body?: import('@/sanity/types').BlockContent
-  author: { name: string } | null
+  author: {
+    name: string
+    image?: { asset: { url: string } } | null
+  } | null
   categories: Array<{ _id: string; title: string }> | null
   similarPost?: BlogPostSimilar | null
 }

@@ -1,14 +1,14 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { client } from '@/sanity/client'
 import {
   POST_DETAIL_QUERY,
   POST_SLUGS_QUERY,
   SIMILAR_POSTS_BY_CATEGORY_QUERY,
 } from '@/sanity/queries'
-import { urlFor, estimateReadTime } from '@/sanity/utils'
+import { urlFor, estimateReadTime, formatPostDate } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
 import { TechTag } from '@/components/projects/TechTag'
 import { SimilarPostNav } from '@/components/Blog/SimilarPostNav'
@@ -16,6 +16,8 @@ import { POST_HERO_IMAGE_WIDTH, POST_HERO_IMAGE_HEIGHT } from '@/constants'
 import type { BlogPostDetail, BlogPostSimilar } from '@/types'
 
 const fetchOptions = { next: { revalidate: 60 } }
+
+const AUTHOR_AVATAR_SIZE = 40
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -54,12 +56,8 @@ export default async function BlogPostPage({ params }: Props) {
     )
   }
 
-  const formattedDate = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-      })
+  const authorAvatarUrl = post.author?.image?.asset?.url
+    ? `${post.author.image.asset.url}?w=${AUTHOR_AVATAR_SIZE * 2}&h=${AUTHOR_AVATAR_SIZE * 2}&fit=crop&auto=format`
     : null
 
   return (
@@ -82,7 +80,7 @@ export default async function BlogPostPage({ params }: Props) {
               fill
               priority
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1400px"
+              sizes={`(max-width: 768px) 100vw, ${POST_HERO_IMAGE_WIDTH}px`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           </div>
@@ -98,15 +96,30 @@ export default async function BlogPostPage({ params }: Props) {
               <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
                 Author
               </span>
-              <span className="font-ibm-plex-mono text-sm text-foreground">{post.author.name}</span>
+              <div className="flex items-center gap-3">
+                {authorAvatarUrl && (
+                  <Image
+                    src={authorAvatarUrl}
+                    alt={post.author.name}
+                    width={AUTHOR_AVATAR_SIZE}
+                    height={AUTHOR_AVATAR_SIZE}
+                    className="rounded-full object-cover shrink-0"
+                  />
+                )}
+                <span className="font-ibm-plex-mono text-sm text-foreground">
+                  {post.author.name}
+                </span>
+              </div>
             </div>
           )}
-          {formattedDate && (
+          {post.publishedAt && (
             <div className="flex flex-col gap-2">
               <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
                 Published On
               </span>
-              <span className="font-ibm-plex-mono text-sm text-foreground">{formattedDate}</span>
+              <span className="font-ibm-plex-mono text-sm text-foreground">
+                {formatPostDate(post.publishedAt)}
+              </span>
             </div>
           )}
           {post.categories && post.categories.length > 0 && (
@@ -121,16 +134,14 @@ export default async function BlogPostPage({ params }: Props) {
               </div>
             </div>
           )}
-          {readTime > 0 && (
-            <div className="flex flex-col gap-2">
-              <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
-                Read Time
-              </span>
-              <span className="font-ibm-plex-mono text-sm text-foreground">
-                {readTime} min read
-              </span>
-            </div>
-          )}
+          <div className="flex flex-col gap-2">
+            <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
+              Read Time
+            </span>
+            <span className="font-ibm-plex-mono text-sm text-foreground">
+              {readTime > 0 ? `${readTime} min read` : '🙈'}
+            </span>
+          </div>
           <Link
             href="/blog"
             className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mt-2"
@@ -146,7 +157,7 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
 
       {/* Similar post */}
-      {similarPost && <SimilarPostNav title={similarPost.title} slug={similarPost.slug.current} />}
+      {similarPost?.slug && <SimilarPostNav title={similarPost.title} slug={similarPost.slug} />}
     </main>
   )
 }
