@@ -12,7 +12,7 @@ import { urlFor, estimateReadTime, formatPostDate } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
 import { TechTag } from '@/components/projects/TechTag'
 import { SimilarPostNav } from '@/components/Blog/SimilarPostNav'
-import { POST_HERO_IMAGE_WIDTH, POST_HERO_IMAGE_HEIGHT } from '@/constants'
+import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
 import type { BlogPostDetail, BlogPostSimilar } from '@/types'
 
 const fetchOptions = { next: { revalidate: 60 } }
@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound()
 
   const heroUrl = post.mainImage
-    ? urlFor(post.mainImage)?.width(POST_HERO_IMAGE_WIDTH).height(POST_HERO_IMAGE_HEIGHT).url()
+    ? urlFor(post.mainImage)?.width(HERO_IMAGE_WIDTH).height(HERO_IMAGE_HEIGHT).url()
     : null
 
   const readTime = estimateReadTime(post.body)
@@ -56,8 +56,9 @@ export default async function BlogPostPage({ params }: Props) {
     )
   }
 
-  const authorAvatarUrl = post.author?.image?.asset?.url
-    ? `${post.author.image.asset.url}?w=${AUTHOR_AVATAR_SIZE * 2}&h=${AUTHOR_AVATAR_SIZE * 2}&fit=crop&auto=format`
+  const assetUrl = post.author?.image?.asset?.url ?? null
+  const authorAvatarUrl = assetUrl
+    ? `${assetUrl}?w=${AUTHOR_AVATAR_SIZE * 2}&h=${AUTHOR_AVATAR_SIZE * 2}&fit=crop&auto=format`
     : null
 
   return (
@@ -73,14 +74,14 @@ export default async function BlogPostPage({ params }: Props) {
           </h1>
         </div>
         {heroUrl && (
-          <div className="relative w-full aspect-video overflow-hidden bg-muted">
+          <div className="relative w-full aspect-[2/1] overflow-hidden bg-muted">
             <Image
               src={heroUrl}
               alt={post.title ? `${post.title} cover image` : 'Article cover image'}
               fill
               priority
               className="object-cover"
-              sizes={`(max-width: 768px) 100vw, ${POST_HERO_IMAGE_WIDTH}px`}
+              sizes={`(max-width: 768px) 100vw, ${HERO_IMAGE_WIDTH}px`}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           </div>

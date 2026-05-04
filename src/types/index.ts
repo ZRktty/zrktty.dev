@@ -64,7 +64,7 @@ export interface BlogPostDetail {
   body?: import('@/sanity/types').BlockContent
   author: {
     name: string
-    image?: { asset: { url: string } } | null
+    image?: { asset?: { url: string } | null } | null
   } | null
   categories: Array<{ _id: string; title: string }> | null
   similarPost?: BlogPostSimilar | null
