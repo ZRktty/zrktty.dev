@@ -1,37 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import type { SocialLink } from '@/types'
+import socialLinksData from '@/data/socialLinks.json'
 
-const COLOR_CLASS_MAP: Record<string, string> = {
-  'blue-600': 'text-blue-600',
-  'gray-800': 'text-gray-800',
-  black: 'text-black',
-  'orange-600': 'text-orange-600',
+const BRAND_HOVER: Record<string, string> = {
+  LinkedIn: 'hover:text-[#0077B5]',
+  GitHub: 'hover:text-foreground',
+  'Dev.to': 'hover:text-foreground',
+  'Stack Overflow': 'hover:text-[#F48024]',
 }
 
 const SocialLinks: React.FC = () => {
-  const [links, setLinks] = useState<SocialLink[]>([])
-
-  useEffect(() => {
-    const fetchLinks = async () => {
-      const data = await import('@/data/socialLinks.json')
-      setLinks(data.default)
-    }
-
-    fetchLinks()
-  }, [])
-
   return (
-    <div className="p-4 ">
-      <h5>Socials</h5>
-      <div className="flex flex-row items-center space-x-4">
-        {links.map((link) => (
+    <div>
+      <p className="font-space-grotesk font-medium text-sm text-foreground mb-2">Socials</p>
+      <div className="flex flex-row items-center gap-4">
+        {(socialLinksData as SocialLink[]).map((link) => (
           <Link
             key={link.name}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${COLOR_CLASS_MAP[link.color] ?? ''} line-grow`}
+            className={`font-ibm-plex-mono font-medium text-sm text-muted-foreground transition-colors duration-200 line-grow ${BRAND_HOVER[link.name] ?? 'hover:text-foreground'}`}
           >
             {link.name}
           </Link>
