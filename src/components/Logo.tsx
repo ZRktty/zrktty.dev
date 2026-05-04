@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="font-[family-name:var(--font-space-grotesk)] text-[20px] font-bold uppercase tracking-[-0.05em] text-foreground leading-7"
+      className="font-space-grotesk text-[20px] font-bold uppercase tracking-[-0.05em] text-foreground leading-7"
     >
       ZRKTTY.DEV
     </Link>
