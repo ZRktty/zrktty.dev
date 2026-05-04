@@ -64,7 +64,8 @@ export interface BlogPostDetail {
   body?: import('@/sanity/types').BlockContent
   author: {
     name: string
-    image?: { asset?: { url: string } | null } | null
+    // TODO OPxQ: asset should be optional/nullable — image.asset can be null when Sanity image ref exists without an uploaded asset
+    image?: { asset: { url: string } } | null
   } | null
   categories: Array<{ _id: string; title: string }> | null
   similarPost?: BlogPostSimilar | null

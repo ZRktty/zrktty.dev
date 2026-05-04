@@ -56,9 +56,9 @@ export default async function BlogPostPage({ params }: Props) {
     )
   }
 
-  const assetUrl = post.author?.image?.asset?.url ?? null
-  const authorAvatarUrl = assetUrl
-    ? `${assetUrl}?w=${AUTHOR_AVATAR_SIZE * 2}&h=${AUTHOR_AVATAR_SIZE * 2}&fit=crop&auto=format`
+  const avatarSrc = post.author?.image?.asset?.url
+  const authorAvatarUrl = avatarSrc
+    ? `${avatarSrc}?w=${AUTHOR_AVATAR_SIZE * 2}&h=${AUTHOR_AVATAR_SIZE * 2}&fit=crop&auto=format`
     : null
 
   return (
@@ -73,8 +73,9 @@ export default async function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
         </div>
+        {/* TODO OPxV: container uses aspect-video (16:9) but hero is requested at 1400×700 (2:1) — fix to aspect-[2/1] or adjust image dimensions to 16:9 */}
         {heroUrl && (
-          <div className="relative w-full aspect-[2/1] overflow-hidden bg-muted">
+          <div className="relative w-full aspect-video overflow-hidden bg-muted">
             <Image
               src={heroUrl}
               alt={post.title ? `${post.title} cover image` : 'Article cover image'}
