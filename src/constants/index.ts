@@ -6,13 +6,16 @@
 export const POST_COVER_IMAGE_WIDTH = 550
 export const POST_COVER_IMAGE_HEIGHT = 310
 
+/** Shared dimensions for full-width hero images (blog post detail and featured project) */
+export const HERO_IMAGE_WIDTH = 1400
+export const HERO_IMAGE_HEIGHT = 700
+
+/** Average reading speed used to estimate blog post read time */
+export const WORDS_PER_MINUTE = 200
+
 /** Dimensions for project card thumbnails */
 export const PROJECT_CARD_IMAGE_WIDTH = 800
 export const PROJECT_CARD_IMAGE_HEIGHT = 450
-
-/** Dimensions for the full-width featured project card */
-export const PROJECT_FEATURED_IMAGE_WIDTH = 1400
-export const PROJECT_FEATURED_IMAGE_HEIGHT = 700
 
 /** Number of projects shown per page on /projects */
 export const PROJECTS_PAGE_SIZE = 10

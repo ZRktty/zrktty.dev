@@ -225,6 +225,13 @@ export type CategoryReference = {
   [internalGroqTypeReferenceTo]?: 'category'
 }
 
+export type PostReference = {
+  _ref: string
+  _type: 'reference'
+  _weak?: boolean
+  [internalGroqTypeReferenceTo]?: 'post'
+}
+
 export type Post = {
   _id: string
   _type: 'post'
@@ -248,6 +255,7 @@ export type Post = {
   >
   publishedAt?: string
   body?: BlockContent
+  similarPost?: PostReference
 }
 
 export type Author = {
@@ -403,6 +411,7 @@ export type AllSanitySchemaTypes =
   | Category
   | AuthorReference
   | CategoryReference
+  | PostReference
   | Post
   | Author
   | Code

@@ -1,19 +1,10 @@
 import Link from 'next/link'
 import type { BlogPost } from '@/types'
+import { formatPostDate } from '@/sanity/utils'
 
 interface Props {
   post: BlogPost
   index: number
-}
-
-function formatDate(iso: string): string {
-  return new Date(iso)
-    .toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    })
-    .toUpperCase()
 }
 
 const IBM_MONO = 'font-ibm-plex-mono'
@@ -38,7 +29,7 @@ export default function PostListItem({ post, index }: Props) {
           </span>
           {post.publishedAt && (
             <span className={`${IBM_MONO} text-sm uppercase tracking-widest text-muted-foreground`}>
-              {formatDate(post.publishedAt)}
+              {formatPostDate(post.publishedAt).toUpperCase()}
             </span>
           )}
           {/* spacer — desktop only */}

@@ -12,7 +12,7 @@ import { urlFor } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
 import { TechTag } from '@/components/projects/TechTag'
 import { NextProjectNav } from '@/components/projects/NextProjectNav'
-import { PROJECT_FEATURED_IMAGE_WIDTH, PROJECT_FEATURED_IMAGE_HEIGHT } from '@/constants'
+import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -40,10 +40,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound()
 
   const heroUrl = project.thumbnail
-    ? urlFor(project.thumbnail)
-        ?.width(PROJECT_FEATURED_IMAGE_WIDTH)
-        .height(PROJECT_FEATURED_IMAGE_HEIGHT)
-        .url()
+    ? urlFor(project.thumbnail)?.width(HERO_IMAGE_WIDTH).height(HERO_IMAGE_HEIGHT).url()
     : null
 
   const nextProject =

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
 import { TechTag } from './TechTag'
-import { PROJECT_FEATURED_IMAGE_WIDTH, PROJECT_FEATURED_IMAGE_HEIGHT } from '@/constants'
+import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
 
 interface FeaturedProjectCardProps {
   project: Project
@@ -11,10 +11,7 @@ interface FeaturedProjectCardProps {
 
 export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
   const imageUrl = project.thumbnail
-    ? urlFor(project.thumbnail)
-        ?.width(PROJECT_FEATURED_IMAGE_WIDTH)
-        .height(PROJECT_FEATURED_IMAGE_HEIGHT)
-        .url()
+    ? urlFor(project.thumbnail)?.width(HERO_IMAGE_WIDTH).height(HERO_IMAGE_HEIGHT).url()
     : null
 
   return (
