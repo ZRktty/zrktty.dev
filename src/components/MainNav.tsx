@@ -27,8 +27,8 @@ export function MainNav() {
                 className={cn(
                   'line-grow inline-flex h-10 items-center px-3 py-2 text-sm transition-colors duration-200 font-[family-name:var(--font-space-grotesk)] tracking-[-0.025em]',
                   isActive
-                    ? 'line-grow-active text-primary font-bold'
-                    : 'text-muted-foreground font-normal hover:text-primary',
+                    ? 'line-grow-active text-[var(--nav-link-active)] font-bold'
+                    : 'text-[var(--nav-link-muted)] font-normal hover:text-[var(--nav-link-active)]',
                 )}
               >
                 <Link href={href}>{label}</Link>
