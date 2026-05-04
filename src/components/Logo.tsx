@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 const Logo = () => {
   return (
-    <Link href="/" className="flex items-center">
-      <span className="font-semibold">ZRktty</span>
-      <div className="ml-0.5 bg-black text-white px-1.5 rounded text-sm font-bold dark:bg-white dark:text-black">
-        .dev
-      </div>
+    <Link
+      href="/"
+      className="font-[family-name:var(--font-space-grotesk)] text-[20px] font-bold uppercase tracking-[-0.05em] text-foreground leading-7"
+    >
+      ZRKTTY.DEV
     </Link>
   )
 }

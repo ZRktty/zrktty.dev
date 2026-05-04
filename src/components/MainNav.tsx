@@ -25,8 +25,10 @@ export function MainNav() {
               <NavigationMenuLink
                 asChild
                 className={cn(
-                  'line-grow inline-flex h-10 items-center px-3 py-2 text-sm font-medium text-foreground',
-                  isActive && 'line-grow-active',
+                  'line-grow inline-flex h-10 items-center px-3 py-2 text-sm transition-colors duration-200 font-[family-name:var(--font-space-grotesk)] tracking-[-0.025em]',
+                  isActive
+                    ? 'line-grow-active text-primary font-bold'
+                    : 'text-muted-foreground font-normal hover:text-primary',
                 )}
               >
                 <Link href={href}>{label}</Link>

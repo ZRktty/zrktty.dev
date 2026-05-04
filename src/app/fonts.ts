@@ -1,5 +1,5 @@
 import localFont from 'next/font/local'
-import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google'
+import { IBM_Plex_Sans, IBM_Plex_Mono, Space_Grotesk } from 'next/font/google'
 
 // todo: Crux  still not working, need to fix it
 export const codersCrux = localFont({
@@ -43,4 +43,10 @@ export const ibmPlexMono = IBM_Plex_Mono({
   variable: '--font-ibm-plex-mono',
   subsets: ['latin'],
   weight: ['400', '600', '700'],
+})
+
+export const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
+  subsets: ['latin'],
+  weight: ['400', '700'],
 })
