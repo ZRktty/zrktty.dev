@@ -35,16 +35,26 @@ export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps)
 
   return (
     <motion.div
-      className="relative my-4 border border-border/30 bg-muted"
+      className="relative my-4 bg-muted/50"
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: 'easeIn' }}
       viewport={{ once: true, amount: 0.3 }}
     >
-      {/* Copy button — top left chip */}
+      {/* Language / filename chip — top left */}
+      <div
+        className="absolute left-0 top-0 border-b border-r border-border/30 bg-border/30 px-3 py-1"
+        style={{ fontFamily: CHIP_FONT }}
+      >
+        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+          {filename ?? language}
+        </span>
+      </div>
+
+      {/* Copy button — top right */}
       <button
         onClick={handleCopy}
-        className="absolute left-0 top-0 flex items-center gap-1.5 border-b border-r border-border/30 bg-border/40 px-3 py-1 text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
+        className="absolute right-0 top-0 flex items-center gap-1.5 border-b border-l border-border/30 bg-border/30 px-3 py-1 text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
         style={{ fontFamily: CHIP_FONT }}
         aria-label="Copy code to clipboard"
       >
@@ -53,16 +63,6 @@ export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps)
           {copied ? 'Copied' : 'Copy'}
         </span>
       </button>
-
-      {/* Language / filename chip — top right, per Figma */}
-      <div
-        className="absolute right-0 top-0 border-b border-l border-border/30 bg-border/40 px-3 py-1"
-        style={{ fontFamily: CHIP_FONT }}
-      >
-        <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-          {filename ?? language}
-        </span>
-      </div>
 
       <SyntaxHighlighter
         language={language}
