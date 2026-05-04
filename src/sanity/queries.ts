@@ -28,7 +28,13 @@ export const POST_DETAIL_QUERY = `*[_type == "post" && slug.current == $slug][0]
   slug,
   publishedAt,
   mainImage,
-  body,
+  "body": body[] {
+    ...,
+    _type == "image" => {
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height
+    }
+  },
   "author": author->{ name, image { asset->{ url } } },
   "categories": categories[]->{ _id, title },
   "similarPost": select(
@@ -107,7 +113,13 @@ export const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0] 
   timeline,
   role,
   techStack,
-  body,
+  "body": body[] {
+    ...,
+    _type == "image" => {
+      "width": asset->metadata.dimensions.width,
+      "height": asset->metadata.dimensions.height
+    }
+  },
   featured,
   highlighted,
   order
