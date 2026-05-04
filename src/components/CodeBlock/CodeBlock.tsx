@@ -76,6 +76,7 @@ export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps)
           fontSize: '0.875rem',
           lineHeight: '1.625',
         }}
+        codeTagProps={{ style: { fontFamily: CHIP_FONT } }}
       >
         {code}
       </SyntaxHighlighter>
