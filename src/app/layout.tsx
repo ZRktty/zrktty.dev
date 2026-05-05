@@ -20,12 +20,7 @@ export default function RootLayout({
       <body
         className={`${ibmPLexSans.variable} ${ibmPlexMono.variable} ${vinProMono.variable} ${codersCrux.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="min-h-screen">{children}</main>
         </ThemeProvider>
       </body>
