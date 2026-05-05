@@ -11,12 +11,19 @@ export function ExperienceList({ items }: Props) {
   }
 
   return (
-    <ul className="flex flex-col gap-4">
-      {items.map((item) => (
-        <li key={item._id}>
-          <ExperienceCard item={item} />
-        </li>
-      ))}
-    </ul>
+    <section className="flex flex-col gap-0">
+      <div className="mb-12 border-b border-border pb-4 md:mb-16">
+        <h2 className="font-space-grotesk font-bold text-2xl tracking-tight text-foreground md:text-3xl">
+          Experience
+        </h2>
+      </div>
+      <ul className="flex flex-col gap-12 md:gap-20">
+        {items.map((item) => (
+          <li key={item._id}>
+            <ExperienceCard item={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }

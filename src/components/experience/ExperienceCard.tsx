@@ -15,14 +15,6 @@ function formatDate(dateStr: string): string {
   return date.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })
 }
 
-function DateRange({ startDate, endDate }: { startDate: string; endDate?: string | null }) {
-  return (
-    <span className="font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
-      {formatDate(startDate)} — {endDate ? formatDate(endDate) : 'Present'}
-    </span>
-  )
-}
-
 interface Props {
   item: ExperienceItem
 }
@@ -31,61 +23,71 @@ export function ExperienceCard({ item }: Props) {
   const { company, role, webUrl, type, startDate, endDate, description, techStack, logo } = item
 
   return (
-    <article className="flex flex-col gap-3 border border-border bg-card p-4 md:p-6">
-      <div className="flex items-start gap-4">
-        {logo?.asset?.url && (
-          <div className="shrink-0">
-            <Image
-              src={logo.asset.url}
-              alt={logo.alt ?? company}
-              width={40}
-              height={40}
-              className="rounded object-contain"
-            />
-          </div>
-        )}
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <h2 className="font-vin-pro-mono text-base font-bold leading-tight md:text-lg">
-              {role}
-            </h2>
-            <span className="border border-border px-2 py-0.5 font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {TYPE_LABELS[type]}
-            </span>
-          </div>
-          <div className="flex flex-wrap items-center gap-2">
+    <article className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-x-16">
+      {/* Left column — date */}
+      <div className="flex flex-row items-baseline gap-3 md:col-span-3 md:flex-col md:items-start md:gap-2 md:pt-2">
+        <span className="font-ibm-plex-mono text-sm font-semibold text-[#95aaff]">
+          {formatDate(startDate)} — {endDate ? formatDate(endDate) : 'Present'}
+        </span>
+      </div>
+
+      {/* Right column — card */}
+      <div className="flex flex-col gap-4 border border-border bg-card p-6 md:col-span-9 md:p-8">
+        {/* Logo + role + type badge */}
+        <div className="flex items-start gap-3">
+          {logo?.asset?.url && (
+            <div className="mt-0.5 shrink-0">
+              <Image
+                src={logo.asset.url}
+                alt={logo.alt ?? company}
+                width={36}
+                height={36}
+                className="rounded object-contain"
+              />
+            </div>
+          )}
+          <div className="flex min-w-0 flex-col gap-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="font-space-grotesk font-bold text-xl leading-tight tracking-tight text-foreground md:text-2xl">
+                {role}
+              </h2>
+              <span className="border border-border px-2 py-0.5 font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
+                {TYPE_LABELS[type]}
+              </span>
+            </div>
             {webUrl ? (
               <a
                 href={webUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-[#E53935] hover:underline"
+                className="font-ibm-plex-mono text-sm uppercase tracking-wide text-[#ff7162] hover:underline"
               >
                 {company}
               </a>
             ) : (
-              <span className="text-sm font-medium">{company}</span>
+              <span className="font-ibm-plex-mono text-sm uppercase tracking-wide text-[#ff7162]">
+                {company}
+              </span>
             )}
-            <DateRange startDate={startDate} endDate={endDate} />
           </div>
         </div>
+
+        {description && description.length > 0 && (
+          <div className="prose prose-sm max-w-none text-muted-foreground dark:prose-invert">
+            <RenderBodyContent value={description} />
+          </div>
+        )}
+
+        {techStack && techStack.length > 0 && (
+          <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
+            {techStack.map((tech, i) => (
+              <li key={`${tech}-${i}`}>
+                <TechTag label={tech} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-
-      {description && description.length > 0 && (
-        <div className="prose prose-sm dark:prose-invert max-w-none text-muted-foreground">
-          <RenderBodyContent value={description} />
-        </div>
-      )}
-
-      {techStack && techStack.length > 0 && (
-        <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
-          {techStack.map((tech, i) => (
-            <li key={`${tech}-${i}`}>
-              <TechTag label={tech} />
-            </li>
-          ))}
-        </ul>
-      )}
     </article>
   )
 }
