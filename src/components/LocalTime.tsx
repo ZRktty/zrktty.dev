@@ -25,9 +25,14 @@ const LocalTime: React.FC = () => {
   const formattedTime = formatTimeString(currentTime, locale)
 
   return (
-    <div>
-      <h5>Local time</h5>
-      <div suppressHydrationWarning>{formattedTime}</div>
+    <div className="md:text-right">
+      <p className="font-ibm-plex-mono text-xs text-muted-foreground">Local time</p>
+      <p
+        className="font-ibm-plex-mono font-medium text-sm text-foreground uppercase"
+        suppressHydrationWarning
+      >
+        {formattedTime}
+      </p>
     </div>
   )
 }

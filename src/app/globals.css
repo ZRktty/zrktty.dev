@@ -69,12 +69,13 @@
 
   --font-vin-pro-mono: var(--font-vin-pro-mono), monospace;
   --font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
-  --font-mono:
-    var(--font-coders-crux),
-    Menlo,
-    ui-monospace,
-    SFMono-Regular,
-    monospace;
+  --font-space-grotesk: var(--font-space-grotesk), sans-serif;
+  --font-mono: var(--font-coders-crux), Menlo, ui-monospace, SFMono-Regular, monospace;
+
+  --color-nav-active: hsl(var(--nav-link-active));
+  --color-nav-muted: hsl(var(--nav-link-muted));
+
+  --color-footer-bg: hsl(var(--footer-bg));
 }
 
 /*
@@ -93,6 +94,29 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
   }
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0% at var(--x) var(--y));
+  }
+  to {
+    clip-path: circle(150% at var(--x) var(--y));
+  }
+}
+
+::view-transition-new(root) {
+  animation: theme-reveal 0.5s ease-in-out forwards;
+  z-index: 2;
+}
+
+::view-transition-old(root) {
+  animation: none;
+  z-index: 1;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
 }
 
 @layer utilities {
@@ -121,6 +145,10 @@
 
 @layer base {
   :root {
+    --nav-link-active: 218 100% 50%;
+    --nav-link-muted: 220 9% 46%;
+    --footer-bg: 0 0% 96.1%;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -148,6 +176,10 @@
     --radius: 0.5rem;
   }
   .dark {
+    --nav-link-active: 218 100% 50%;
+    --nav-link-muted: 0 0% 67%;
+    --footer-bg: 0 0% 3.9%;
+
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;

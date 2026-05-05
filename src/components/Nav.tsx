@@ -22,8 +22,10 @@ const Nav: React.FC<NavProps> = ({ className = '' }) => {
             key={href}
             href={href}
             className={cn(
-              'hover:text-primary transition-colors',
-              isActive ? 'text-primary font-semibold' : 'text-foreground',
+              'transition-colors duration-200 font-space-grotesk tracking-[-0.025em]',
+              isActive
+                ? 'text-nav-active font-bold'
+                : 'text-nav-muted font-normal hover:text-nav-active',
             )}
           >
             {label}

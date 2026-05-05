@@ -139,16 +139,20 @@ Jira ticket key always in scope. Message in lowercase.
 
 ### When to commit
 
-Commit when you reach a clean, working milestone — a logical unit that compiles, lints, and stands alone as a correct step forward. Ask: "if this were the last commit, would the codebase be in a valid state?" If yes, commit.
+Commit granularly — after each small, self-contained piece of work is done and lint-clean. Do not accumulate changes across multiple logical steps before committing. Ask: "if this were the last commit, would the codebase be in a valid state?" If yes, commit now.
+
+After each commit, **suggest the next commit point** to the owner so the work stays in small, reviewable chunks.
 
 Good commit points:
 
-- A new file or module is fully wired up and lint-clean
 - A dependency is installed and its config is complete
+- A new file or module is fully wired up and lint-clean
+- A single component or utility is implemented and correct
 - A component renders correctly at all viewports
 - A bug is fixed and verified
+- A refactor step is complete without behaviour change
 
-Never commit a broken build. Never commit mid-thought.
+Never commit a broken build. Never commit mid-thought. Never batch multiple logical units into one commit.
 
 ### Branch naming
 

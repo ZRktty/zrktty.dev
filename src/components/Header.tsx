@@ -10,7 +10,7 @@ import { MainNav } from '@/components/MainNav'
 
 export default function Header() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/40">
+    <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
         <Logo />
 
