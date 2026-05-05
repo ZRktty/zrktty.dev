@@ -14,7 +14,7 @@ const SocialLinks: React.FC = () => {
   return (
     <div>
       <p className="font-space-grotesk font-medium text-sm text-foreground mb-2">Socials</p>
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-row flex-wrap items-center gap-4">
         {(socialLinksData as SocialLink[]).map((link) => (
           <Link
             key={link.name}
