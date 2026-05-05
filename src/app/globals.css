@@ -71,6 +71,9 @@
   --font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
   --font-space-grotesk: var(--font-space-grotesk), sans-serif;
   --font-mono: var(--font-coders-crux), Menlo, ui-monospace, SFMono-Regular, monospace;
+
+  --color-nav-active: hsl(var(--nav-link-active));
+  --color-nav-muted: hsl(var(--nav-link-muted));
 }
 
 /*
@@ -117,8 +120,8 @@
 
 @layer base {
   :root {
-    --nav-link-active: #0052ff;
-    --nav-link-muted: #ababab;
+    --nav-link-active: 218 100% 50%;
+    --nav-link-muted: 220 9% 46%;
 
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -147,6 +150,9 @@
     --radius: 0.5rem;
   }
   .dark {
+    --nav-link-active: 218 100% 50%;
+    --nav-link-muted: 0 0% 67%;
+
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
