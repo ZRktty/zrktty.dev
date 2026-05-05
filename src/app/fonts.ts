@@ -48,5 +48,5 @@ export const ibmPlexMono = IBM_Plex_Mono({
 export const spaceGrotesk = Space_Grotesk({
   variable: '--font-space-grotesk',
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
 })
