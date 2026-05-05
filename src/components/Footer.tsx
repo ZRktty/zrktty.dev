@@ -8,7 +8,7 @@ import SocialLinks from '@/components/SocialLinks'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full sticky bottom-0 z-0 border-t border-border bg-[#F5F5F5] dark:bg-[#0a0a0a]">
+    <footer className="w-full sticky bottom-0 z-0 border-t border-border bg-footer-bg">
       <div className="px-4 md:px-8 py-12 flex flex-col gap-8">
         <SocialLinks />
         <Separator />
