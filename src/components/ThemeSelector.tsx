@@ -2,6 +2,7 @@
 
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { flushSync } from 'react-dom'
 import { Button } from '@/components/ui/button'
 
 export default function ThemeSelector() {
@@ -21,7 +22,7 @@ export default function ThemeSelector() {
       return
     }
 
-    document.startViewTransition(() => setTheme(next))
+    document.startViewTransition(() => flushSync(() => setTheme(next)))
   }
 
   return (
