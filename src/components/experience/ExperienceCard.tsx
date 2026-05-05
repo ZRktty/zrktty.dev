@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
+import { TechTag } from '@/components/projects/TechTag'
 import type { ExperienceItem, ExperienceType } from '@/types'
 
 const TYPE_LABELS: Record<ExperienceType, string> = {
@@ -16,7 +17,7 @@ function formatDate(dateStr: string): string {
 
 function DateRange({ startDate, endDate }: { startDate: string; endDate?: string | null }) {
   return (
-    <span className="text-sm text-muted-foreground">
+    <span className="font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
       {formatDate(startDate)} — {endDate ? formatDate(endDate) : 'Present'}
     </span>
   )
@@ -30,7 +31,7 @@ export function ExperienceCard({ item }: Props) {
   const { company, role, webUrl, type, startDate, endDate, description, techStack, logo } = item
 
   return (
-    <article className="flex flex-col gap-3 rounded-lg border border-border p-4 md:p-6">
+    <article className="flex flex-col gap-3 border border-border bg-card p-4 md:p-6">
       <div className="flex items-start gap-4">
         {logo?.asset?.url && (
           <div className="shrink-0">
@@ -45,8 +46,10 @@ export function ExperienceCard({ item }: Props) {
         )}
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-base font-bold leading-tight md:text-lg">{role}</h2>
-            <span className="rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground">
+            <h2 className="font-vin-pro-mono text-base font-bold leading-tight md:text-lg">
+              {role}
+            </h2>
+            <span className="border border-border px-2 py-0.5 font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
               {TYPE_LABELS[type]}
             </span>
           </div>
@@ -77,11 +80,8 @@ export function ExperienceCard({ item }: Props) {
       {techStack && techStack.length > 0 && (
         <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
           {techStack.map((tech, i) => (
-            <li
-              key={`${tech}-${i}`}
-              className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground"
-            >
-              {tech}
+            <li key={`${tech}-${i}`}>
+              <TechTag label={tech} />
             </li>
           ))}
         </ul>

@@ -12,7 +12,9 @@ export default async function ExperiencePage() {
 
   return (
     <div className="container mx-auto min-h-screen max-w-3xl py-6 md:py-12">
-      <h1 className="mb-6 font-bold md:mb-8">Experience</h1>
+      <h1 className="mb-6 font-vin-pro-mono text-4xl font-bold uppercase tracking-tight text-foreground md:mb-8 md:text-5xl">
+        Experience
+      </h1>
       <ExperienceList items={items} />
     </div>
   )
