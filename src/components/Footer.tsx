@@ -2,18 +2,22 @@
 
 import React from 'react'
 import LocalTime from '@/components/LocalTime'
+import SiteVersion from '@/components/SiteVersion'
+import { Separator } from '@/components/ui/separator'
 import SocialLinks from '@/components/SocialLinks'
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full border-t border-border dark:border-ink-border bg-background dark:bg-ink-bg">
-      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 py-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <footer className="w-full sticky bottom-0 z-0 border-t border-border bg-footer-bg">
+      <div className="px-4 md:px-8 py-12 flex flex-col gap-8">
         <SocialLinks />
-        <div className="flex flex-col md:items-end gap-1">
-          <LocalTime />
-          <p className="font-vin-pro-mono text-[11px] text-muted-foreground dark:text-ink-dim">
-            v2026.05 · Built solo · &copy; Zoltán Rakottyai
+        <Separator />
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <SiteVersion />
+          <p className="font-ibm-plex-mono text-sm text-muted-foreground md:text-center">
+            2026 &copy; Zoltan Rakottyai &mdash; All rights reserved
           </p>
+          <LocalTime />
         </div>
       </div>
     </footer>
