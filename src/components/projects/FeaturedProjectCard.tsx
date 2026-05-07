@@ -37,34 +37,35 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
           Featured
         </span>
       </Link>
-      <div className="flex flex-col gap-3 p-6 md:p-8">
-        <Link href={`/projects/${project.slug?.current ?? ''}`}>
-          <h3 className="font-vin-pro-mono font-bold text-2xl md:text-3xl text-foreground leading-snug hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-        </Link>
-        {project.shortDescription && (
-          <p className="font-[family-name:var(--font-ibm-plex-sans)] text-muted-foreground text-base leading-relaxed max-w-2xl">
-            {project.shortDescription}
-          </p>
-        )}
-        {project.techStack && project.techStack.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tag) => (
-              <TechTag key={tag} label={tag} />
-            ))}
-          </div>
-        )}
+      <div className="flex flex-col flex-1 p-6 md:p-8">
+        <div className="flex flex-col gap-3">
+          <Link href={`/projects/${project.slug?.current ?? ''}`}>
+            <h3 className="font-vin-pro-mono font-bold text-2xl md:text-3xl text-foreground leading-snug hover:text-primary transition-colors">
+              {project.title}
+            </h3>
+          </Link>
+          {project.shortDescription && (
+            <p className="font-[family-name:var(--font-ibm-plex-sans)] text-muted-foreground text-base leading-relaxed max-w-2xl">
+              {project.shortDescription}
+            </p>
+          )}
+          {project.techStack && project.techStack.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {project.techStack.map((tag) => (
+                <TechTag key={tag} label={tag} />
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="flex justify-end mt-6">
+          <Link
+            href={`/projects/${project.slug?.current ?? ''}`}
+            className="line-grow opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-widest uppercase text-foreground hover:text-primary flex items-center gap-1.5"
+          >
+            View Case Study <span aria-hidden="true">→</span>
+          </Link>
+        </div>
       </div>
-      <Link
-        href={`/projects/${project.slug?.current ?? ''}`}
-        className="flex items-center justify-between px-6 py-4 bg-foreground text-background hover:bg-primary transition-colors"
-      >
-        <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-widest uppercase">
-          View Case Study
-        </span>
-        <span className="text-lg">→</span>
-      </Link>
     </div>
   )
 }
