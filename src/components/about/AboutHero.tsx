@@ -1,15 +1,12 @@
 import Image from 'next/image'
 import { AboutPageData } from '@/types'
-import { urlFor } from '@/sanity/utils'
 
 interface Props {
   data: Pick<AboutPageData, 'authorBio' | 'metaStrip' | 'photo'>
 }
 
 export function AboutHero({ data }: Props) {
-  const photoUrl = data.photo?.asset
-    ? urlFor(data.photo)?.width(560).height(680).url()
-    : '/image.png'
+  const photoUrl = data.photo?.asset?.url ?? '/image.png'
   const photoAlt = data.photo?.alt ?? 'Zoltán Rakottyai'
 
   return (
@@ -49,13 +46,12 @@ export function AboutHero({ data }: Props) {
 
         <div className="md:w-[280px] md:shrink-0">
           <Image
-            src={photoUrl ?? '/image.png'}
+            src={photoUrl}
             alt={photoAlt}
             width={280}
             height={340}
             className="w-full md:w-[280px] object-cover grayscale"
             priority
-            unoptimized={!!photoUrl?.startsWith('http')}
           />
         </div>
       </div>
