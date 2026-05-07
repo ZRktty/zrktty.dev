@@ -29,6 +29,19 @@ export interface ExperienceItem {
   order?: number
 }
 
+/** Shape returned by ABOUT_QUERY */
+export interface AboutPageData {
+  name: string
+  metaStrip?: string
+  bioParagraphs?: string[]
+  photo?: { asset: { url: string }; alt?: string } | null
+  beliefs?: Array<{ claim: string; body: string }>
+  toolkitRows?: Array<{ category: string; tools: string }>
+  testimonials?: Array<{ text: string; attribution: string; role: string; year: string }>
+  outsideBlocks?: Array<{ title: string; body: string }>
+  externalLinks?: Array<{ label: string; url: string }>
+}
+
 /** Shape returned by SERVICES_QUERY */
 export interface ServiceItem {
   _id: string

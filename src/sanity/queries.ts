@@ -130,6 +130,18 @@ export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current)
   slug
 }`
 
+export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
+  name,
+  metaStrip,
+  bioParagraphs,
+  photo { asset->{ url }, alt },
+  beliefs[]{ claim, body },
+  toolkitRows[]{ category, tools },
+  testimonials[]{ text, attribution, role, year },
+  outsideBlocks[]{ title, body },
+  externalLinks[]{ label, url }
+}`
+
 export const SERVICES_QUERY = `*[_type == "service"] | order(order asc) {
   _id,
   category,
