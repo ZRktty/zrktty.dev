@@ -15,8 +15,11 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
     : null
 
   return (
-    <div className="flex flex-col bg-card border border-border group relative">
-      <div className="relative w-full overflow-hidden aspect-video bg-muted">
+    <div className="flex flex-col bg-card border border-border group">
+      <Link
+        href={`/projects/${project.slug?.current ?? ''}`}
+        className="relative w-full overflow-hidden aspect-video bg-muted block"
+      >
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -33,13 +36,15 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
         <span className="absolute top-4 right-4 font-mono text-xs tracking-widest uppercase bg-primary text-primary-foreground px-3 py-1">
           Featured
         </span>
-      </div>
+      </Link>
       <div className="flex flex-col gap-3 p-6 md:p-8">
-        <h3 className="font-bold text-2xl md:text-3xl text-foreground leading-snug">
-          {project.title}
-        </h3>
+        <Link href={`/projects/${project.slug?.current ?? ''}`}>
+          <h3 className="font-vin-pro-mono font-bold text-2xl md:text-3xl text-foreground leading-snug hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+        </Link>
         {project.shortDescription && (
-          <p className="text-muted-foreground text-base leading-relaxed max-w-2xl">
+          <p className="font-[family-name:var(--font-ibm-plex-sans)] text-muted-foreground text-base leading-relaxed max-w-2xl">
             {project.shortDescription}
           </p>
         )}
@@ -50,13 +55,16 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
             ))}
           </div>
         )}
-        <Link
-          href={`/projects/${project.slug?.current ?? ''}`}
-          className="mt-2 text-sm font-mono text-foreground hover:text-primary transition-colors self-start"
-        >
-          View Case Study →
-        </Link>
       </div>
+      <Link
+        href={`/projects/${project.slug?.current ?? ''}`}
+        className="flex items-center justify-between px-6 py-4 bg-foreground text-background hover:bg-primary transition-colors"
+      >
+        <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-widest uppercase">
+          View Case Study
+        </span>
+        <span className="text-lg">→</span>
+      </Link>
     </div>
   )
 }

@@ -18,8 +18,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
     : null
 
   return (
-    <div className="flex flex-col gap-4 bg-card border border-border p-0 group">
-      <div className="relative w-full overflow-hidden aspect-video bg-muted">
+    <div className="flex flex-col bg-card border border-border group">
+      <Link
+        href={`/projects/${project.slug?.current ?? ''}`}
+        className="relative w-full overflow-hidden aspect-video bg-muted block"
+      >
         {imageUrl ? (
           <Image
             src={imageUrl}
@@ -31,11 +34,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
         ) : (
           <div className="absolute inset-0 bg-muted" />
         )}
-      </div>
-      <div className="flex flex-col gap-3 px-5 pb-5">
-        <h3 className="font-bold text-xl text-foreground leading-snug">{project.title}</h3>
+      </Link>
+      <div className="flex flex-col gap-3 px-5 py-5">
+        <Link href={`/projects/${project.slug?.current ?? ''}`}>
+          <h3 className="font-vin-pro-mono font-bold text-xl text-foreground leading-snug hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+        </Link>
         {project.shortDescription && (
-          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+          <p className="font-[family-name:var(--font-ibm-plex-sans)] text-muted-foreground text-sm leading-relaxed line-clamp-3">
             {project.shortDescription}
           </p>
         )}
@@ -46,13 +53,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
             ))}
           </div>
         )}
-        <Link
-          href={`/projects/${project.slug?.current ?? ''}`}
-          className="mt-1 text-sm font-mono text-foreground hover:text-primary transition-colors self-end"
-        >
-          View Project →
-        </Link>
       </div>
+      <Link
+        href={`/projects/${project.slug?.current ?? ''}`}
+        className="flex items-center justify-between px-5 py-4 bg-foreground text-background hover:bg-primary transition-colors"
+      >
+        <span className="font-[family-name:var(--font-ibm-plex-mono)] text-xs tracking-widest uppercase">
+          View Project
+        </span>
+        <span className="text-lg">→</span>
+      </Link>
     </div>
   )
 }

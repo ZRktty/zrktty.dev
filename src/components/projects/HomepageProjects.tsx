@@ -17,7 +17,9 @@ export async function HomepageProjects() {
       className="container mx-auto max-w-6xl px-4 md:px-6 py-12 md:py-16"
     >
       <div className="flex items-end justify-between mb-3">
-        <h2 className="font-bold text-3xl md:text-4xl text-foreground">Featured projects</h2>
+        <h2 className="font-vin-pro-mono font-bold text-3xl md:text-4xl text-foreground">
+          Featured projects
+        </h2>
         <Link
           href="/projects"
           className="font-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors shrink-0 mb-1"
@@ -25,7 +27,7 @@ export async function HomepageProjects() {
           Check all projects →
         </Link>
       </div>
-      <p className="text-muted-foreground mb-8 md:mb-12">
+      <p className="font-[family-name:var(--font-ibm-plex-sans)] text-muted-foreground mb-8 md:mb-12">
         Some of the projects I&apos;ve been thinking about
       </p>
       <ProjectsGrid projects={projects} />

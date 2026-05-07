@@ -42,14 +42,14 @@ export async function Hero() {
           </div>
 
           {/* Right column — portrait */}
-          <div className="hidden lg:flex items-center justify-center h-full overflow-hidden animate-fade-in">
+          <div className="hidden lg:flex items-end justify-center h-full overflow-hidden animate-fade-in">
             <Image
-              src="/devPortrait.jpg"
+              src="/ZR-portrait.png"
               alt="Zoltan Rakottyai"
               width={420}
               height={560}
               priority
-              className="object-contain object-bottom grayscale contrast-125 hover:grayscale-0 hover:contrast-100 transition-[filter] duration-700 ease-in-out max-h-[85vh] w-auto"
+              className="object-contain object-bottom grayscale hover:grayscale-0 hover:contrast-100 transition-[filter] duration-700 ease-in-out max-h-[100vh] w-auto -scale-x-100"
             />
           </div>
         </div>
