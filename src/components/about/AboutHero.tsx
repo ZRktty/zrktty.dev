@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import { AboutPageData } from '@/types'
+import { AvailabilityBadge } from './AvailabilityBadge'
 
 interface Props {
-  data: Pick<AboutPageData, 'authorBio' | 'metaStrip' | 'photo'>
+  data: Pick<AboutPageData, 'authorBio' | 'metaStrip' | 'photo' | 'availability'>
 }
 
 export function AboutHero({ data }: Props) {
@@ -37,11 +38,14 @@ export function AboutHero({ data }: Props) {
             </p>
           )}
 
-          {data.metaStrip && (
-            <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mt-6">
-              {data.metaStrip}
-            </p>
-          )}
+          <div className="flex flex-col gap-3 mt-6">
+            {data.metaStrip && (
+              <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted">
+                {data.metaStrip}
+              </p>
+            )}
+            {data.availability && <AvailabilityBadge status={data.availability} />}
+          </div>
         </div>
 
         <div className="md:w-[280px] md:shrink-0">

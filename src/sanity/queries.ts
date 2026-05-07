@@ -134,6 +134,9 @@ export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   name,
   metaStrip,
   photo { asset->{ url }, alt },
+  availability,
+  cvFile { asset->{ url } },
+  socialLinks[]{ platform, url },
   "authorBio": *[_type == "author"][0].bio[_type == "block"] {
     "text": pt::text(@)
   },

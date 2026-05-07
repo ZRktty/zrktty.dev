@@ -23,11 +23,12 @@ export default async function AboutPage() {
     <div className="min-h-screen bg-background dark:bg-ink-bg font-[family-name:var(--font-ibm-plex-sans)]">
       <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <AboutHero data={data ?? {}} />
+
         <Beliefs beliefs={data?.beliefs ?? []} />
         <Toolkit rows={data?.toolkitRows ?? []} />
         <Testimonials testimonials={data?.testimonials ?? []} />
         <OutsideWork blocks={data?.outsideBlocks ?? []} links={data?.externalLinks ?? []} />
-        <ContactBlock />
+        <ContactBlock cvFile={data?.cvFile} socialLinks={data?.socialLinks} />
       </main>
     </div>
   )

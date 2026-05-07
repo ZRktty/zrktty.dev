@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { AboutPageData } from '@/types'
+import { CVDownload } from './CVDownload'
+import { AboutSocialLinks } from './AboutSocialLinks'
 
 const fits = [
   'Solo build, end-to-end. Idea to production, one person.',
@@ -9,10 +12,15 @@ const fits = [
 const notFits = [
   'Hourly support contracts.',
   '"We just need a quick fix" emergencies.',
-  'Projects that won’t tell me why before what.',
+  "Projects that won't tell me why before what.",
 ]
 
-export function ContactBlock() {
+interface Props {
+  cvFile?: AboutPageData['cvFile']
+  socialLinks?: AboutPageData['socialLinks']
+}
+
+export function ContactBlock({ cvFile, socialLinks }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
@@ -64,7 +72,14 @@ export function ContactBlock() {
         >
           Email me directly
         </a>
+        {cvFile?.asset?.url && <CVDownload url={cvFile.asset.url} />}
       </div>
+
+      {socialLinks && socialLinks.length > 0 && (
+        <div className="mb-8">
+          <AboutSocialLinks links={socialLinks} />
+        </div>
+      )}
 
       {/* TODO(zoli): review closing line wording */}
       <p className="text-[13px] text-muted-foreground dark:text-ink-dim max-w-[420px] leading-relaxed">

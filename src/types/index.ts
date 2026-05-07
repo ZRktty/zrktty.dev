@@ -34,6 +34,9 @@ export interface AboutPageData {
   name: string
   metaStrip?: string
   photo?: { asset: { url: string }; alt?: string } | null
+  availability?: string
+  cvFile?: { asset: { url: string } } | null
+  socialLinks?: Array<{ platform: string; url: string }>
   authorBio?: Array<{ text: string }>
   beliefs?: Array<{ claim: string; body: string }>
   toolkitRows?: Array<{ category: string; tools: string }>
