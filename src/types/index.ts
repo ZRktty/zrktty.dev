@@ -54,6 +54,13 @@ export interface BlogPostSimilar {
   mainImage?: import('@/sanity/types').Post['mainImage']
 }
 
+/** Shape returned by ABOUT_ME_HERO_QUERY — used in the Hero section */
+export interface HeroData {
+  name: string
+  headline: string
+  bioText: string
+}
+
 /** Full shape returned by POST_DETAIL_QUERY — used on the blog post detail page */
 export interface BlogPostDetail {
   _id: string

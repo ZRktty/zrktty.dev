@@ -129,3 +129,9 @@ export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current)
   title,
   slug
 }`
+
+export const ABOUT_ME_HERO_QUERY = `*[_type == "aboutMe"][0] {
+  name,
+  headline,
+  "bioText": array::join(string::split(pt::text(bio), "")[0..500], "")
+}`
