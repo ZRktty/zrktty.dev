@@ -129,3 +129,15 @@ export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current)
   title,
   slug
 }`
+
+export const SERVICES_QUERY = `*[_type == "service"] | order(order asc) {
+  _id,
+  category,
+  title,
+  description,
+  bullets,
+  stack,
+  steps,
+  isE2E,
+  order
+}`

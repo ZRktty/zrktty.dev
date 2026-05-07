@@ -29,6 +29,19 @@ export interface ExperienceItem {
   order?: number
 }
 
+/** Shape returned by SERVICES_QUERY */
+export interface ServiceItem {
+  _id: string
+  category?: string
+  title: string
+  description?: string
+  bullets?: string[]
+  stack?: string[]
+  steps?: string[]
+  isE2E?: boolean
+  order?: number
+}
+
 /** Minimal shape returned by NEXT_PROJECT_QUERY */
 export interface NextProjectRef {
   title: string
