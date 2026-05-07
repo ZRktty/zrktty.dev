@@ -49,8 +49,8 @@ export function AboutHero({ data }: Props) {
             src={photoUrl}
             alt={photoAlt}
             width={280}
-            height={340}
-            className="w-full md:w-[280px] object-cover grayscale"
+            height={480}
+            className="w-full md:w-[280px] object-cover"
             priority
           />
         </div>
