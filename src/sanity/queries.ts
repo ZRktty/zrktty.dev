@@ -133,8 +133,10 @@ export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current)
 export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   name,
   metaStrip,
-  bioParagraphs,
   photo { asset->{ url }, alt },
+  "authorBio": *[_type == "author"][0].bio[_type == "block"] {
+    "text": pt::text(@)
+  },
   beliefs[]{ claim, body },
   toolkitRows[]{ category, tools },
   testimonials[]{ text, attribution, role, year },

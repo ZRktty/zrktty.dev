@@ -1,12 +1,15 @@
 import Image from 'next/image'
 import { AboutPageData } from '@/types'
+import { urlFor } from '@/sanity/utils'
 
 interface Props {
-  data: Pick<AboutPageData, 'bioParagraphs' | 'metaStrip' | 'photo'>
+  data: Pick<AboutPageData, 'authorBio' | 'metaStrip' | 'photo'>
 }
 
 export function AboutHero({ data }: Props) {
-  const photoSrc = data.photo?.asset?.url ?? '/image.png'
+  const photoUrl = data.photo?.asset
+    ? urlFor(data.photo)?.width(560).height(680).url()
+    : '/image.png'
   const photoAlt = data.photo?.alt ?? 'Zoltán Rakottyai'
 
   return (
@@ -20,19 +23,19 @@ export function AboutHero({ data }: Props) {
             Hi, I&apos;m Zoltán.
           </h1>
 
-          {data.bioParagraphs && data.bioParagraphs.length > 0 ? (
-            data.bioParagraphs.map((p, i) => (
-              // TODO(zoli): review wording of bio paragraphs in Sanity Studio
-              <p
-                key={i}
-                className="text-[16px] text-foreground dark:text-ink-text leading-relaxed mb-5 max-w-[540px]"
-              >
-                {p}
-              </p>
-            ))
+          {data.authorBio && data.authorBio.length > 0 ? (
+            data.authorBio
+              .filter((b) => b.text.trim())
+              .map((block, i) => (
+                <p
+                  key={i}
+                  className="text-[16px] text-foreground dark:text-ink-text leading-relaxed mb-4 max-w-[540px]"
+                >
+                  {block.text}
+                </p>
+              ))
           ) : (
-            // TODO(zoli): add bio paragraphs in Sanity Studio → About Me document
-            <p className="text-[14px] text-muted-foreground dark:text-ink-muted mb-5">
+            <p className="text-[14px] text-muted-foreground dark:text-ink-muted mb-4">
               Bio not yet set.
             </p>
           )}
@@ -46,13 +49,13 @@ export function AboutHero({ data }: Props) {
 
         <div className="md:w-[280px] md:shrink-0">
           <Image
-            src={photoSrc}
+            src={photoUrl ?? '/image.png'}
             alt={photoAlt}
             width={280}
             height={340}
             className="w-full md:w-[280px] object-cover grayscale"
             priority
-            unoptimized={photoSrc.startsWith('http')}
+            unoptimized={!!photoUrl?.startsWith('http')}
           />
         </div>
       </div>

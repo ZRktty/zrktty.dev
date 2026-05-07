@@ -33,8 +33,8 @@ export interface ExperienceItem {
 export interface AboutPageData {
   name: string
   metaStrip?: string
-  bioParagraphs?: string[]
   photo?: { asset: { url: string }; alt?: string } | null
+  authorBio?: Array<{ text: string }>
   beliefs?: Array<{ claim: string; body: string }>
   toolkitRows?: Array<{ category: string; tools: string }>
   testimonials?: Array<{ text: string; attribution: string; role: string; year: string }>
