@@ -76,6 +76,15 @@
   --color-nav-muted: hsl(var(--nav-link-muted));
 
   --color-footer-bg: hsl(var(--footer-bg));
+
+  --color-ink-bg: #0e0e0e;
+  --color-ink-surface: #131313;
+  --color-ink-border: #1f1f1f;
+  --color-ink-border-strong: #2a2a2a;
+  --color-ink-muted: #888888;
+  --color-ink-dim: #666666;
+  --color-ink-text: #e8e8e8;
+  --color-ink-accent: #4ade80;
 }
 
 /*
