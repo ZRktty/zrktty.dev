@@ -12,11 +12,11 @@ export default async function ExperiencePage() {
 
   return (
     <main className="container mx-auto min-h-screen max-w-6xl px-4 md:px-6 py-12 md:py-20">
-      {/* Hero — matches /blog page style */}
+      {/* Hero */}
       <div className="mb-12 md:mb-16">
         <div className="mb-4 flex items-center gap-4">
-          <div className="h-px w-12 bg-[#95aaff]" />
-          <span className="font-ibm-plex-mono text-xs uppercase tracking-[0.1em] text-[#ff7162]">
+          <div className="h-px w-12 bg-primary" />
+          <span className="font-ibm-plex-mono text-xs uppercase tracking-[0.1em] text-primary">
             Curriculum Vitae
           </span>
         </div>

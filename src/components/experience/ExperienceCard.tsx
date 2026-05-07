@@ -26,7 +26,7 @@ export function ExperienceCard({ item }: Props) {
     <article className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-x-16">
       {/* Left column — date */}
       <div className="flex flex-row items-baseline gap-3 md:col-span-3 md:flex-col md:items-start md:gap-2 md:pt-2">
-        <span className="font-ibm-plex-mono text-sm font-semibold text-[#95aaff]">
+        <span className="font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
           {formatDate(startDate)} — {endDate ? formatDate(endDate) : 'Present'}
         </span>
       </div>
@@ -48,9 +48,9 @@ export function ExperienceCard({ item }: Props) {
           )}
           <div className="flex min-w-0 flex-col gap-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="font-space-grotesk font-bold text-xl leading-tight tracking-tight text-foreground md:text-2xl">
+              <h3 className="font-vin-pro-mono font-bold text-xl leading-tight tracking-tight text-foreground md:text-2xl">
                 {role}
-              </h2>
+              </h3>
               <span className="border border-border px-2 py-0.5 font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
                 {TYPE_LABELS[type]}
               </span>
@@ -60,12 +60,12 @@ export function ExperienceCard({ item }: Props) {
                 href={webUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-ibm-plex-mono text-sm uppercase tracking-wide text-[#ff7162] hover:underline"
+                className="font-ibm-plex-mono text-sm uppercase tracking-wide text-primary hover:underline"
               >
                 {company}
               </a>
             ) : (
-              <span className="font-ibm-plex-mono text-sm uppercase tracking-wide text-[#ff7162]">
+              <span className="font-ibm-plex-mono text-sm uppercase tracking-wide text-primary">
                 {company}
               </span>
             )}
@@ -80,8 +80,8 @@ export function ExperienceCard({ item }: Props) {
 
         {techStack && techStack.length > 0 && (
           <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
-            {techStack.map((tech, i) => (
-              <li key={`${tech}-${i}`}>
+            {techStack.map((tech) => (
+              <li key={tech}>
                 <TechTag label={tech} />
               </li>
             ))}
