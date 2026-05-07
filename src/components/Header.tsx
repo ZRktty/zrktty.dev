@@ -7,6 +7,7 @@ import Logo from './Logo'
 import { Button } from './ui/button'
 import { Menu } from 'lucide-react'
 import { MainNav } from '@/components/MainNav'
+import { StatusBadge } from '@/components/StatusBadge'
 
 export default function Header() {
   return (
@@ -17,8 +18,9 @@ export default function Header() {
         {/* Desktop: centered nav */}
         <MainNav />
 
-        {/* Desktop: theme selector */}
-        <div className="hidden md:flex items-center">
+        {/* Desktop: status badge + theme selector */}
+        <div className="hidden md:flex items-center gap-4">
+          <StatusBadge />
           <ThemeSelector />
         </div>
 
