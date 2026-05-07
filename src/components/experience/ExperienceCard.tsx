@@ -26,7 +26,7 @@ export function ExperienceCard({ item }: Props) {
     <article className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-x-16">
       {/* Left column — date */}
       <div className="flex flex-row items-baseline gap-3 md:col-span-3 md:flex-col md:items-start md:gap-2 md:pt-2">
-        <span className="font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
+        <span className="font-ibm-plex-mono text-sm leading-5 font-normal text-muted-foreground">
           {formatDate(startDate)} — {endDate ? formatDate(endDate) : 'Present'}
         </span>
       </div>
