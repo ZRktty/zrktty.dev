@@ -6,7 +6,7 @@ const formatTimeString = (date: Date, locale: string = 'en-US') => {
   return new Intl.DateTimeFormat(locale, {
     hour: 'numeric',
     minute: 'numeric',
-    timeZone: 'Europe/Madrid',
+    timeZone: 'Atlantic/Canary',
     timeZoneName: 'short',
   }).format(date)
 }
