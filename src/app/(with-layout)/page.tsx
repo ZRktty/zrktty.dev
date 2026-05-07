@@ -5,7 +5,7 @@ import { Testimonial } from '@/components/Testimonial'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-ink-bg font-[family-name:var(--font-ibm-plex-sans)]">
+    <div className="min-h-screen bg-background dark:bg-ink-bg font-[family-name:var(--font-ibm-plex-sans)]">
       <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         <Hero />
         <HowIWork />

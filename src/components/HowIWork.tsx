@@ -23,29 +23,33 @@ export function HowIWork() {
   return (
     <section className="py-16 md:py-24">
       <div className="mb-8">
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-ink-accent mb-3">
+        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           / How I work
         </p>
-        <h2 className="font-vin-pro-mono font-bold text-[22px] text-white leading-snug">
+        <h2 className="font-vin-pro-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
           Three things you get
           <br />
           that an agency won&apos;t promise.
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 border border-ink-border">
+      <div className="grid grid-cols-1 md:grid-cols-3 border border-border dark:border-ink-border">
         {cells.map((cell, i) => (
           <div
             key={cell.number}
-            className={`flex flex-col p-6 md:p-8 transition-colors hover:bg-ink-surface ${
-              i < cells.length - 1 ? 'border-b border-ink-border md:border-b-0 md:border-r' : ''
+            className={`flex flex-col p-6 md:p-8 transition-colors hover:bg-muted dark:hover:bg-ink-surface ${
+              i < cells.length - 1
+                ? 'border-b border-border dark:border-ink-border md:border-b-0 md:border-r'
+                : ''
             }`}
           >
-            <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-ink-muted mb-4">
+            <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mb-4">
               {cell.number} / {cell.title}
             </p>
-            <p className="text-[14px] text-ink-text leading-relaxed flex-1 mb-6">{cell.body}</p>
-            <p className="font-vin-pro-mono text-[10.5px] text-ink-muted border-t border-ink-border pt-3">
+            <p className="text-[14px] text-foreground dark:text-ink-text leading-relaxed flex-1 mb-6">
+              {cell.body}
+            </p>
+            <p className="font-vin-pro-mono text-[10.5px] text-muted-foreground dark:text-ink-muted border-t border-border dark:border-ink-border pt-3">
               {cell.tag}
             </p>
           </div>
