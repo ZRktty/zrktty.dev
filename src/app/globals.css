@@ -119,6 +119,17 @@
   isolation: isolate;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes levitate {
   0%,
   100% {
@@ -132,6 +143,10 @@
 @layer utilities {
   .animate-levitate {
     animation: levitate 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
   }
 
   .line-grow {
