@@ -154,7 +154,7 @@
 
 @layer base {
   :root {
-    --nav-link-active: 218 100% 50%;
+    --nav-link-active: 142 71% 36%;
     --nav-link-muted: 220 9% 46%;
     --footer-bg: 0 0% 96.1%;
 
@@ -185,7 +185,7 @@
     --radius: 0.5rem;
   }
   .dark {
-    --nav-link-active: 218 100% 50%;
+    --nav-link-active: 142 69% 58%;
     --nav-link-muted: 0 0% 67%;
     --footer-bg: 0 0% 3.9%;
 
