@@ -8,7 +8,7 @@ const Logo = () => {
       href="/"
       className="font-space-grotesk text-[20px] font-bold uppercase tracking-[-0.05em] text-foreground leading-7"
     >
-      ZRKTTY.DEV<span className="animate-pulse">▮</span>
+      ZRKTTY.DEV<span className="animate-pulse">_</span>
     </Link>
   )
 }
