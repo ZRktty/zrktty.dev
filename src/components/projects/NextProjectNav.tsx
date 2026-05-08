@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 
 interface NextProjectNavProps {
   title: string
@@ -8,20 +7,22 @@ interface NextProjectNavProps {
 
 export function NextProjectNav({ title, slug }: NextProjectNavProps) {
   return (
-    <div className="border-t border-border pt-12 md:pt-16">
-      <div className="flex items-end justify-between">
+    <div className="border-t border-border dark:border-ink-border pt-12 md:pt-16">
+      <div className="flex items-end justify-between gap-6">
         <div className="flex flex-col gap-3">
-          <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+          <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
             Next Project
           </span>
-          <h2 className="font-bold text-3xl md:text-5xl text-foreground tracking-tight">{title}</h2>
+          <h2 className="font-vin-pro-mono font-bold text-[26px] md:text-[36px] text-foreground dark:text-white leading-tight">
+            {title}
+          </h2>
         </div>
         <Link
           href={`/projects/${slug}`}
           aria-label={`View next project: ${title}`}
-          className="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-muted hover:bg-muted/80 transition-colors shrink-0"
+          className="font-vin-pro-mono text-[11px] uppercase tracking-widest shrink-0 px-5 py-3 border border-border dark:border-ink-border text-foreground dark:text-white hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent transition-colors"
         >
-          <ArrowRight className="w-5 h-5" />
+          Next →
         </Link>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Metadata } from 'next'
 import { client } from '@/sanity/client'
 import { PROJECT_QUERY, PROJECTS_SLUGS_QUERY, NEXT_PROJECT_QUERY } from '@/sanity/queries'
@@ -12,6 +11,7 @@ import { urlFor } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
 import { TechTag } from '@/components/projects/TechTag'
 import { NextProjectNav } from '@/components/projects/NextProjectNav'
+import { TextLink } from '@/components/shared/TextLink'
 import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
 
 interface Props {
@@ -53,19 +53,21 @@ export default async function ProjectDetailPage({ params }: Props) {
       : null
 
   return (
-    <main className="container mx-auto max-w-6xl px-4 md:px-6 py-12 md:py-16">
+    <main className="mx-auto max-w-6xl px-4 md:px-6 py-12 md:py-16">
       {/* Hero */}
       <section className="flex flex-col gap-8 mb-12 md:mb-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="flex flex-col gap-4">
-            <span className="font-mono text-xs tracking-widest uppercase text-primary">
+            <span className="font-vin-pro-mono text-[11px] tracking-widest uppercase text-green-600 dark:text-ink-accent">
               Case Study
             </span>
-            <h1 className="font-bold text-4xl md:text-6xl text-foreground tracking-tight">
+            <h1 className="font-vin-pro-mono font-bold text-[36px] md:text-[52px] text-foreground dark:text-white leading-tight">
               {project.title}
             </h1>
             {project.shortDescription && (
-              <p className="text-muted-foreground text-lg max-w-xl">{project.shortDescription}</p>
+              <p className="text-muted-foreground dark:text-ink-muted text-lg max-w-xl">
+                {project.shortDescription}
+              </p>
             )}
           </div>
           {(project.liveUrl || project.githubUrl) && (
@@ -75,7 +77,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs tracking-widest uppercase bg-primary text-primary-foreground px-6 py-3 hover:opacity-90 transition-opacity"
+                  className="font-vin-pro-mono text-[11px] tracking-widest uppercase bg-ink-accent text-ink-bg px-6 py-3 rounded-none hover:opacity-90 transition-opacity"
                 >
                   Live Demo ↗
                 </a>
@@ -85,7 +87,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs tracking-widest uppercase border border-border text-foreground px-6 py-3 hover:border-foreground transition-colors"
+                  className="font-vin-pro-mono text-[11px] tracking-widest uppercase border border-border dark:border-ink-border text-foreground dark:text-white px-6 py-3 hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent transition-colors"
                 >
                   Source ↗
                 </a>
@@ -95,7 +97,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         </div>
 
         {heroUrl && (
-          <div className="relative w-full aspect-video overflow-hidden bg-muted">
+          <div className="relative w-full aspect-video overflow-hidden bg-muted dark:bg-ink-surface">
             <Image
               src={heroUrl}
               alt={project.title ? `${project.title} hero image` : 'Project hero image'}
@@ -104,7 +106,6 @@ export default async function ProjectDetailPage({ params }: Props) {
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 1400px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
           </div>
         )}
       </section>
@@ -115,28 +116,35 @@ export default async function ProjectDetailPage({ params }: Props) {
         <aside className="md:col-span-3 flex flex-col gap-8">
           {project.client && (
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Client
               </span>
-              <span className="font-mono text-sm text-foreground">{project.client}</span>
+              <span className="font-vin-pro-mono text-sm text-foreground dark:text-ink-text">
+                {project.client}
+              </span>
             </div>
           )}
           {project.timeline && (
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Timeline
               </span>
-              <span className="font-mono text-sm text-foreground">{project.timeline}</span>
+              <span className="font-vin-pro-mono text-sm text-foreground dark:text-ink-text">
+                {project.timeline}
+              </span>
             </div>
           )}
           {project.role && project.role.length > 0 && (
             <div className="flex flex-col gap-2">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Role
               </span>
               <div className="flex flex-col gap-1">
                 {project.role.map((r) => (
-                  <span key={r} className="font-mono text-sm text-foreground">
+                  <span
+                    key={r}
+                    className="font-vin-pro-mono text-sm text-foreground dark:text-ink-text"
+                  >
                     {r}
                   </span>
                 ))}
@@ -145,7 +153,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           )}
           {project.techStack && project.techStack.length > 0 && (
             <div className="flex flex-col gap-3">
-              <span className="font-mono text-xs tracking-widest uppercase text-muted-foreground">
+              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Tech Stack
               </span>
               <div className="flex flex-wrap gap-2">
@@ -155,12 +163,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
             </div>
           )}
-          <Link
-            href="/projects"
-            className="font-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors mt-2"
-          >
-            ← All Projects
-          </Link>
+          <TextLink href="/projects">← All Projects</TextLink>
         </aside>
 
         {/* Body */}

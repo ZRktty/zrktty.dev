@@ -71,7 +71,6 @@
   --font-vin-pro-mono: var(--font-vin-pro-mono), monospace;
   --font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
   --font-space-grotesk: var(--font-space-grotesk), sans-serif;
-  --font-mono: var(--font-coders-crux), Menlo, ui-monospace, SFMono-Regular, monospace;
 
   --color-nav-active: hsl(var(--nav-link-active));
   --color-nav-muted: hsl(var(--nav-link-muted));

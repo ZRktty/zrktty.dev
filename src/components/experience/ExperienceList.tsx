@@ -13,7 +13,7 @@ export function ExperienceList({ items }: Props) {
   return (
     <section className="flex flex-col gap-0">
       <div className="mb-12 border-b border-border pb-4 md:mb-16">
-        <h2 className="font-space-grotesk font-bold text-2xl tracking-tight text-foreground md:text-3xl">
+        <h2 className="font-vin-pro-mono font-bold text-[22px] md:text-[28px] text-foreground dark:text-white">
           Experience
         </h2>
       </div>
