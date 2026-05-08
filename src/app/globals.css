@@ -67,6 +67,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
+  --font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
   --font-vin-pro-mono: var(--font-vin-pro-mono), monospace;
   --font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
   --font-space-grotesk: var(--font-space-grotesk), sans-serif;
@@ -221,6 +222,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-ibm-plex-sans;
   }
 }
