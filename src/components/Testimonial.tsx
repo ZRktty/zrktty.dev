@@ -4,7 +4,7 @@
 
 export function Testimonial() {
   return (
-    <section className="py-16 md:py-24 mb-16 md:mb-24 bg-muted dark:bg-[#0A0A0A] -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8">
+    <section className="py-16 md:py-24 bg-muted dark:bg-[#0A0A0A] -mx-4 md:-mx-6 lg:-mx-8 px-4 md:px-6 lg:px-8">
       <blockquote className="max-w-[580px]">
         <p className="font-vin-pro-mono text-[17px] text-foreground dark:text-white leading-relaxed mb-8">
           &ldquo;Zoltán didn&apos;t just build what we asked for — he caught two scope mistakes in
