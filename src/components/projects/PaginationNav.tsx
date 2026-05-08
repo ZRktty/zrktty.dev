@@ -11,27 +11,29 @@ export function PaginationNav({ currentPage, totalPages }: PaginationNavProps) {
 
   return (
     <nav
-      className="flex items-center justify-between mt-12 pt-8 border-t border-border"
+      className="flex items-center justify-between mt-12 pt-8 border-t border-border dark:border-ink-border"
       aria-label="Pagination"
     >
       <div>
-        {hasPrev && (
+        {hasPrev ? (
           <Link
             href={`/projects?page=${currentPage - 1}`}
-            className="font-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors"
+            className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
           >
             ← Previous
           </Link>
+        ) : (
+          <span />
         )}
       </div>
-      <span className="font-mono text-xs text-muted-foreground">
+      <span className="font-vin-pro-mono text-[11px] text-muted-foreground dark:text-ink-dim">
         {currentPage} / {totalPages}
       </span>
       <div>
         {hasNext && (
           <Link
             href={`/projects?page=${currentPage + 1}`}
-            className="font-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors"
+            className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
           >
             Next →
           </Link>

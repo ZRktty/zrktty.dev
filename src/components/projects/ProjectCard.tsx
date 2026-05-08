@@ -1,58 +1,56 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { Project } from '@/sanity/types'
-import { urlFor } from '@/sanity/utils'
-import { TechTag } from './TechTag'
-import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
 
 interface ProjectCardProps {
   project: Project
+  index: number
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const imageUrl = project.thumbnail
-    ? urlFor(project.thumbnail)
-        ?.width(PROJECT_CARD_IMAGE_WIDTH)
-        .height(PROJECT_CARD_IMAGE_HEIGHT)
-        .url()
-    : null
+function StackList({ items }: { items: string[] }) {
+  return (
+    <div className="font-vin-pro-mono text-[10.5px] text-muted-foreground dark:text-ink-muted flex flex-wrap gap-x-2.5">
+      {items.map((item, i) => (
+        <span key={item}>
+          {item}
+          {i < items.length - 1 && (
+            <span className="ml-2.5 text-border dark:text-ink-border-strong">·</span>
+          )}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+export function ProjectCard({ project, index }: ProjectCardProps) {
+  const slug = project.slug?.current ?? ''
 
   return (
-    <div className="flex flex-col gap-4 bg-card border border-border p-0 group">
-      <div className="relative w-full overflow-hidden aspect-video bg-muted">
-        {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={project.title ? `${project.title} thumbnail` : 'Project thumbnail'}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        ) : (
-          <div className="absolute inset-0 bg-muted" />
+    <Link
+      href={`/projects/${slug}`}
+      className="group flex flex-col gap-4 p-6 md:p-8 bg-background dark:bg-ink-bg border border-border dark:border-ink-border transition-all duration-200 hover:border-green-600 dark:hover:border-ink-accent hover:-translate-y-0.5"
+    >
+      <div className="flex items-center justify-between">
+        <span className="font-vin-pro-mono text-[10.5px] text-muted-foreground dark:text-ink-dim">
+          {String(index).padStart(3, '0')}
+        </span>
+        {project.highlighted && (
+          <span className="font-vin-pro-mono text-[10px] uppercase tracking-widest bg-muted dark:bg-ink-surface text-green-600 dark:text-ink-accent px-2 py-0.5">
+            Featured
+          </span>
         )}
       </div>
-      <div className="flex flex-col gap-3 px-5 pb-5">
-        <h3 className="font-bold text-xl text-foreground leading-snug">{project.title}</h3>
-        {project.shortDescription && (
-          <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-            {project.shortDescription}
-          </p>
-        )}
-        {project.techStack && project.techStack.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {project.techStack.map((tag) => (
-              <TechTag key={tag} label={tag} />
-            ))}
-          </div>
-        )}
-        <Link
-          href={`/projects/${project.slug?.current ?? ''}`}
-          className="mt-1 text-sm font-mono text-foreground hover:text-primary transition-colors self-end"
-        >
-          View Project →
-        </Link>
-      </div>
-    </div>
+
+      <h3 className="font-vin-pro-mono text-[17px] text-foreground dark:text-white leading-snug">
+        {project.title}
+      </h3>
+
+      {project.shortDescription && (
+        <p className="text-[13px] text-muted-foreground dark:text-ink-muted leading-relaxed flex-1">
+          {project.shortDescription}
+        </p>
+      )}
+
+      {project.techStack && project.techStack.length > 0 && <StackList items={project.techStack} />}
+    </Link>
   )
 }
