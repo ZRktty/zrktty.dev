@@ -16,7 +16,7 @@ export default function MaintenancePage() {
           <p className="font-vin-pro-mono text-[16px] text-gray-900">
             🚧 We&apos;re Under Maintenance
           </p>
-          <p className="text-[14px] text-gray-500 leading-relaxed">
+          <p className="font-ibm-plex-sans text-[14px] text-gray-500 leading-relaxed">
             Our site is temporarily unavailable. Please check back soon.
           </p>
         </div>
