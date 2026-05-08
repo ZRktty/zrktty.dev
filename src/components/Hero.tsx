@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export function Hero() {
   return (
-    <section className="flex flex-col justify-center min-h-[80vh] py-20 md:py-0">
+    <section className="flex flex-col justify-center min-h-[calc(100vh-3.5rem)]">
       <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mb-6">
         Software engineer · Building since 2009 · Gran Canaria, ES
       </p>
