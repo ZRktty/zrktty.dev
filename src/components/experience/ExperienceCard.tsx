@@ -32,7 +32,7 @@ export function ExperienceCard({ item }: Props) {
       </div>
 
       {/* Right column — card */}
-      <div className="flex flex-col gap-4 border border-border bg-card p-6 md:col-span-9 md:p-8">
+      <div className="flex flex-col gap-4 border border-border dark:border-ink-border bg-card dark:bg-ink-surface p-6 md:col-span-9 md:p-8">
         {/* Logo + role + type badge */}
         <div className="flex items-start gap-3">
           {logo?.asset?.url && (
@@ -60,12 +60,12 @@ export function ExperienceCard({ item }: Props) {
                 href={webUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-ibm-plex-mono text-sm uppercase tracking-wide text-primary hover:underline"
+                className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent hover:underline"
               >
                 {company}
               </a>
             ) : (
-              <span className="font-ibm-plex-mono text-sm uppercase tracking-wide text-primary">
+              <span className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent">
                 {company}
               </span>
             )}
