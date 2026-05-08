@@ -9,7 +9,7 @@ export default function MaintenancePage() {
         </p>
 
         <h1 className="font-vin-pro-mono font-bold text-[52px] md:text-[72px] leading-none text-gray-900 mb-12">
-          SYSTEM<span className="animate-pulse text-green-600">_</span>DOWN
+          SYSTEM<span className="animate-pulse text-green-600">_</span>OFFLINE
         </h1>
 
         <div className="mb-12 flex flex-col gap-2">
