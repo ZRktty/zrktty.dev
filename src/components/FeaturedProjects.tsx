@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { client } from '@/sanity/client'
+import { TextLink } from '@/components/shared/TextLink'
 import { HOMEPAGE_PROJECTS_QUERY } from '@/sanity/queries'
 import { Project } from '@/sanity/types'
 
@@ -37,12 +38,9 @@ export async function FeaturedProjects() {
             A few things I&apos;ve shipped. Each links to a case study.
           </p>
         </div>
-        <Link
-          href="/projects"
-          className="font-vin-pro-mono text-[12px] text-green-600 dark:text-ink-accent hover:underline shrink-0"
-        >
+        <TextLink href="/projects" className="shrink-0">
           All projects →
-        </Link>
+        </TextLink>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border dark:bg-ink-border">
