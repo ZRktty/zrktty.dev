@@ -25,18 +25,19 @@ function StackList({ items }: { items: string[] }) {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const slug = project.slug?.current ?? ''
-  const imageUrl =
-    project.highlighted && project.thumbnail
-      ? urlFor(project.thumbnail)
-          ?.width(PROJECT_CARD_IMAGE_WIDTH)
-          .height(PROJECT_CARD_IMAGE_HEIGHT)
-          .url()
-      : null
+  const showImage = (project.featured || project.highlighted) && project.thumbnail
+  const imageUrl = showImage
+    ? urlFor(project.thumbnail!)
+        ?.width(PROJECT_CARD_IMAGE_WIDTH)
+        .height(PROJECT_CARD_IMAGE_HEIGHT)
+        .url()
+    : null
+
+  const badge = project.featured ? 'Featured' : project.highlighted ? 'Highlighted' : null
 
   return (
     <Link
-      href={`/projects/${slug}`}
+      href={`/projects/${project.slug?.current ?? ''}`}
       className="group flex flex-col bg-background dark:bg-ink-bg border border-border dark:border-ink-border transition-all duration-200 hover:border-green-600 dark:hover:border-ink-accent hover:-translate-y-0.5"
     >
       {imageUrl && (
@@ -45,9 +46,14 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             src={imageUrl}
             alt={project.title ? `${project.title} thumbnail` : 'Project thumbnail'}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
+          {badge && (
+            <span className="absolute top-3 right-3 font-vin-pro-mono text-[10px] uppercase tracking-widest bg-background/90 dark:bg-ink-bg/90 text-green-600 dark:text-ink-accent px-2.5 py-0.5">
+              {badge}
+            </span>
+          )}
         </div>
       )}
 
@@ -56,9 +62,9 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           <span className="font-vin-pro-mono text-[10.5px] text-muted-foreground dark:text-ink-dim">
             {String(index).padStart(3, '0')}
           </span>
-          {project.highlighted && (
+          {badge && !imageUrl && (
             <span className="font-vin-pro-mono text-[10px] uppercase tracking-widest bg-muted dark:bg-ink-surface text-green-600 dark:text-ink-accent px-2 py-0.5">
-              Highlighted
+              {badge}
             </span>
           )}
         </div>
