@@ -14,7 +14,7 @@ export default function MaintenancePage() {
 
         <div className="mb-12 flex flex-col gap-2">
           <p className="font-vin-pro-mono text-[16px] text-gray-900">
-            🚧 We&apos;re Under Maintenance
+            We&apos;re Under Maintenance
           </p>
           <p className="font-ibm-plex-sans text-[14px] text-gray-500 leading-relaxed">
             Our site is temporarily unavailable. Please check back soon.
