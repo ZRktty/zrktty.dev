@@ -17,7 +17,7 @@ export default async function BlogPage() {
         <h1 className="font-vin-pro-mono text-5xl md:text-7xl font-bold uppercase tracking-tight text-foreground mb-4">
           TRANSMISSIONS
         </h1>
-        <p className="font-ibm-plex-mono text-base text-muted-foreground max-w-xl">
+        <p className="text-base text-muted-foreground dark:text-ink-muted max-w-xl">
           Thoughts, tutorials, and engineering deep dives from the terminal to the canvas.
         </p>
       </div>

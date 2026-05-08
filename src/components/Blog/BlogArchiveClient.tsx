@@ -42,18 +42,18 @@ export default function BlogArchiveClient({ posts, categories }: Props) {
         {visible.length > 0 ? (
           visible.map((post, i) => <PostListItem key={post._id} post={post} index={i} />)
         ) : (
-          <p className={`${IBM_MONO} text-muted-foreground text-sm py-12`}>
+          <p className={`${IBM_MONO} text-muted-foreground dark:text-ink-muted text-sm py-12`}>
             No transmissions found.
           </p>
         )}
       </div>
 
       {hasMore && (
-        <div className="flex justify-center pt-8 border-t border-border">
+        <div className="flex justify-center pt-8 border-t border-border dark:border-ink-border">
           <button
             type="button"
             onClick={() => setVisibleCount((n) => n + BLOG_PAGE_SIZE)}
-            className={`${IBM_MONO} px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-[#0052FF] border border-border rounded-none hover:bg-accent transition-colors duration-150`}
+            className={`${IBM_MONO} px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-green-600 dark:text-ink-accent border border-border dark:border-ink-border rounded-none hover:bg-muted dark:hover:bg-ink-surface transition-colors duration-150`}
           >
             LOAD ARCHIVE
           </button>
