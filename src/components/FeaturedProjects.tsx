@@ -24,6 +24,8 @@ function StackList({ items }: { items: string[] }) {
 export async function FeaturedProjects() {
   const projects = await client.fetch<Project[]>(HOMEPAGE_PROJECTS_QUERY, {}, options)
 
+  if (!projects || projects.length === 0) return null
+
   return (
     <section id="featured-projects" className="py-16 md:py-24">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
