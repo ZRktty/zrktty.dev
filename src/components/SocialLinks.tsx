@@ -9,6 +9,8 @@ const PLATFORM_LABELS: Record<string, string> = {
   stackoverflow: 'Stack Overflow',
   twitter: 'Twitter',
   x: 'X',
+  devto: 'Dev.to',
+  bluesky: 'Bluesky',
   email: 'Email',
 }
 
