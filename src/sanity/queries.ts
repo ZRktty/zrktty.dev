@@ -85,7 +85,7 @@ export const HOMEPAGE_PROJECTS_QUERY = `*[_type == "project" && defined(slug.cur
   githubUrl
 }`
 
-export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(_createdAt desc) [$offset...$offset + $limit] {
+export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(featured desc, order asc, _createdAt desc) [$offset...$offset + $limit] {
   _id,
   title,
   slug,

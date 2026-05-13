@@ -1,5 +1,6 @@
 import { Project } from '@/sanity/types'
 import { ProjectCard } from './ProjectCard'
+import { FeaturedProjectCard } from './FeaturedProjectCard'
 
 interface ProjectsGridProps {
   projects: Project[]
@@ -7,13 +8,17 @@ interface ProjectsGridProps {
 }
 
 export function ProjectsGrid({ projects, offset = 0 }: ProjectsGridProps) {
-  const sorted = [...projects.filter((p) => p.featured), ...projects.filter((p) => !p.featured)]
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border dark:bg-ink-border">
-      {sorted.map((project, i) => (
-        <ProjectCard key={project._id} project={project} index={offset + i + 1} />
-      ))}
+      {projects.map((project, i) =>
+        project.featured ? (
+          <div key={project._id} className="md:col-span-2">
+            <FeaturedProjectCard project={project} index={offset + i + 1} />
+          </div>
+        ) : (
+          <ProjectCard key={project._id} project={project} index={offset + i + 1} />
+        ),
+      )}
     </div>
   )
 }
