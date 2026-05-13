@@ -1,3 +1,4 @@
+import React from 'react'
 import SocialLinks from '@/components/SocialLinks'
 
 export default function MaintenancePage() {
@@ -21,7 +22,15 @@ export default function MaintenancePage() {
           </p>
         </div>
 
-        <div className="flex justify-center">
+        <div
+          className="flex justify-center"
+          style={
+            {
+              '--foreground': '222.2 84% 4.9%',
+              '--muted-foreground': '215.4 16.3% 46.9%',
+            } as React.CSSProperties
+          }
+        >
           <SocialLinks />
         </div>
       </div>
