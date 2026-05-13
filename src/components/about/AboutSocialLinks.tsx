@@ -11,11 +11,12 @@ interface Props {
 }
 
 export function AboutSocialLinks({ links }: Props) {
-  if (links.length === 0) return null
+  const validLinks = links.filter((l) => l.platform && l.url)
+  if (validLinks.length === 0) return null
 
   return (
     <div className="flex flex-wrap gap-6">
-      {links.map((link) => (
+      {validLinks.map((link) => (
         <Link
           key={link.platform}
           href={link.url}
