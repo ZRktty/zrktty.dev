@@ -1,25 +1,11 @@
 import Link from 'next/link'
 import { client } from '@/sanity/client'
 import { TextLink } from '@/components/shared/TextLink'
+import { StackList } from '@/components/shared/StackList'
 import { HOMEPAGE_PROJECTS_QUERY } from '@/sanity/queries'
 import { Project } from '@/sanity/types'
 
 const options = { next: { revalidate: 60 } }
-
-function StackList({ items }: { items: string[] }) {
-  return (
-    <div className="font-vin-pro-mono text-[10.5px] text-muted-foreground dark:text-ink-muted flex flex-wrap gap-x-2.5">
-      {items.map((item, i) => (
-        <span key={item}>
-          {item}
-          {i < items.length - 1 && (
-            <span className="ml-2.5 text-border dark:text-ink-border-strong">·</span>
-          )}
-        </span>
-      ))}
-    </div>
-  )
-}
 
 export async function FeaturedProjects() {
   const projects = await client.fetch<Project[]>(HOMEPAGE_PROJECTS_QUERY, {}, options)
