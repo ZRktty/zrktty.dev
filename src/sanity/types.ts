@@ -15,6 +15,22 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type Service = {
+  _id: string
+  _type: 'service'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  category?: string
+  title?: string
+  description?: string
+  bullets?: Array<string>
+  stack?: Array<string>
+  steps?: Array<string>
+  isE2E?: boolean
+  order?: number
+}
+
 export type SanityImageAssetReference = {
   _ref: string
   _type: 'reference'
@@ -161,24 +177,8 @@ export type AboutMe = {
   _rev: string
   name?: string
   headline?: string
-  bio?: Array<{
-    children?: Array<{
-      marks?: Array<string>
-      text?: string
-      _type: 'span'
-      _key: string
-    }>
-    style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-    listItem?: 'bullet' | 'number'
-    markDefs?: Array<{
-      href?: string
-      _type: 'link'
-      _key: string
-    }>
-    level?: number
-    _type: 'block'
-    _key: string
-  }>
+  metaStrip?: string
+  bioParagraphs?: Array<string>
   photo?: {
     asset?: SanityImageAssetReference
     media?: unknown
@@ -189,6 +189,33 @@ export type AboutMe = {
   }
   location?: string
   availability?: string
+  beliefs?: Array<{
+    claim?: string
+    body?: string
+    _key: string
+  }>
+  toolkitRows?: Array<{
+    category?: string
+    tools?: string
+    _key: string
+  }>
+  testimonials?: Array<{
+    text?: string
+    attribution?: string
+    role?: string
+    year?: string
+    _key: string
+  }>
+  outsideBlocks?: Array<{
+    title?: string
+    body?: string
+    _key: string
+  }>
+  externalLinks?: Array<{
+    label?: string
+    url?: string
+    _key: string
+  }>
   cvFile?: {
     asset?: SanityFileAssetReference
     media?: unknown
@@ -399,6 +426,7 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Service
   | SanityImageAssetReference
   | Project
   | BlockContent

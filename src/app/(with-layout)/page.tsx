@@ -2,7 +2,6 @@ import Hero from '@/components/Hero'
 import { HowIWork } from '@/components/HowIWork'
 import { Services } from '@/components/Services'
 import { FeaturedProjects } from '@/components/FeaturedProjects'
-import { Testimonial } from '@/components/Testimonial'
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
         <HowIWork />
         <Services />
         <FeaturedProjects />
-        <Testimonial />
       </main>
     </div>
   )
