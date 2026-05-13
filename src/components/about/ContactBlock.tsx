@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { AboutPageData } from '@/types'
 import { CVDownload } from './CVDownload'
-import { AboutSocialLinks } from './AboutSocialLinks'
 
 const fits = [
   'Solo build, end-to-end. Idea to production, one person.',
@@ -17,10 +16,9 @@ const notFits = [
 
 interface Props {
   cvFile?: AboutPageData['cvFile']
-  socialLinks?: AboutPageData['socialLinks']
 }
 
-export function ContactBlock({ cvFile, socialLinks }: Props) {
+export function ContactBlock({ cvFile }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
@@ -74,12 +72,6 @@ export function ContactBlock({ cvFile, socialLinks }: Props) {
         </a>
         {cvFile?.asset?.url && <CVDownload url={cvFile.asset.url} />}
       </div>
-
-      {socialLinks && socialLinks.length > 0 && (
-        <div className="mb-8">
-          <AboutSocialLinks links={socialLinks} />
-        </div>
-      )}
 
       {/* TODO(zoli): review closing line wording */}
       <p className="text-[13px] text-muted-foreground dark:text-ink-dim max-w-[420px] leading-relaxed">

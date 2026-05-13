@@ -6,11 +6,15 @@ import SiteVersion from '@/components/SiteVersion'
 import { Separator } from '@/components/ui/separator'
 import SocialLinks from '@/components/SocialLinks'
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  links?: Array<{ platform: string; url: string }>
+}
+
+const Footer: React.FC<FooterProps> = ({ links }) => {
   return (
     <footer className="w-full sticky bottom-0 z-0 border-t border-border bg-footer-bg">
       <div className="px-4 md:px-8 py-12 flex flex-col gap-8">
-        <SocialLinks />
+        <SocialLinks links={links} />
         <Separator />
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <SiteVersion />

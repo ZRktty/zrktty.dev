@@ -16,13 +16,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const data = await client.fetch<{ availability: string | null }>(AVAILABILITY_QUERY)
+  const data = await client.fetch<{
+    availability: string | null
+    socialLinks?: Array<{ platform: string; url: string }>
+  }>(AVAILABILITY_QUERY)
 
   return (
     <>
       <Header availability={data?.availability ?? null} />
       <div className="relative z-10 bg-background pt-14 px-4 md:px-8">{children}</div>
-      <Footer />
+      <Footer links={data?.socialLinks} />
     </>
   )
 }

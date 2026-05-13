@@ -28,7 +28,7 @@ export default async function AboutPage() {
         <Toolkit rows={data?.toolkitRows ?? []} />
         <Testimonials testimonials={data?.testimonials ?? []} />
         <OutsideWork blocks={data?.outsideBlocks ?? []} links={data?.externalLinks ?? []} />
-        <ContactBlock cvFile={data?.cvFile} socialLinks={data?.socialLinks} />
+        <ContactBlock cvFile={data?.cvFile} />
       </main>
     </div>
   )

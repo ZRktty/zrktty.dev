@@ -130,7 +130,7 @@ export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current)
   slug
 }`
 
-export const AVAILABILITY_QUERY = `*[_type == "aboutMe"][0] { availability }`
+export const AVAILABILITY_QUERY = `*[_type == "aboutMe"][0] { availability, socialLinks[]{ platform, url } }`
 
 export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   name,
