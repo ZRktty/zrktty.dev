@@ -7,7 +7,7 @@ interface Props {
 }
 
 export function AboutHero({ data }: Props) {
-  const photoUrl = data.photo?.asset?.url ?? '/image.png'
+  const photoUrl = data.photo?.asset?.url
   const photoAlt = data.photo?.alt ?? 'Zoltán Rakottyai'
 
   return (
@@ -48,16 +48,18 @@ export function AboutHero({ data }: Props) {
           </div>
         </div>
 
-        <div className="md:w-[280px] md:shrink-0">
-          <Image
-            src={photoUrl}
-            alt={photoAlt}
-            width={280}
-            height={800}
-            className="w-full md:w-[280px] object-cover"
-            priority
-          />
-        </div>
+        {photoUrl && (
+          <div className="md:w-[280px] md:shrink-0">
+            <Image
+              src={photoUrl}
+              alt={photoAlt}
+              width={280}
+              height={800}
+              className="w-full md:w-[280px] object-cover"
+              priority
+            />
+          </div>
+        )}
       </div>
     </section>
   )
