@@ -15,10 +15,11 @@ const notFits = [
 ]
 
 interface Props {
+  bookingUrl?: string | null
   cvFile?: AboutPageData['cvFile']
 }
 
-export function ContactBlock({ cvFile }: Props) {
+export function ContactBlock({ bookingUrl, cvFile }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
@@ -56,14 +57,16 @@ export function ContactBlock({ cvFile }: Props) {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 mb-8">
-        <Link
-          href="https://calendly.com/zoltanrakottyai/1on1-meeting"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-vin-pro-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
-        >
-          Book a 30-min call →
-        </Link>
+        {bookingUrl && (
+          <Link
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-vin-pro-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
+          >
+            Book a 30-min call →
+          </Link>
+        )}
         <a
           href="mailto:zoltanrakottyai@gmail.com"
           className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-vin-pro-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"

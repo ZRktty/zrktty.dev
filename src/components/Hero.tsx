@@ -1,6 +1,13 @@
 import Link from 'next/link'
+import { client } from '@/sanity/client'
+import { BOOKING_QUERY } from '@/sanity/queries'
 
-export function Hero() {
+const options = { next: { revalidate: 86400 } }
+
+export async function Hero() {
+  const data = await client.fetch<{ bookingUrl?: string | null }>(BOOKING_QUERY, {}, options)
+  const bookingUrl = data?.bookingUrl ?? null
+
   return (
     <section className="flex flex-col justify-center min-h-[calc(100vh-3.5rem)]">
       <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mb-6">
@@ -28,14 +35,16 @@ export function Hero() {
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <Link
-          href="https://calendly.com/zoltanrakottyai/1on1-meeting"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-vin-pro-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
-        >
-          Book a 30-min call →
-        </Link>
+        {bookingUrl && (
+          <Link
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-vin-pro-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
+          >
+            Book a 30-min call →
+          </Link>
+        )}
         <a
           href="#featured-projects"
           className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-vin-pro-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"

@@ -132,11 +132,14 @@ export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current)
 
 export const AVAILABILITY_QUERY = `*[_type == "aboutMe"][0] { availability, socialLinks[]{ platform, url } }`
 
+export const BOOKING_QUERY = `*[_type == "aboutMe"][0] { bookingUrl }`
+
 export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   name,
   metaStrip,
   photo { asset->{ url }, alt },
   availability,
+  bookingUrl,
   cvFile { asset->{ url } },
   socialLinks[]{ platform, url },
   "authorBio": *[_type == "author"][0].bio[_type == "block"] {

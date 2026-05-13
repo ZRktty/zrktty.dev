@@ -19,7 +19,7 @@ export default async function RootLayout({
   const data = await client.fetch<{
     availability: string | null
     socialLinks?: Array<{ platform: string; url: string }>
-  }>(AVAILABILITY_QUERY)
+  }>(AVAILABILITY_QUERY, {}, { next: { revalidate: 86400 } })
 
   return (
     <>
