@@ -12,7 +12,7 @@ export function AboutHero({ data }: Props) {
 
   return (
     <section className="py-16 md:py-24">
-      <div className="flex flex-col-reverse md:flex-row md:items-start md:gap-16 gap-10">
+      <div className="flex flex-col-reverse md:flex-row md:items-center md:gap-10 gap-10">
         <div className="flex-1">
           <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-4">
             / About
@@ -49,13 +49,13 @@ export function AboutHero({ data }: Props) {
         </div>
 
         {photoUrl && (
-          <div className="md:w-[280px] md:shrink-0">
+          <div className="md:w-[336px] md:shrink-0">
             <Image
               src={photoUrl}
               alt={photoAlt}
-              width={280}
-              height={800}
-              className="w-full md:w-[280px] object-cover"
+              width={336}
+              height={960}
+              className="w-full md:w-[336px] object-cover"
               priority
             />
           </div>
