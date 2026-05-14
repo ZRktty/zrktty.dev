@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import ThemeProvider from '@/components/ThemeProvider'
-import { codersCrux, ibmPLexSans, ibmPlexMono, jetBrainsMono, spaceGrotesk } from '@/app/fonts'
+import { ibmPLexSans, ibmPlexMono, jetBrainsMono, spaceGrotesk } from '@/app/fonts'
 
 export const metadata: Metadata = {
   title: 'Zoltan Rakottyai - Software Engineer & Web Developer',
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${ibmPLexSans.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} ${codersCrux.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${ibmPLexSans.variable} ${ibmPlexMono.variable} ${jetBrainsMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="min-h-screen">{children}</main>
