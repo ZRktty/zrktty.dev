@@ -20,8 +20,9 @@ export default async function ExperiencePage() {
             Curriculum Vitae
           </span>
         </div>
-        <h1 className="mb-4 font-jetbrains-mono text-5xl font-bold uppercase tracking-tight text-foreground md:text-7xl">
-          Engineering Experience
+        <h1 className="mb-4 font-jetbrains-mono text-5xl font-bold uppercase tracking-tight md:text-7xl">
+          <span className="block text-foreground dark:text-white">Engineering</span>
+          <span className="block text-green-600 dark:text-ink-accent">Experience</span>
         </h1>
         <p className="max-w-xl text-base text-muted-foreground dark:text-ink-muted">
           A chronological account of technical systems architected, teams led, and digital products
