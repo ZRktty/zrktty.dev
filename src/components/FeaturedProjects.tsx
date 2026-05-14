@@ -31,6 +31,7 @@ export async function FeaturedProjects() {
         </TextLink>
       </div>
 
+      {/* TODO: cap at 4 items — HOMEPAGE_PROJECTS_QUERY has no slice so marking >4 projects featured/highlighted in Sanity will break the 2×2 grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border dark:bg-ink-border">
         {projects.map((project, i) => {
           const index = String(i + 1).padStart(3, '0')
