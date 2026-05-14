@@ -16,11 +16,11 @@ export default async function ExperiencePage() {
       <div className="mb-12 md:mb-16">
         <div className="mb-4 flex items-center gap-4">
           <div className="h-px w-12 bg-green-600 dark:bg-ink-accent" />
-          <span className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent">
+          <span className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent">
             Curriculum Vitae
           </span>
         </div>
-        <h1 className="mb-4 font-vin-pro-mono text-5xl font-bold uppercase tracking-tight text-foreground md:text-7xl">
+        <h1 className="mb-4 font-jetbrains-mono text-5xl font-bold uppercase tracking-tight text-foreground md:text-7xl">
           Engineering Experience
         </h1>
         <p className="max-w-xl text-base text-muted-foreground dark:text-ink-muted">

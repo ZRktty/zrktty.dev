@@ -12,10 +12,10 @@ export function OutsideWork({ blocks, links }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           / Outside the editor
         </p>
-        <h2 className="font-vin-pro-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
+        <h2 className="font-jetbrains-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
           What the rest of the week looks like.
         </h2>
       </div>
@@ -24,7 +24,7 @@ export function OutsideWork({ blocks, links }: Props) {
       <div className="flex flex-col gap-8 max-w-[580px]">
         {blocks.map((block) => (
           <div key={block.title}>
-            <p className="font-vin-pro-mono text-[13px] font-bold text-foreground dark:text-white uppercase tracking-widest mb-2">
+            <p className="font-jetbrains-mono text-[13px] font-bold text-foreground dark:text-white uppercase tracking-widest mb-2">
               {block.title}.
             </p>
             <p className="text-[14px] text-muted-foreground dark:text-ink-muted leading-relaxed">
@@ -44,7 +44,7 @@ export function OutsideWork({ blocks, links }: Props) {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-vin-pro-mono text-[12px] text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
+              className="font-jetbrains-mono text-[12px] text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
             >
               {link.label} ↗
             </Link>

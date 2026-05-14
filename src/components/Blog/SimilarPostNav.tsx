@@ -14,7 +14,7 @@ export function SimilarPostNav({ title, slug }: SimilarPostNavProps) {
           <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-muted-foreground">
             Read Next
           </span>
-          <h2 className="font-vin-pro-mono font-bold text-3xl md:text-5xl text-foreground tracking-tight uppercase">
+          <h2 className="font-jetbrains-mono font-bold text-3xl md:text-5xl text-foreground tracking-tight uppercase">
             {title}
           </h2>
         </div>

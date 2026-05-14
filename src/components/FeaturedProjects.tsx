@@ -16,10 +16,10 @@ export async function FeaturedProjects() {
     <section id="featured-projects" className="py-16 md:py-24">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 gap-4">
         <div>
-          <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+          <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
             / Selected work
           </p>
-          <h2 className="font-vin-pro-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
+          <h2 className="font-jetbrains-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
             Recent projects.
           </h2>
           <p className="text-[14px] text-muted-foreground dark:text-ink-muted mt-1">
@@ -44,17 +44,17 @@ export async function FeaturedProjects() {
               className="group flex flex-col gap-4 p-6 md:p-8 bg-background dark:bg-ink-bg border border-border dark:border-ink-border transition-all duration-200 hover:border-green-600 dark:hover:border-ink-accent hover:-translate-y-0.5"
             >
               <div className="flex items-center justify-between">
-                <span className="font-vin-pro-mono text-[10.5px] text-muted-foreground dark:text-ink-dim">
+                <span className="font-jetbrains-mono text-[10.5px] text-muted-foreground dark:text-ink-dim">
                   {index}
                 </span>
                 {project.highlighted && (
-                  <span className="font-vin-pro-mono text-[10px] uppercase tracking-widest bg-muted dark:bg-ink-surface text-green-600 dark:text-ink-accent px-2 py-0.5">
+                  <span className="font-jetbrains-mono text-[10px] uppercase tracking-widest bg-muted dark:bg-ink-surface text-green-600 dark:text-ink-accent px-2 py-0.5">
                     Featured
                   </span>
                 )}
               </div>
 
-              <h3 className="font-vin-pro-mono text-[17px] text-foreground dark:text-white leading-snug">
+              <h3 className="font-jetbrains-mono text-[17px] text-foreground dark:text-white leading-snug">
                 {project.title}
               </h3>
 

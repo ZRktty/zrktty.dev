@@ -48,7 +48,7 @@ export function ExperienceCard({ item }: Props) {
           )}
           <div className="flex min-w-0 flex-col gap-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h3 className="font-vin-pro-mono font-bold text-xl leading-tight tracking-tight text-foreground md:text-2xl">
+              <h3 className="font-jetbrains-mono font-bold text-xl leading-tight tracking-tight text-foreground md:text-2xl">
                 {role}
               </h3>
               <span className="border border-border px-2 py-0.5 font-ibm-plex-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -60,12 +60,12 @@ export function ExperienceCard({ item }: Props) {
                 href={webUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent hover:underline"
+                className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent hover:underline"
               >
                 {company}
               </a>
             ) : (
-              <span className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent">
+              <span className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent">
                 {company}
               </span>
             )}

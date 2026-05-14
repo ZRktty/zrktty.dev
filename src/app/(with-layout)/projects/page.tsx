@@ -26,10 +26,10 @@ export default async function ProjectsPage({ searchParams }: Props) {
   return (
     <main className="mx-auto min-h-screen max-w-6xl py-12 md:py-16 px-4 md:px-6 lg:px-8 bg-background dark:bg-ink-bg">
       <div className="mb-10">
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           / Projects
         </p>
-        <h1 className="font-vin-pro-mono font-bold text-[28px] md:text-[36px] text-foreground dark:text-white leading-snug">
+        <h1 className="font-jetbrains-mono font-bold text-[28px] md:text-[36px] text-foreground dark:text-white leading-snug">
           All projects.
         </h1>
         <p className="text-[14px] text-muted-foreground dark:text-ink-muted mt-1">
@@ -43,7 +43,7 @@ export default async function ProjectsPage({ searchParams }: Props) {
           {totalPages > 1 && <PaginationNav currentPage={page} totalPages={totalPages} />}
         </>
       ) : (
-        <p className="font-vin-pro-mono text-[13px] text-muted-foreground dark:text-ink-muted">
+        <p className="font-jetbrains-mono text-[13px] text-muted-foreground dark:text-ink-muted">
           No projects found.
         </p>
       )}

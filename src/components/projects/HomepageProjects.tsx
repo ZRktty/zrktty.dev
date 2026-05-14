@@ -17,7 +17,7 @@ export async function HomepageProjects() {
         <h2 className="font-bold text-3xl md:text-4xl text-foreground">Featured projects</h2>
         <Link
           href="/projects"
-          className="font-vin-pro-mono text-[11px] tracking-widest uppercase text-muted-foreground hover:text-green-600 dark:hover:text-ink-accent transition-colors shrink-0 mb-1"
+          className="font-jetbrains-mono text-[11px] tracking-widest uppercase text-muted-foreground hover:text-green-600 dark:hover:text-ink-accent transition-colors shrink-0 mb-1"
         >
           Check all projects →
         </Link>
