@@ -1,17 +1,4 @@
-import localFont from 'next/font/local'
 import { IBM_Plex_Sans, IBM_Plex_Mono, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
-
-// todo: Crux  still not working, need to fix it
-export const codersCrux = localFont({
-  src: [
-    {
-      path: '../fonts/coders-crux.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-coders-crux',
-})
 
 export const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
