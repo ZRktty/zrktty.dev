@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-jetbrains-mono text-[11px] tracking-widest uppercase bg-ink-accent text-ink-bg px-6 py-3 rounded-none hover:opacity-90 transition-opacity"
+                  className="font-jetbrains-mono text-[11px] tracking-widest uppercase bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg px-6 py-3 rounded-none hover:opacity-90 transition-opacity"
                 >
                   Live Demo ↗
                 </a>

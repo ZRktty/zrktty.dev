@@ -62,7 +62,7 @@ export function ContactBlock({ bookingUrl, cvFile }: Props) {
             href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
+            className="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
           >
             Book a 30-min call →
           </Link>
@@ -73,9 +73,7 @@ export function ContactBlock({ bookingUrl, cvFile }: Props) {
         >
           Email me directly
         </a>
-        {cvFile?.asset?.url && (
-          <CVDownload url={cvFile.asset.url} originalFilename={cvFile.asset.originalFilename} />
-        )}
+        <CVDownload url={cvFile?.asset?.url} originalFilename={cvFile?.asset?.originalFilename} />
       </div>
 
       {/* TODO(zoli): review closing line wording */}

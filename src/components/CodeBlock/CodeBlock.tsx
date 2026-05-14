@@ -58,8 +58,10 @@ export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps)
         style={{ fontFamily: CHIP_FONT }}
         aria-label="Copy code to clipboard"
       >
-        {copied ? <Check size={11} className="text-[#00E676]" /> : <Copy size={11} />}
-        <span className={`text-[10px] uppercase tracking-widest ${copied ? 'text-[#00E676]' : ''}`}>
+        {copied ? <Check size={11} className="text-ink-accent" /> : <Copy size={11} />}
+        <span
+          className={`text-[10px] uppercase tracking-widest ${copied ? 'text-ink-accent' : ''}`}
+        >
           {copied ? 'Copied' : 'Copy'}
         </span>
       </button>
