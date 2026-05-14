@@ -29,6 +29,36 @@ export interface ExperienceItem {
   order?: number
 }
 
+/** Shape returned by ABOUT_QUERY */
+export interface AboutPageData {
+  name: string
+  metaStrip?: string
+  photo?: { asset: { url: string }; alt?: string } | null
+  availability?: string
+  bookingUrl?: string | null
+  cvFile?: { asset: { url: string; originalFilename?: string } } | null
+  socialLinks?: Array<{ platform: string; url: string }>
+  authorBio?: Array<{ text: string }>
+  beliefs?: Array<{ claim: string; body: string }>
+  toolkitRows?: Array<{ category: string; tools: string }>
+  testimonials?: Array<{ text: string; attribution: string; role: string; year: string }>
+  outsideBlocks?: Array<{ title: string; body: string }>
+  externalLinks?: Array<{ label: string; url: string }>
+}
+
+/** Shape returned by SERVICES_QUERY */
+export interface ServiceItem {
+  _id: string
+  category?: string
+  title: string
+  description?: string
+  bullets?: string[]
+  stack?: string[]
+  steps?: string[]
+  isE2E?: boolean
+  order?: number
+}
+
 /** Minimal shape returned by NEXT_PROJECT_QUERY */
 export interface NextProjectRef {
   title: string

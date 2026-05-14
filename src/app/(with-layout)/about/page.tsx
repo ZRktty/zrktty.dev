@@ -1,17 +1,35 @@
-import React from 'react'
+import { client } from '@/sanity/client'
+import { ABOUT_QUERY } from '@/sanity/queries'
+import { AboutPageData } from '@/types'
+import { AboutHero } from '@/components/about/AboutHero'
+import { Beliefs } from '@/components/about/Beliefs'
+import { Toolkit } from '@/components/about/Toolkit'
+import { Testimonials } from '@/components/about/Testimonials'
+import { OutsideWork } from '@/components/about/OutsideWork'
+import { ContactBlock } from '@/components/about/ContactBlock'
 
-const ContactPage: React.FC = () => {
+export const metadata = {
+  title: 'About — Zoltán Rakottyai',
+  description:
+    'Software engineer based in Gran Canaria. 16 years building web apps. Opinions, toolkit, and how to work with me.',
+}
+
+const options = { next: { revalidate: 60 } }
+
+export default async function AboutPage() {
+  const data = await client.fetch<AboutPageData | null>(ABOUT_QUERY, {}, options)
+
   return (
-    <div className="container mx-auto py-6 min-h-screen max-w-3xl md:py-12 prose dark:prose-invert">
-      <h1 className=" mb-4">About me</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi
-        ista probare, quae sunt a te dicta? Refert tamen, quo modo. Quod ea non occurrentia fingunt,
-        vincunt Aristonem; Duo Reges: constructio interrete. Quae cum magnifice primo dici
-        viderentur, considerata minus probabantur
-      </p>
+    <div className="min-h-screen bg-background dark:bg-ink-bg">
+      <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+        <AboutHero data={data ?? {}} />
+
+        <Beliefs beliefs={data?.beliefs ?? []} />
+        <Toolkit rows={data?.toolkitRows ?? []} />
+        <Testimonials testimonials={data?.testimonials ?? []} />
+        <OutsideWork blocks={data?.outsideBlocks ?? []} links={data?.externalLinks ?? []} />
+        <ContactBlock bookingUrl={data?.bookingUrl} cvFile={data?.cvFile} />
+      </main>
     </div>
   )
 }
-
-export default ContactPage

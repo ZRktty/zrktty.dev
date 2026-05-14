@@ -85,7 +85,7 @@ export const HOMEPAGE_PROJECTS_QUERY = `*[_type == "project" && defined(slug.cur
   githubUrl
 }`
 
-export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(_createdAt desc) [$offset...$offset + $limit] {
+export const PROJECTS_QUERY = `*[_type == "project" && defined(slug.current)] | order(featured desc, order asc, _createdAt desc) [$offset...$offset + $limit] {
   _id,
   title,
   slug,
@@ -128,4 +128,38 @@ export const PROJECT_QUERY = `*[_type == "project" && slug.current == $slug][0] 
 export const NEXT_PROJECT_QUERY = `*[_type == "project" && defined(slug.current) && order > $order] | order(order asc)[0] {
   title,
   slug
+}`
+
+export const AVAILABILITY_QUERY = `*[_type == "aboutMe"][0] { availability, socialLinks[]{ platform, url } }`
+
+export const BOOKING_QUERY = `*[_type == "aboutMe"][0] { bookingUrl }`
+
+export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
+  name,
+  metaStrip,
+  photo { asset->{ url }, alt },
+  availability,
+  bookingUrl,
+  cvFile { asset->{ url, originalFilename } },
+  socialLinks[]{ platform, url },
+  "authorBio": *[_type == "author"][0].bio[_type == "block"] {
+    "text": pt::text(@)
+  },
+  beliefs[]{ claim, body },
+  toolkitRows[]{ category, tools },
+  testimonials[]{ text, attribution, role, year },
+  outsideBlocks[]{ title, body },
+  externalLinks[]{ label, url }
+}`
+
+export const SERVICES_QUERY = `*[_type == "service"] | order(order asc) {
+  _id,
+  category,
+  title,
+  description,
+  bullets,
+  stack,
+  steps,
+  isE2E,
+  order
 }`

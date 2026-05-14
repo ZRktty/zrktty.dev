@@ -24,20 +24,28 @@ export default async function ProjectsPage({ searchParams }: Props) {
   const totalPages = Math.ceil(total / PROJECTS_PAGE_SIZE)
 
   return (
-    <main className="container mx-auto min-h-screen max-w-6xl py-12 md:py-16 px-4 md:px-6">
-      <div className="flex items-end justify-between mb-3">
-        <h1 className="font-bold text-3xl md:text-4xl text-foreground">All projects</h1>
+    <main className="mx-auto min-h-screen max-w-6xl py-12 md:py-16 px-4 md:px-6 lg:px-8 bg-background dark:bg-ink-bg">
+      <div className="mb-10">
+        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+          / Projects
+        </p>
+        <h1 className="font-vin-pro-mono font-bold text-[28px] md:text-[36px] text-foreground dark:text-white leading-snug">
+          All projects.
+        </h1>
+        <p className="text-[14px] text-muted-foreground dark:text-ink-muted mt-1">
+          A full list of things I&apos;ve shipped.
+        </p>
       </div>
-      <p className="text-muted-foreground mb-8 md:mb-12">
-        Some of the projects I&apos;ve been thinking about
-      </p>
+
       {projects.length > 0 ? (
         <>
-          <ProjectsGrid projects={projects} />
+          <ProjectsGrid projects={projects} offset={offset} />
           {totalPages > 1 && <PaginationNav currentPage={page} totalPages={totalPages} />}
         </>
       ) : (
-        <p className="text-muted-foreground">No projects found.</p>
+        <p className="font-vin-pro-mono text-[13px] text-muted-foreground dark:text-ink-muted">
+          No projects found.
+        </p>
       )}
     </main>
   )

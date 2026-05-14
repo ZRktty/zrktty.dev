@@ -1,12 +1,16 @@
 import Hero from '@/components/Hero'
-import { HomepageProjects } from '@/components/projects/HomepageProjects'
+import { HowIWork } from '@/components/HowIWork'
+import { Services } from '@/components/Services'
+import { FeaturedProjects } from '@/components/FeaturedProjects'
 
 export default function Home() {
   return (
-    <div className="min-h-screen py-6 md:py-12 font-[family-name:var(--font-ibm-plex-sans)]">
-      <main className="w-full flex flex-col gap-8">
+    <div className="min-h-screen bg-background dark:bg-ink-bg">
+      <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8 pb-16 md:pb-24">
         <Hero />
-        <HomepageProjects />
+        <HowIWork />
+        <Services />
+        <FeaturedProjects />
       </main>
     </div>
   )

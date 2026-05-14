@@ -16,7 +16,8 @@ interface Props {
 
 const PILL_BASE = `${IBM_MONO} px-4 py-2 text-xs font-semibold uppercase tracking-widest rounded-none transition-colors duration-150`
 const PILL_ACTIVE = 'bg-foreground text-background'
-const PILL_INACTIVE = 'bg-muted text-muted-foreground hover:bg-accent hover:text-foreground'
+const PILL_INACTIVE =
+  'bg-muted dark:bg-ink-surface text-muted-foreground dark:text-ink-muted hover:bg-muted/80 dark:hover:bg-ink-border hover:text-foreground dark:hover:text-white'
 
 export default function CategoryFilter({ categories, active, onChange }: Props) {
   return (

@@ -4,21 +4,20 @@ import { FeaturedProjectCard } from './FeaturedProjectCard'
 
 interface ProjectsGridProps {
   projects: Project[]
+  offset?: number
 }
 
-export function ProjectsGrid({ projects }: ProjectsGridProps) {
-  const featured = projects.find((p) => p.highlighted) ?? projects[0]
-  const rest = projects.filter((p) => p._id !== featured?._id)
-
+export function ProjectsGrid({ projects, offset = 0 }: ProjectsGridProps) {
   return (
-    <div className="flex flex-col gap-6 md:gap-8">
-      {featured && <FeaturedProjectCard project={featured} />}
-      {rest.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {rest.map((project) => (
-            <ProjectCard key={project._id} project={project} />
-          ))}
-        </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border dark:bg-ink-border">
+      {projects.map((project, i) =>
+        project.featured ? (
+          <div key={project._id} className="md:col-span-2">
+            <FeaturedProjectCard project={project} index={offset + i + 1} />
+          </div>
+        ) : (
+          <ProjectCard key={project._id} project={project} index={offset + i + 1} />
+        ),
       )}
     </div>
   )

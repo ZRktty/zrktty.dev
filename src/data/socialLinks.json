@@ -1,7 +1,6 @@
 [
   { "name": "LinkedIn", "url": "https://www.linkedin.com/in/zoltanrakottyai", "color": "blue-600" },
   { "name": "GitHub", "url": "https://github.com/zrktty", "color": "gray-800" },
-  { "name": "Dev.to", "url": "https://dev.to/zoltanr", "color": "black" },
   {
     "name": "Stack Overflow",
     "url": "https://stackoverflow.com/users/3261501/zoltan-rakottyai",

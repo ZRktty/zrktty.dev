@@ -1,30 +1,53 @@
 import React from 'react'
-import Link from 'next/link'
 import type { SocialLink } from '@/types'
 import socialLinksData from '@/data/socialLinks.json'
+import { TextLink } from '@/components/shared/TextLink'
 
-const BRAND_HOVER: Record<string, string> = {
-  LinkedIn: 'hover:text-[#0077B5]',
-  GitHub: 'hover:text-foreground',
-  'Dev.to': 'hover:text-foreground',
-  'Stack Overflow': 'hover:text-[#F48024]',
+const PLATFORM_LABELS: Record<string, string> = {
+  linkedin: 'LinkedIn',
+  github: 'GitHub',
+  stackoverflow: 'Stack Overflow',
+  twitter: 'Twitter',
+  x: 'X',
+  devto: 'Dev.to',
+  bluesky: 'Bluesky',
+  email: 'Email',
 }
 
-const SocialLinks: React.FC = () => {
+interface SanityLink {
+  platform: string
+  url: string
+}
+
+interface Props {
+  links?: SanityLink[]
+}
+
+const SocialLinks: React.FC<Props> = ({ links }) => {
+  if (links) {
+    const validLinks = links.filter((l) => l.platform && l.url)
+    return (
+      <div>
+        <p className="font-vin-pro-mono font-medium text-sm text-foreground mb-2">Socials</p>
+        <div className="flex flex-row flex-wrap items-center gap-4">
+          {validLinks.map((link) => (
+            <TextLink key={link.platform} href={link.url} external>
+              {PLATFORM_LABELS[link.platform] ?? link.platform}
+            </TextLink>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
-      <p className="font-space-grotesk font-medium text-sm text-foreground mb-2">Socials</p>
+      <p className="font-vin-pro-mono font-medium text-sm text-foreground mb-2">Socials</p>
       <div className="flex flex-row flex-wrap items-center gap-4">
         {(socialLinksData as SocialLink[]).map((link) => (
-          <Link
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`font-ibm-plex-mono font-medium text-sm text-muted-foreground transition-colors duration-200 line-grow ${BRAND_HOVER[link.name] ?? 'hover:text-foreground'}`}
-          >
+          <TextLink key={link.name} href={link.url} external>
             {link.name}
-          </Link>
+          </TextLink>
         ))}
       </div>
     </div>

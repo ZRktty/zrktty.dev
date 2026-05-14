@@ -67,15 +67,24 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
+  --font-ibm-plex-sans: var(--font-ibm-plex-sans), sans-serif;
   --font-vin-pro-mono: var(--font-vin-pro-mono), monospace;
   --font-ibm-plex-mono: var(--font-ibm-plex-mono), monospace;
   --font-space-grotesk: var(--font-space-grotesk), sans-serif;
-  --font-mono: var(--font-coders-crux), Menlo, ui-monospace, SFMono-Regular, monospace;
 
   --color-nav-active: hsl(var(--nav-link-active));
   --color-nav-muted: hsl(var(--nav-link-muted));
 
   --color-footer-bg: hsl(var(--footer-bg));
+
+  --color-ink-bg: #0e0e0e;
+  --color-ink-surface: #131313;
+  --color-ink-border: #1f1f1f;
+  --color-ink-border-strong: #2a2a2a;
+  --color-ink-muted: #888888;
+  --color-ink-dim: #666666;
+  --color-ink-text: #e8e8e8;
+  --color-ink-accent: #4ade80;
 }
 
 /*
@@ -145,7 +154,7 @@
 
 @layer base {
   :root {
-    --nav-link-active: 218 100% 50%;
+    --nav-link-active: 142 71% 36%;
     --nav-link-muted: 220 9% 46%;
     --footer-bg: 0 0% 96.1%;
 
@@ -176,15 +185,15 @@
     --radius: 0.5rem;
   }
   .dark {
-    --nav-link-active: 218 100% 50%;
+    --nav-link-active: 142 69% 58%;
     --nav-link-muted: 0 0% 67%;
     --footer-bg: 0 0% 3.9%;
 
-    --background: 222.2 84% 4.9%;
+    --background: 0 0% 5.5%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 0 0% 7.5%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 0 0% 7.5%;
     --popover-foreground: 210 40% 98%;
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
@@ -212,6 +221,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-ibm-plex-sans;
   }
 }

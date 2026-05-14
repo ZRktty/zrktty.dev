@@ -7,8 +7,13 @@ import Logo from './Logo'
 import { Button } from './ui/button'
 import { Menu } from 'lucide-react'
 import { MainNav } from '@/components/MainNav'
+import { StatusBadge } from '@/components/StatusBadge'
 
-export default function Header() {
+interface HeaderProps {
+  availability: string | null
+}
+
+export default function Header({ availability }: HeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
@@ -17,8 +22,9 @@ export default function Header() {
         {/* Desktop: centered nav */}
         <MainNav />
 
-        {/* Desktop: theme selector */}
-        <div className="hidden md:flex items-center">
+        {/* Desktop: status badge + theme selector */}
+        <div className="hidden md:flex items-center gap-4">
+          <StatusBadge availability={availability} />
           <ThemeSelector />
         </div>
 

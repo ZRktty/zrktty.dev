@@ -1,26 +1,58 @@
-'use client'
-import React from 'react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { client } from '@/sanity/client'
+import { BOOKING_QUERY } from '@/sanity/queries'
 
-const Hero: React.FC = () => {
+const options = { next: { revalidate: 86400 } }
+
+export async function Hero() {
+  const data = await client.fetch<{ bookingUrl?: string | null }>(BOOKING_QUERY, {}, options)
+  const bookingUrl = data?.bookingUrl ?? null
+
   return (
-    <div className="flex flex-col w-full justify-center h-screen text-left">
-      <h1 className={`text-6xl sm:text-6xl  mb-4 font-vin-pro-mono  text-gray-900 dark:text-white`}>
-        Zoltan Rakottyai
-      </h1>
-      <span className="text-lg sm:text-xl text-red-700 mb-8 font-mono text-left">
-        {' '}
-        Software Engineer / Frontend / Backend / Full-stack
-      </span>
-      <p className="text-lg text-left sm:text-xl text-gray-500 mb-8 max-w-2xl">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non augue quis enim lobortis
-        ultrices. Aenean tempor mollis massa eget fringilla. Duis cursus elit eget pretium
-        dignissim.
+    <section className="flex flex-col justify-center min-h-[calc(100vh-3.5rem)]">
+      <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mb-6">
+        Software engineer · Building since 2009 · Gran Canaria, ES
       </p>
-      <Button variant="default" className="block w-44">
-        Get in touch
-      </Button>
-    </div>
+
+      <h1 className="font-vin-pro-mono font-bold text-[32px] md:text-[48px] leading-[1.05] mb-8">
+        <span className="text-foreground dark:text-white block">Most projects don&apos;t fail</span>
+        <span className="text-foreground dark:text-white block">because the code is bad.</span>
+        <span className="text-green-600 dark:text-ink-accent block">
+          They fail before any code is written.
+        </span>
+      </h1>
+
+      <p className="text-[17px] text-foreground dark:text-ink-text leading-relaxed max-w-[540px] mb-4">
+        I&apos;m <span className="text-foreground dark:text-white font-medium">Zoltán</span>
+        {' — '}the engineer founders bring in when they need someone who&apos;ll{' '}
+        <span className="text-foreground dark:text-white font-medium">push back on the spec</span>,
+        not just execute it.
+      </p>
+
+      <p className="text-[15px] text-muted-foreground dark:text-ink-dim leading-relaxed max-w-[540px] mb-10">
+        Sixteen years shipping web apps with Node.js, Next.js, and good judgment. Solo on small
+        bets, embedded on bigger ones. Either way, I deliver working products — not tickets closed.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4">
+        {bookingUrl && (
+          <Link
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-vin-pro-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
+          >
+            Book a 30-min call →
+          </Link>
+        )}
+        <a
+          href="#featured-projects"
+          className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-vin-pro-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"
+        >
+          See recent work
+        </a>
+      </div>
+    </section>
   )
 }
 
