@@ -13,7 +13,6 @@ export const codersCrux = localFont({
   variable: '--font-coders-crux',
 })
 
-// VinProMono (paid) is preserved in src/fonts/vinProMono/ for future restore once licensed
 export const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
