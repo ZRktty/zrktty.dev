@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { client } from '@/sanity/client'
 import { TextLink } from '@/components/shared/TextLink'
-import { StackList } from '@/components/shared/StackList'
+import { TechTagList } from '@/components/shared/TechTagList'
 import { HOMEPAGE_PROJECTS_QUERY } from '@/sanity/queries'
 import { Project } from '@/sanity/types'
 
@@ -64,9 +64,7 @@ export async function FeaturedProjects() {
                 </p>
               )}
 
-              {project.techStack && project.techStack.length > 0 && (
-                <StackList items={project.techStack} />
-              )}
+              <TechTagList items={project.techStack ?? []} />
             </Link>
           )
         })}

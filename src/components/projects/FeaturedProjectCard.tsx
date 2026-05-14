@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
 import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
-import { StackList } from '@/components/shared/StackList'
+import { TechTagList } from '@/components/shared/TechTagList'
 
 interface FeaturedProjectCardProps {
   project: Project
@@ -51,9 +51,7 @@ export function FeaturedProjectCard({ project, index }: FeaturedProjectCardProps
           </p>
         )}
 
-        {project.techStack && project.techStack.length > 0 && (
-          <StackList items={project.techStack} />
-        )}
+        <TechTagList items={project.techStack ?? []} />
       </div>
     </Link>
   )

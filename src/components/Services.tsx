@@ -1,7 +1,7 @@
 import { client } from '@/sanity/client'
 import { SERVICES_QUERY } from '@/sanity/queries'
 import { ServiceItem } from '@/types'
-import { StackList } from '@/components/shared/StackList'
+import { TechTagList } from '@/components/shared/TechTagList'
 
 const options = { next: { revalidate: 60 } }
 
@@ -30,7 +30,7 @@ function ServiceCard({ service }: { service: ServiceItem }) {
       )}
       {service.stack && service.stack.length > 0 && (
         <div className="mt-auto pt-4 border-t border-border dark:border-ink-border">
-          <StackList items={service.stack} />
+          <TechTagList items={service.stack} />
         </div>
       )}
     </div>

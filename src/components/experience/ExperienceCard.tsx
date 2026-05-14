@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
-import { TechTag } from '@/components/projects/TechTag'
+import { TechTagList } from '@/components/shared/TechTagList'
 import type { ExperienceItem, ExperienceType } from '@/types'
 
 const TYPE_LABELS: Record<ExperienceType, string> = {
@@ -78,15 +78,7 @@ export function ExperienceCard({ item }: Props) {
           </div>
         )}
 
-        {techStack && techStack.length > 0 && (
-          <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
-            {techStack.map((tech) => (
-              <li key={tech}>
-                <TechTag label={tech} />
-              </li>
-            ))}
-          </ul>
-        )}
+        <TechTagList items={techStack ?? []} />
       </div>
     </article>
   )
