@@ -73,7 +73,9 @@ export function ContactBlock({ bookingUrl, cvFile }: Props) {
         >
           Email me directly
         </a>
-        {cvFile?.asset?.url && <CVDownload url={cvFile.asset.url} />}
+        {cvFile?.asset?.url && (
+          <CVDownload url={cvFile.asset.url} originalFilename={cvFile.asset.originalFilename} />
+        )}
       </div>
 
       {/* TODO(zoli): review closing line wording */}
