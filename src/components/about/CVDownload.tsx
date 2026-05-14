@@ -1,9 +1,11 @@
 interface Props {
-  url: string
-  originalFilename?: string
+  url?: string | null
+  originalFilename?: string | null
 }
 
 export function CVDownload({ url, originalFilename }: Props) {
+  if (!url) return null
+
   const filename = originalFilename ?? 'cv.pdf'
   const downloadUrl = `${url}?dl=${encodeURIComponent(filename)}`
 
