@@ -9,11 +9,11 @@ function ServiceCard({ service }: { service: ServiceItem }) {
   return (
     <div className="flex flex-col p-6 md:p-8 border-b border-r border-border dark:border-ink-border transition-colors hover:bg-muted dark:hover:bg-ink-surface">
       {service.category && (
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           {service.category}
         </p>
       )}
-      <h3 className="font-vin-pro-mono font-bold text-[15px] text-foreground dark:text-white leading-snug mb-4">
+      <h3 className="font-jetbrains-mono font-bold text-[15px] text-foreground dark:text-white leading-snug mb-4">
         {service.title}
       </h3>
       {service.bullets && service.bullets.length > 0 && (
@@ -41,10 +41,10 @@ function E2ERow({ service }: { service: ServiceItem }) {
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 p-6 md:p-8 border border-border dark:border-ink-border transition-colors hover:bg-muted dark:hover:bg-ink-surface">
       <div>
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-2">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-2">
           End-to-end
         </p>
-        <h3 className="font-vin-pro-mono font-bold text-[17px] text-foreground dark:text-white leading-snug">
+        <h3 className="font-jetbrains-mono font-bold text-[17px] text-foreground dark:text-white leading-snug">
           {service.title}
         </h3>
         {service.description && (
@@ -58,7 +58,7 @@ function E2ERow({ service }: { service: ServiceItem }) {
           {service.steps.map((step) => (
             <span
               key={step}
-              className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted border border-border dark:border-ink-border px-3 py-1"
+              className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted border border-border dark:border-ink-border px-3 py-1"
             >
               {step}
             </span>
@@ -80,10 +80,10 @@ export async function Services() {
   return (
     <section className="py-16 md:py-24">
       <div className="mb-10">
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           / Services
         </p>
-        <h2 className="font-vin-pro-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
+        <h2 className="font-jetbrains-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
           What I can do for you.
         </h2>
         <p className="text-[14px] text-muted-foreground dark:text-ink-muted mt-1">

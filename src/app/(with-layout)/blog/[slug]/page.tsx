@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
           <span className="font-ibm-plex-mono text-xs tracking-widest uppercase text-[#E53935]">
             Article
           </span>
-          <h1 className="font-vin-pro-mono font-bold text-4xl md:text-6xl text-foreground tracking-tight uppercase">
+          <h1 className="font-jetbrains-mono font-bold text-4xl md:text-6xl text-foreground tracking-tight uppercase">
             {post.title}
           </h1>
         </div>

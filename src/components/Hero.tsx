@@ -10,11 +10,11 @@ export async function Hero() {
 
   return (
     <section className="flex flex-col justify-center min-h-[calc(100vh-3.5rem)]">
-      <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mb-6">
+      <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted mb-6">
         Software engineer · Building since 2009 · Gran Canaria, ES
       </p>
 
-      <h1 className="font-vin-pro-mono font-bold text-[32px] md:text-[48px] leading-[1.05] mb-8">
+      <h1 className="font-jetbrains-mono font-bold text-[32px] md:text-[48px] leading-[1.05] mb-8">
         <span className="text-foreground dark:text-white block">Most projects don&apos;t fail</span>
         <span className="text-foreground dark:text-white block">because the code is bad.</span>
         <span className="text-green-600 dark:text-ink-accent block">
@@ -40,14 +40,14 @@ export async function Hero() {
             href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-vin-pro-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
+            className="inline-flex items-center justify-center px-6 py-3 bg-ink-accent text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
           >
             Book a 30-min call →
           </Link>
         )}
         <a
           href="#featured-projects"
-          className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-vin-pro-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"
+          className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-jetbrains-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"
         >
           See recent work
         </a>

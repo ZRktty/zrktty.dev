@@ -18,7 +18,7 @@ export function PaginationNav({ currentPage, totalPages }: PaginationNavProps) {
         {hasPrev ? (
           <Link
             href={`/projects?page=${currentPage - 1}`}
-            className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
+            className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
           >
             ← Previous
           </Link>
@@ -26,14 +26,14 @@ export function PaginationNav({ currentPage, totalPages }: PaginationNavProps) {
           <span />
         )}
       </div>
-      <span className="font-vin-pro-mono text-[11px] text-muted-foreground dark:text-ink-dim">
+      <span className="font-jetbrains-mono text-[11px] text-muted-foreground dark:text-ink-dim">
         {currentPage} / {totalPages}
       </span>
       <div>
         {hasNext && (
           <Link
             href={`/projects?page=${currentPage + 1}`}
-            className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
+            className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted hover:text-green-600 dark:hover:text-ink-accent transition-colors"
           >
             Next →
           </Link>

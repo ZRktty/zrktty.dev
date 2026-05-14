@@ -58,10 +58,10 @@ export default async function ProjectDetailPage({ params }: Props) {
       <section className="flex flex-col gap-8 mb-12 md:mb-16">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="flex flex-col gap-4">
-            <span className="font-vin-pro-mono text-[11px] tracking-widest uppercase text-green-600 dark:text-ink-accent">
+            <span className="font-jetbrains-mono text-[11px] tracking-widest uppercase text-green-600 dark:text-ink-accent">
               Case Study
             </span>
-            <h1 className="font-vin-pro-mono font-bold text-[36px] md:text-[52px] text-foreground dark:text-white leading-tight">
+            <h1 className="font-jetbrains-mono font-bold text-[36px] md:text-[52px] text-foreground dark:text-white leading-tight">
               {project.title}
             </h1>
             {project.shortDescription && (
@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-vin-pro-mono text-[11px] tracking-widest uppercase bg-ink-accent text-ink-bg px-6 py-3 rounded-none hover:opacity-90 transition-opacity"
+                  className="font-jetbrains-mono text-[11px] tracking-widest uppercase bg-ink-accent text-ink-bg px-6 py-3 rounded-none hover:opacity-90 transition-opacity"
                 >
                   Live Demo ↗
                 </a>
@@ -87,7 +87,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-vin-pro-mono text-[11px] tracking-widest uppercase border border-border dark:border-ink-border text-foreground dark:text-white px-6 py-3 hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent transition-colors"
+                  className="font-jetbrains-mono text-[11px] tracking-widest uppercase border border-border dark:border-ink-border text-foreground dark:text-white px-6 py-3 hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent transition-colors"
                 >
                   Source ↗
                 </a>
@@ -116,34 +116,34 @@ export default async function ProjectDetailPage({ params }: Props) {
         <aside className="md:col-span-3 flex flex-col gap-8">
           {project.client && (
             <div className="flex flex-col gap-2">
-              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
+              <span className="font-jetbrains-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Client
               </span>
-              <span className="font-vin-pro-mono text-sm text-foreground dark:text-ink-text">
+              <span className="font-jetbrains-mono text-sm text-foreground dark:text-ink-text">
                 {project.client}
               </span>
             </div>
           )}
           {project.timeline && (
             <div className="flex flex-col gap-2">
-              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
+              <span className="font-jetbrains-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Timeline
               </span>
-              <span className="font-vin-pro-mono text-sm text-foreground dark:text-ink-text">
+              <span className="font-jetbrains-mono text-sm text-foreground dark:text-ink-text">
                 {project.timeline}
               </span>
             </div>
           )}
           {project.role && project.role.length > 0 && (
             <div className="flex flex-col gap-2">
-              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
+              <span className="font-jetbrains-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Role
               </span>
               <div className="flex flex-col gap-1">
                 {project.role.map((r) => (
                   <span
                     key={r}
-                    className="font-vin-pro-mono text-sm text-foreground dark:text-ink-text"
+                    className="font-jetbrains-mono text-sm text-foreground dark:text-ink-text"
                   >
                     {r}
                   </span>
@@ -153,7 +153,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           )}
           {project.techStack && project.techStack.length > 0 && (
             <div className="flex flex-col gap-3">
-              <span className="font-vin-pro-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
+              <span className="font-jetbrains-mono text-[10.5px] tracking-widest uppercase text-muted-foreground dark:text-ink-muted">
                 Tech Stack
               </span>
               <div className="flex flex-wrap gap-2">

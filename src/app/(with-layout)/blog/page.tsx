@@ -14,7 +14,7 @@ export default async function BlogPage() {
   return (
     <main className="container mx-auto min-h-screen max-w-6xl px-4 md:px-6 py-12 md:py-16">
       <div className="mb-12 md:mb-16">
-        <h1 className="font-vin-pro-mono text-5xl md:text-7xl font-bold uppercase tracking-tight text-foreground mb-4">
+        <h1 className="font-jetbrains-mono text-5xl md:text-7xl font-bold uppercase tracking-tight text-foreground mb-4">
           TRANSMISSIONS
         </h1>
         <p className="text-base text-muted-foreground dark:text-ink-muted max-w-xl">

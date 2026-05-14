@@ -53,7 +53,7 @@ export default function PostListItem({ post, index }: Props) {
               {firstCategory}
             </span>
           )}
-          <h2 className="font-vin-pro-mono text-2xl md:text-4xl font-bold uppercase tracking-tight text-foreground dark:text-white leading-tight">
+          <h2 className="font-jetbrains-mono text-2xl md:text-4xl font-bold uppercase tracking-tight text-foreground dark:text-white leading-tight">
             {post.title}
           </h2>
           {post.excerpt && (

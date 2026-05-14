@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Personal website of Zoltan Rakottyai',
 }
 
-// ${vinProMono.className} `${ibmPLexSans.variable}
+// ${jetBrainsMono.className} `${ibmPLexSans.variable}
 
 export default async function RootLayout({
   children,

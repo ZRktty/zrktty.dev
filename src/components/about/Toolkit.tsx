@@ -10,10 +10,10 @@ export function Toolkit({ rows }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           / Toolkit
         </p>
-        <h2 className="font-vin-pro-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
+        <h2 className="font-jetbrains-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
           What I reach for, and why.
         </h2>
       </div>
@@ -24,10 +24,10 @@ export function Toolkit({ rows }: Props) {
             key={row.category}
             className="flex flex-col md:flex-row md:gap-12 py-4 border-b border-border dark:border-ink-border"
           >
-            <span className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-dim w-36 shrink-0 mb-1 md:mb-0">
+            <span className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-dim w-36 shrink-0 mb-1 md:mb-0">
               {row.category}
             </span>
-            <span className="font-vin-pro-mono text-[13px] text-foreground dark:text-ink-text leading-relaxed">
+            <span className="font-jetbrains-mono text-[13px] text-foreground dark:text-ink-text leading-relaxed">
               {row.tools}
             </span>
           </div>

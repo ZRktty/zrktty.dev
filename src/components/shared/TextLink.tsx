@@ -10,7 +10,7 @@ interface TextLinkProps {
 
 export function TextLink({ href, children, external = false, className }: TextLinkProps) {
   const base =
-    'font-vin-pro-mono font-medium text-sm text-muted-foreground transition-colors duration-200 line-grow hover:text-green-600 dark:hover:text-ink-accent'
+    'font-jetbrains-mono font-medium text-sm text-muted-foreground transition-colors duration-200 line-grow hover:text-green-600 dark:hover:text-ink-accent'
 
   if (external) {
     return (

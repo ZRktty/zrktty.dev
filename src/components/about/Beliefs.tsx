@@ -10,11 +10,11 @@ export function Beliefs({ beliefs }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
-        <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
+        <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-3">
           / What I believe about software
         </p>
         {/* TODO(zoli): review every belief in Sanity Studio, cut at least two — right number is 5–6 */}
-        <h2 className="font-vin-pro-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
+        <h2 className="font-jetbrains-mono font-bold text-[22px] text-foreground dark:text-white leading-snug">
           Opinions, briefly held but firmly stated.
         </h2>
       </div>
@@ -22,7 +22,7 @@ export function Beliefs({ beliefs }: Props) {
       <div className="flex flex-col gap-8 max-w-[640px]">
         {beliefs.map((b, i) => (
           <div key={i}>
-            <p className="font-vin-pro-mono text-[15px] font-bold text-foreground dark:text-white mb-2">
+            <p className="font-jetbrains-mono text-[15px] font-bold text-foreground dark:text-white mb-2">
               <span className="text-muted-foreground dark:text-ink-dim mr-3">
                 {String(i + 1).padStart(2, '0')}.
               </span>

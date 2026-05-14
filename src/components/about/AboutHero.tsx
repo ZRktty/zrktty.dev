@@ -14,10 +14,10 @@ export function AboutHero({ data }: Props) {
     <section className="py-16 md:py-24">
       <div className="flex flex-col-reverse md:flex-row md:items-start md:gap-16 gap-10">
         <div className="flex-1">
-          <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-4">
+          <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-green-600 dark:text-ink-accent mb-4">
             / About
           </p>
-          <h1 className="font-vin-pro-mono font-bold text-[32px] md:text-[48px] leading-[1.05] text-foreground dark:text-white mb-8">
+          <h1 className="font-jetbrains-mono font-bold text-[32px] md:text-[48px] leading-[1.05] text-foreground dark:text-white mb-8">
             Hi, I&apos;m Zoltán.
           </h1>
 
@@ -40,7 +40,7 @@ export function AboutHero({ data }: Props) {
 
           <div className="flex flex-col gap-3 mt-6">
             {data.metaStrip && (
-              <p className="font-vin-pro-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted">
+              <p className="font-jetbrains-mono text-[11px] uppercase tracking-widest text-muted-foreground dark:text-ink-muted">
                 {data.metaStrip}
               </p>
             )}
