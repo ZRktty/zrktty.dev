@@ -140,6 +140,7 @@ export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   photo { asset->{ url }, alt },
   availability,
   bookingUrl,
+  contactEmail,
   cvFile { asset->{ url, originalFilename } },
   socialLinks[]{ platform, url },
   "authorBio": *[_type == "author"][0].bio[_type == "block"] {

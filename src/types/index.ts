@@ -36,6 +36,7 @@ export interface AboutPageData {
   photo?: { asset: { url: string }; alt?: string } | null
   availability?: string
   bookingUrl?: string | null
+  contactEmail?: string | null
   cvFile?: { asset: { url: string; originalFilename?: string } } | null
   socialLinks?: Array<{ platform: string; url: string }>
   authorBio?: Array<{ text: string }>
