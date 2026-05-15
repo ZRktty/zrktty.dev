@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
-import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
+import { PROJECT_CARD_IMAGE_WIDTH } from '@/constants'
 import { TechTagList } from '@/components/shared/TechTagList'
 
 interface ProjectCardProps {
@@ -16,6 +16,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     ? urlFor(project.thumbnail!)
         ?.width(PROJECT_CARD_IMAGE_WIDTH)
         .height(PROJECT_CARD_IMAGE_HEIGHT)
+        .fit('max')
         .url()
     : null
 
@@ -32,7 +33,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             src={imageUrl}
             alt={project.title ? `${project.title} thumbnail` : 'Project thumbnail'}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 768px) 100vw, 50vw"
           />
           {badge && (
