@@ -78,7 +78,7 @@ export function ExperienceCard({ item }: Props) {
           </div>
         )}
 
-        <TechTagList items={techStack ?? []} />
+        <TechTagList items={techStack} label="Tech stack" />
       </div>
     </article>
   )

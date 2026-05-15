@@ -51,7 +51,7 @@ export function FeaturedProjectCard({ project, index }: FeaturedProjectCardProps
           </p>
         )}
 
-        <TechTagList items={project.techStack ?? []} />
+        <TechTagList items={project.techStack} />
       </div>
     </Link>
   )
