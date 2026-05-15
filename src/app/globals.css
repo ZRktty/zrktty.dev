@@ -96,8 +96,10 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   *,
