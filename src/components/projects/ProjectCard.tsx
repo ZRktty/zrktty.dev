@@ -11,7 +11,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const showImage = (project.featured || project.highlighted) && project.thumbnail
+  const showImage = !!project.thumbnail
   const imageUrl = showImage
     ? urlFor(project.thumbnail!)
         ?.width(PROJECT_CARD_IMAGE_WIDTH)
