@@ -12,9 +12,7 @@ export function ProjectsGrid({ projects, offset = 0 }: ProjectsGridProps) {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border dark:bg-ink-border">
       {projects.map((project, i) =>
         project.featured ? (
-          <div key={project._id} className="md:col-span-2">
-            <FeaturedProjectCard project={project} index={offset + i + 1} />
-          </div>
+          <FeaturedProjectCard key={project._id} project={project} index={offset + i + 1} />
         ) : (
           <ProjectCard key={project._id} project={project} index={offset + i + 1} />
         ),
