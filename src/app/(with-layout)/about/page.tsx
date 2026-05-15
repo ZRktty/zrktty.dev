@@ -22,7 +22,7 @@ export default async function AboutPage() {
   return (
     <div className="min-h-screen bg-background dark:bg-ink-bg">
       <main className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
-        <AboutHero data={data ?? {}} />
+        {data && <AboutHero data={data} />}
 
         <Beliefs beliefs={data?.beliefs ?? []} />
         <Toolkit rows={data?.toolkitRows ?? []} />
