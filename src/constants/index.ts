@@ -14,8 +14,8 @@ export const HERO_IMAGE_HEIGHT = 700
 export const WORDS_PER_MINUTE = 200
 
 /** Dimensions for project card thumbnails */
-export const PROJECT_CARD_IMAGE_WIDTH = 800
-export const PROJECT_CARD_IMAGE_HEIGHT = 450
+export const PROJECT_CARD_IMAGE_WIDTH = 935
+export const PROJECT_CARD_IMAGE_HEIGHT = 526
 
 /** Number of projects shown per page on /projects */
 export const PROJECTS_PAGE_SIZE = 10

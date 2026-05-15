@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
-import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
+import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
 import { TechTagList } from '@/components/shared/TechTagList'
 
 interface FeaturedProjectCardProps {
@@ -12,7 +12,11 @@ interface FeaturedProjectCardProps {
 
 export function FeaturedProjectCard({ project, index }: FeaturedProjectCardProps) {
   const imageUrl = project.thumbnail
-    ? urlFor(project.thumbnail)?.width(HERO_IMAGE_WIDTH).height(HERO_IMAGE_HEIGHT).url()
+    ? urlFor(project.thumbnail)
+        ?.width(PROJECT_CARD_IMAGE_WIDTH)
+        .height(PROJECT_CARD_IMAGE_HEIGHT)
+        .fit('max')
+        .url()
     : null
 
   return (
@@ -27,7 +31,7 @@ export function FeaturedProjectCard({ project, index }: FeaturedProjectCardProps
             alt={project.title ? `${project.title} thumbnail` : 'Project thumbnail'}
             fill
             priority
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
             sizes="100vw"
           />
           <span className="absolute top-4 right-4 font-jetbrains-mono text-[10px] uppercase tracking-widest bg-background/90 dark:bg-ink-bg/90 text-green-600 dark:text-ink-accent px-3 py-1">
