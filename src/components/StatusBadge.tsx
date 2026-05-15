@@ -5,6 +5,7 @@ interface StatusBadgeProps {
 export function StatusBadge({ availability }: StatusBadgeProps) {
   if (!availability) return null
 
+  // TODO(a11y): text-green-600 at 11.5px fails WCAG AA on white — switch to green-700/green-800 in light mode
   return (
     <div className="hidden md:flex items-center gap-2 font-jetbrains-mono text-[11.5px] text-green-600 dark:text-ink-accent">
       <span className="relative flex h-[7px] w-[7px]">
