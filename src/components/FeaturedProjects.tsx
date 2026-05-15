@@ -64,7 +64,7 @@ export async function FeaturedProjects() {
                 </p>
               )}
 
-              <TechTagList items={project.techStack ?? []} />
+              <TechTagList items={project.techStack} />
             </Link>
           )
         })}
