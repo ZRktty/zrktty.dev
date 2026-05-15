@@ -1,4 +1,4 @@
-import { TechTag } from '@/components/projects/TechTag'
+import { TechTag } from '@/components/shared/TechTag'
 
 interface TechTagListProps {
   items: string[] | null | undefined
