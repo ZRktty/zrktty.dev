@@ -40,6 +40,7 @@ export async function Hero() {
             href={bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
+            // TODO(a11y): bg-green-600 text-white fails WCAG AA — consider green-700/green-800 in light mode
             className="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
           >
             Book a 30-min call →

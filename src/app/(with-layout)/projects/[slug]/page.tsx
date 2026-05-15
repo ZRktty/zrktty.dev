@@ -77,6 +77,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                   href={project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  // TODO(a11y): bg-green-600 text-white fails WCAG AA at this size — consider green-700/green-800 in light mode
                   className="font-jetbrains-mono text-[11px] tracking-widest uppercase bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg px-6 py-3 rounded-none hover:opacity-90 transition-opacity"
                 >
                   Live Demo ↗
