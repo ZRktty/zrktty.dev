@@ -1,13 +1,10 @@
 'use client'
 
-import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet'
-import Nav from './Nav'
-import ThemeSelector from './ThemeSelector'
-import Logo from './Logo'
-import { Button } from './ui/button'
-import { Menu } from 'lucide-react'
 import { MainNav } from '@/components/MainNav'
 import { StatusBadge } from '@/components/StatusBadge'
+import ThemeSelector from './ThemeSelector'
+import Logo from './Logo'
+import { HamburgerButton } from '@/components/mobile-nav'
 
 interface HeaderProps {
   availability: string | null
@@ -28,27 +25,9 @@ export default function Header({ availability }: HeaderProps) {
           <ThemeSelector />
         </div>
 
-        {/* Mobile: hamburger + sheet */}
+        {/* Mobile: hamburger */}
         <div className="md:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-5 w-5" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-64">
-              <SheetHeader>
-                <SheetTitle className="text-left">Menu</SheetTitle>
-              </SheetHeader>
-              <div className="mt-6 flex flex-col gap-6">
-                <Nav className="flex flex-col gap-5 text-base" />
-                <div className="border-t border-border pt-4">
-                  <ThemeSelector />
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+          <HamburgerButton />
         </div>
       </div>
     </header>

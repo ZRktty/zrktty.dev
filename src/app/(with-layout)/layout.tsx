@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { MobileNavProvider } from '@/components/mobile-nav'
 import { client } from '@/sanity/client'
 import { AVAILABILITY_QUERY } from '@/sanity/queries'
 
@@ -22,10 +23,10 @@ export default async function RootLayout({
   }>(AVAILABILITY_QUERY, {}, { next: { revalidate: 86400 } })
 
   return (
-    <>
+    <MobileNavProvider>
       <Header availability={data?.availability ?? null} />
       <div className="relative z-10 bg-background pt-14 px-4 md:px-8">{children}</div>
       <Footer links={data?.socialLinks} />
-    </>
+    </MobileNavProvider>
   )
 }
