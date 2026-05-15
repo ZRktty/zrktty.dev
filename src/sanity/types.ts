@@ -216,13 +216,15 @@ export type AboutMe = {
     url?: string
     _key: string
   }>
+  bookingUrl?: string
+  contactEmail?: string
   cvFile?: {
     asset?: SanityFileAssetReference
     media?: unknown
     _type: 'file'
   }
   socialLinks?: Array<{
-    platform?: 'linkedin' | 'github' | 'email'
+    platform?: 'linkedin' | 'github' | 'stackoverflow' | 'email' | 'x' | 'devto' | 'bluesky'
     url?: string
     _key: string
   }>
