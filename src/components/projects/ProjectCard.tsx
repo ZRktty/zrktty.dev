@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
-import { PROJECT_CARD_IMAGE_WIDTH } from '@/constants'
+import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
 import { TechTagList } from '@/components/shared/TechTagList'
 
 interface ProjectCardProps {
