@@ -9,7 +9,7 @@ const fetchOptions = { next: { revalidate: 60 } }
 import { NextProjectRef } from '@/types'
 import { urlFor } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
-import { TechTag } from '@/components/projects/TechTag'
+import { TechTag } from '@/components/shared/TechTag'
 import { NextProjectNav } from '@/components/projects/NextProjectNav'
 import { TextLink } from '@/components/shared/TextLink'
 import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'

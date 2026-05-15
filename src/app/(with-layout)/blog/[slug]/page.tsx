@@ -10,7 +10,7 @@ import {
 } from '@/sanity/queries'
 import { urlFor, estimateReadTime, formatPostDate } from '@/sanity/utils'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
-import { TechTag } from '@/components/projects/TechTag'
+import { TechTag } from '@/components/shared/TechTag'
 import { SimilarPostNav } from '@/components/Blog/SimilarPostNav'
 import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
 import type { BlogPostDetail, BlogPostSimilar } from '@/types'
