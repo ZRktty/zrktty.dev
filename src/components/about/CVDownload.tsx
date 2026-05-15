@@ -7,7 +7,8 @@ export function CVDownload({ url, originalFilename }: Props) {
   if (!url) return null
 
   const filename = originalFilename ?? 'cv.pdf'
-  const downloadUrl = `${url}?dl=${encodeURIComponent(filename)}`
+  const sep = url.includes('?') ? '&' : '?'
+  const downloadUrl = `${url}${sep}dl=${encodeURIComponent(filename)}`
 
   return (
     <a
