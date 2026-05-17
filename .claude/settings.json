@@ -8,7 +8,15 @@
       "Bash(bun run lint)",
       "mcp__MCP_DOCKER__jira_get_issue",
       "mcp__claude_ai_Atlassian__getJiraIssue",
-      "mcp__MCP_DOCKER__fetch"
+      "mcp__MCP_DOCKER__fetch",
+      "WebFetch(domain:codepen.io)",
+      "mcp__MCP_DOCKER__browser_console_messages",
+      "mcp__MCP_DOCKER__browser_evaluate",
+      "mcp__MCP_DOCKER__browser_click",
+      "mcp__MCP_DOCKER__browser_snapshot",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('sources',[]\\)[:10]\\)\")",
+      "Bash(git -C /Users/zr87/CODE/zrktty.dev log --all --oneline --diff-filter=D -- \"*/middleware.ts\" \"src/middleware.ts\")",
+      "Bash(git -C /Users/zr87/CODE/zrktty.dev show 8a6a14a --name-status)"
     ]
   },
   "hooks": {
