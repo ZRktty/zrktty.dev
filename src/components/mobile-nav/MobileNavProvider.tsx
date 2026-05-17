@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { NavContext } from './NavContext'
 import ThemeSelector from '@/components/ThemeSelector'
-import { NAV_ITEMS } from '@/constants'
+import { BREAKPOINT_MD, NAV_ITEMS } from '@/constants'
 import { cn } from '@/lib/utils'
 
 const TRANSITION_MS = 400
@@ -21,8 +21,8 @@ export function MobileNavProvider({ children }: Props) {
 
   const pathname = usePathname()
   const savedScroll = useRef(0)
-  const closeTimer = useRef<ReturnType<typeof setTimeout>>()
-  const openTimer = useRef<ReturnType<typeof setTimeout>>()
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const openTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const open = useCallback(() => {
     clearTimeout(closeTimer.current)
@@ -50,10 +50,10 @@ export function MobileNavProvider({ children }: Props) {
     else open()
   }, [isStage, open, close])
 
-  // Close on resize to desktop
+  // Close on resize to desktop — uses shared BREAKPOINT_MD constant
   useEffect(() => {
     const onResize = () => {
-      if (window.innerWidth >= 768 && isStage) close()
+      if (window.innerWidth >= BREAKPOINT_MD && isStage) close()
     }
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
@@ -79,14 +79,15 @@ export function MobileNavProvider({ children }: Props) {
                 inset: 0,
                 perspective: '1500px',
                 zIndex: 50,
-                // Background visible behind the rotating page
                 backgroundColor: 'hsl(var(--background))',
               }
             : {}
         }
       >
-        {/* Page content — rotates in 3D when nav opens */}
+        {/* Page content — rotates in 3D when nav opens.
+            inert when animating so hidden content is not keyboard/AT reachable. */}
         <div
+          inert={isAnimate || undefined}
           style={{
             transformOrigin: '0% 50%',
             transition: `transform ${TRANSITION_MS}ms ease`,
@@ -98,14 +99,12 @@ export function MobileNavProvider({ children }: Props) {
                   right: 0,
                   overflow: 'hidden',
                   backfaceVisibility: 'hidden' as const,
-                  cursor: isAnimate ? 'pointer' : 'default',
                   transform: isAnimate
                     ? 'translateZ(-1800px) translateX(-50%) rotateY(45deg)'
                     : 'translateZ(0) translateX(0) rotateY(0deg)',
                 }
               : {}),
           }}
-          onClick={isAnimate ? close : undefined}
         >
           {children}
 
@@ -123,11 +122,30 @@ export function MobileNavProvider({ children }: Props) {
             }}
           />
         </div>
+
+        {/* Click-to-close overlay — sits above the inert rotating content */}
+        {isAnimate && (
+          <div
+            aria-label="Close navigation"
+            role="button"
+            tabIndex={0}
+            onClick={close}
+            onKeyDown={(e) => e.key === 'Enter' && close()}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              zIndex: 500,
+              cursor: 'pointer',
+            }}
+          />
+        )}
       </div>
 
-      {/* Nav links — centered vertically on the right, mobile only */}
+      {/* Nav links — centered vertically on the right, mobile only.
+          inert + aria-hidden when not animating so links are not reachable. */}
       {isStage && (
         <nav
+          inert={!isAnimate || undefined}
           aria-label="Mobile navigation"
           aria-hidden={!isAnimate}
           className="fixed top-1/2 -translate-y-1/2 right-[10%] md:hidden"

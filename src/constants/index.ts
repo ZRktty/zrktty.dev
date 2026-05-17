@@ -23,6 +23,9 @@ export const PROJECTS_PAGE_SIZE = 10
 /** Number of blog posts revealed per "Load Archive" click on /blog */
 export const BLOG_PAGE_SIZE = 10
 
+/** Tailwind md breakpoint in px — matches --breakpoint-md in globals.css */
+export const BREAKPOINT_MD = 768
+
 /** Site-wide navigation items — single source of truth for header and mobile menu */
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
