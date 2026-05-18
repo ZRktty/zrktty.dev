@@ -31,13 +31,13 @@ Copy the example file and fill in your Sanity project values:
 cp .env.example .env.local
 ```
 
-| Variable                         | Description                                |
-| -------------------------------- | ------------------------------------------ |
-| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Your Sanity project ID                     |
-| `NEXT_PUBLIC_SANITY_DATASET`     | Dataset name (e.g. `production`)           |
-| `NEXT_PUBLIC_SANITY_API_VERSION` | API version date (e.g. `2024-02-09`)       |
-| `NEXT_PUBLIC_MAINTENANCE_MODE`   | Set to `true` to show the maintenance page |
-| `SANITY_API_TOKEN`               | Read token for server-side Sanity queries  |
+| Variable                         | Description                               |
+| -------------------------------- | ----------------------------------------- |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`  | Your Sanity project ID                    |
+| `NEXT_PUBLIC_SANITY_DATASET`     | Dataset name (e.g. `production`)          |
+| `NEXT_PUBLIC_SANITY_API_VERSION` | API version date (e.g. `2024-02-09`)      |
+| `SANITY_API_TOKEN`               | Read token for server-side Sanity queries |
+| `FLAGS_SECRET`                   | Vercel Feature Flags signing secret       |
 
 ### 3. Run the dev server
 
