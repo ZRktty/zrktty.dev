@@ -17,10 +17,5 @@ export async function proxy(request: NextRequest) {
     return NextResponse.rewrite(url, { status: 503 })
   }
 
-  if (!isMaintenance && url.pathname === '/maintenance') {
-    url.pathname = '/'
-    return NextResponse.redirect(url)
-  }
-
   return NextResponse.next()
 }

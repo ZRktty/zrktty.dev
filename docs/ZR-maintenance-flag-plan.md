@@ -7,15 +7,12 @@ so maintenance mode can be toggled from the Vercel Dashboard without a redeploy.
 
 ---
 
-## Existing bug discovered
+## Context: Next.js 16 proxy convention
 
-`src/proxy.ts` is the renamed former `src/middleware.ts` (renamed in commit `8a6a14a`).
-Next.js only recognises a file called `middleware.ts` as middleware — **`proxy.ts` is never
-executed**. This means maintenance mode redirects are currently not running at all, even though
-`NEXT_PUBLIC_MAINTENANCE_MODE=true` is set in production. The maintenance page would not be
-shown to any visitor right now.
-
-This plan fixes the bug as a side-effect: the new `src/middleware.ts` replaces the broken proxy.
+Next.js 16 renamed the middleware file convention from `middleware.ts` → `proxy.ts` and the
+export from `middleware()` → `proxy()`. The project's `src/proxy.ts` is correct for Next.js 16.
+The plan originally noted the file was broken — that was wrong; it works fine once the SDK
+call replaces the env-var read.
 
 ---
 
@@ -26,7 +23,7 @@ This plan fixes the bug as a side-effect: the new `src/middleware.ts` replaces t
 
 1. Installing the `flags` package
 2. Creating `src/flags.ts`
-3. Creating/restoring `src/middleware.ts` (currently missing)
+3. Updating `src/proxy.ts` to call `await maintenanceMode()` instead of reading the env var
 4. Adding the discovery endpoint (enables Flags Explorer toolbar)
 5. Creating the flag in the Vercel Dashboard and toggling it off to go live
 
