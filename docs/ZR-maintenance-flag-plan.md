@@ -34,14 +34,13 @@ call replaces the env-var read.
 | File                                        | Purpose                                      |
 | ------------------------------------------- | -------------------------------------------- |
 | `src/flags.ts`                              | Single source of truth for all feature flags |
-| `src/middleware.ts`                         | Restored Next.js middleware using the flag   |
 | `src/app/.well-known/vercel/flags/route.ts` | Flags Explorer discovery endpoint            |
 
 ## Files to modify
 
-| File           | Change                                      |
-| -------------- | ------------------------------------------- |
-| `src/proxy.ts` | Delete — logic moves to `src/middleware.ts` |
+| File           | Change                                                      |
+| -------------- | ----------------------------------------------------------- |
+| `src/proxy.ts` | Replace env-var read with `await maintenanceMode()` (async) |
 
 ## Files to remove from Vercel
 
@@ -68,14 +67,17 @@ export const maintenanceMode = flag<boolean>({
   key: 'maintenance-mode',
   defaultValue: false,
   decide: () => false,
-  description: 'Redirect all traffic to /maintenance when enabled',
+  description: 'Rewrite all traffic to /maintenance with 503 when enabled',
 })
 ```
 
 The `decide` fallback (`false`) means the flag fails open — site stays live if the
 Flags service is unreachable.
 
-### 3. Create `src/middleware.ts`
+### 3. Update `src/proxy.ts`
+
+Next.js 16 uses `proxy.ts` / `export async function proxy()` — the existing file is correct.
+Update it to call `await maintenanceMode()` instead of reading the env var:
 
 ```ts
 import { NextResponse } from 'next/server'
@@ -88,18 +90,13 @@ export const config = {
   ],
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const isMaintenance = await maintenanceMode()
   const url = request.nextUrl.clone()
 
   if (isMaintenance && url.pathname !== '/maintenance') {
     url.pathname = '/maintenance'
     return NextResponse.rewrite(url, { status: 503 })
-  }
-
-  if (!isMaintenance && url.pathname === '/maintenance') {
-    url.pathname = '/'
-    return NextResponse.redirect(url)
   }
 
   return NextResponse.next()
