@@ -1,4 +1,5 @@
 import React from 'react'
+import { Analytics } from '@vercel/analytics/next'
 import SocialLinks from '@/components/SocialLinks'
 
 export default function MaintenancePage() {
@@ -22,6 +23,7 @@ export default function MaintenancePage() {
           </p>
         </div>
 
+        <Analytics />
         <div
           className="flex justify-center"
           style={
