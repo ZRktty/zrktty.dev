@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import ThemeProvider from '@/components/ThemeProvider'
 import { ibmPLexSans, ibmPlexMono, jetBrainsMono, spaceGrotesk } from '@/app/fonts'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   title: 'Zoltan Rakottyai - Software Engineer & Web Developer',
@@ -23,6 +24,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <main className="min-h-screen">{children}</main>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
