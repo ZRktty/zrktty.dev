@@ -11,7 +11,7 @@ export default function MaintenancePage() {
             ERROR_503
           </p>
 
-          <h1 className="font-jetbrains-mono font-bold text-[36px] md:text-[52px] lg:text-[72px] leading-none text-gray-900 mb-8 md:mb-12">
+          <h1 className="font-jetbrains-mono font-bold text-[36px] md:text-[52px] lg:text-[60px] leading-none text-gray-900 mb-8 md:mb-12">
             SYSTEM<span className="animate-pulse text-green-600">_</span>OFFLINE
           </h1>
 
