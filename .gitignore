@@ -49,3 +49,13 @@ next-env.d.ts
 .claude/settings.local.json
 .claude/todos.jsontmp/
 .env*.local
+
+# local cv builder — never commit
+src/app/cv/
+src/app/banner/
+docs/jobdesc/*.json
+docs/jobdesc/*-analysis.md
+public/ZRktty-dev-portrait-for_CV.webp
+public/ZRktty-dev-portrait-for_Lunkedin.webp
+docs/jobdesc/banner-*.png
+scripts/

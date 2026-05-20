@@ -1,0 +1,78 @@
+{
+  "job": "Hedepy — Fullstack Product Engineer",
+  "headline": "Fullstack Product Engineer",
+  "name": "Zoltán Rakottyai",
+  "accent": "#2D7D56",
+  "phone": "+34 607 22 30 36",
+  "summary": "Fullstack Product Engineer with 10+ years building web products across enterprise platforms and healthcare-adjacent domains. Most recent work: MindLibra — a live mental health clinic platform for the Hungarian market, delivered end-to-end as sole developer, covering therapist-client booking, Stripe payments, and client portal. Previously scaled frontend architecture at Job&Talent (Europe's largest staffing platform) and delivered NestJS/PostgreSQL backend work at INSPYRE. Remote-first, English-first, UTC+1.",
+  "skills": [
+    { "category": "Frontend", "items": ["TypeScript", "React", "Next.js", "Tailwind CSS", "HTML/CSS"] },
+    { "category": "Backend", "items": ["Node.js", "NestJS", "REST APIs", "PostgreSQL", "Prisma ORM"] },
+    { "category": "Testing & Tooling", "items": ["Jest", "Testing Library", "Playwright", "Docker", "GitHub Actions", "Vercel"] },
+    { "category": "Familiar", "items": ["GraphQL", "D3.js", "Elixir/Phoenix", "MongoDB", "WebRTC (POC)"] }
+  ],
+  "experiences": [
+    {
+      "company": "Self-employed",
+      "url": "https://zrktty.dev",
+      "role": "Fullstack Product Engineer",
+      "period": "2024 – present",
+      "type": "Freelance",
+      "bullets": [
+        "MindLibra (mindlibra.hu) — End-to-end delivery of a mental health clinic platform for the Hungarian market: therapist profiles, session booking engine, client portal, and Stripe payment flows. Sole developer, from architecture to production.",
+        "ADOB 2.0 (adob.hu) — Full ownership of a data management and reporting platform: architecture design, API layer, admin dashboard, full-text search via TypeSense, background job processing, and deployment pipeline."
+      ]
+    },
+    {
+      "company": "Job&Talent",
+      "url": "https://www.jobandtalent.com",
+      "role": "Senior Frontend Engineer",
+      "period": "Sept 2022 – Feb 2024",
+      "type": "Full-time",
+      "bullets": [
+        "Led migration of a large internal admin platform from monolithic Next.js toward a micro-frontend architecture using Webpack 5 Module Federation.",
+        "Designed independent deployment pipelines enabling multiple squads to ship frontend applications in parallel without coordination overhead.",
+        "Integrated analytics (Amplitude), feature flagging, and shared platform services across distributed frontend applications.",
+        "Participated in code reviews, mentoring, and cross-team architectural alignment across multiple squads."
+      ]
+    },
+    {
+      "company": "INSPYRE Informatics",
+      "url": "https://inspyre.it",
+      "role": "Software Engineer",
+      "period": "Oct 2021 – May 2022",
+      "type": "Contract",
+      "bullets": [
+        "Worked on FendtONE — an enterprise IoT smart farming platform connecting agricultural machinery fleets across Europe (AGCO/Fendt group).",
+        "Overhauled testing infrastructure covering unit, integration, and E2E tests using Jest, Testing Library, and Playwright; stabilized a legacy codebase under active production load across distributed European teams.",
+        "Kukapp (Pilot): Greenfield NestJS + TypeScript backend — REST APIs and service-layer logic with Sequelize ORM and PostgreSQL, E2E testing with Playwright, and web scraping via Puppeteer."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "MindLibra — Mental Health Clinic Platform",
+      "url": "https://mindlibra.hu",
+      "tech": "WordPress · PHP · WP Amelia · Stripe Connect · JavaScript",
+      "description": "Hybrid therapy platform built on WordPress with custom Stripe Connect integration for therapist payouts and client billing. Covers therapist profiles, appointment management via WP Amelia, client portal, and full payment flow. Delivered end-to-end as sole developer."
+    },
+    {
+      "title": "ADOB.hu — B2B Data Management Platform",
+      "url": "https://adob.hu",
+      "tech": "NestJS · Next.js · TypeScript · PostgreSQL · Prisma · TypeSense · BullMQ · Redis · Docker · Vercel",
+      "description": "Data management and reporting platform for a Hungarian wholesale distributor. Full ownership: architecture, API layer, admin dashboard, TypeSense-powered search, background job processing, and production deployment on Hetzner + Vercel."
+    }
+  ],
+  "earlierCareer": [
+    { "company": "BlackRock", "role": "Software Engineer — Aladdin internal platforms", "period": "2018 – 2020" },
+    { "company": "EPAM Systems", "role": "Frontend Developer — Burberry mobile commerce", "period": "2017 – 2018" },
+    { "company": "Liligo (eDreams ODIGEO)", "role": "Frontend Developer — travel metasearch", "period": "Jul 2015 – Apr 2017" },
+    { "company": "Lampyon Ltd.", "role": "Web Developer — digital marketing agency", "period": "2014 – 2015" }
+  ],
+  "languages": [
+    { "language": "Hungarian", "level": "Native" },
+    { "language": "English", "level": "C1 — daily working language" },
+    { "language": "Slovak", "level": "Conversational" },
+    { "language": "Spanish", "level": "B1" }
+  ]
+}
