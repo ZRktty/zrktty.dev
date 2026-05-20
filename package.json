@@ -10,7 +10,9 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "security:scan": "gitleaks detect --source=. --verbose",
-    "security:baseline": "gitleaks detect --source . --report-path .gitleaks-report.json"
+    "security:baseline": "gitleaks detect --source . --report-path .gitleaks-report.json",
+    "export:banner": "bun scripts/export-banner.ts",
+    "tunnel": "ngrok http 3000 --domain=commonly-amazing-monkey.ngrok-free.app"
   },
   "lint-staged": {
     "src/!(components/ui)/**/*.{ts,tsx,js,jsx,mjs,cjs}": [
@@ -59,6 +61,7 @@
     "lint-staged": "^16.4.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.3",
+    "puppeteer-core": "^25.0.4",
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3"
   }
