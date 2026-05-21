@@ -3,6 +3,7 @@
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { flushSync } from 'react-dom'
+import posthog from 'posthog-js'
 import { Button } from '@/components/ui/button'
 
 export default function ThemeSelector() {
@@ -16,6 +17,8 @@ export default function ThemeSelector() {
 
     document.documentElement.style.setProperty('--x', `${x}px`)
     document.documentElement.style.setProperty('--y', `${y}px`)
+
+    posthog.capture('theme_toggled', { theme: next })
 
     if (!document.startViewTransition) {
       setTheme(next)

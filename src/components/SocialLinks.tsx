@@ -1,4 +1,7 @@
+'use client'
+
 import React from 'react'
+import posthog from 'posthog-js'
 import type { SocialLink } from '@/types'
 import socialLinksData from '@/data/socialLinks.json'
 import { TextLink } from '@/components/shared/TextLink'
@@ -31,9 +34,16 @@ const SocialLinks: React.FC<Props> = ({ links }) => {
         <p className="font-jetbrains-mono font-medium text-sm text-foreground mb-2">Socials</p>
         <div className="flex flex-row flex-wrap items-center gap-4">
           {validLinks.map((link) => (
-            <TextLink key={link.platform} href={link.url} external>
-              {PLATFORM_LABELS[link.platform] ?? link.platform}
-            </TextLink>
+            <span
+              key={link.platform}
+              onClick={() =>
+                posthog.capture('social_link_clicked', { platform: link.platform, url: link.url })
+              }
+            >
+              <TextLink href={link.url} external>
+                {PLATFORM_LABELS[link.platform] ?? link.platform}
+              </TextLink>
+            </span>
           ))}
         </div>
       </div>
@@ -45,9 +55,16 @@ const SocialLinks: React.FC<Props> = ({ links }) => {
       <p className="font-jetbrains-mono font-medium text-sm text-foreground mb-2">Socials</p>
       <div className="flex flex-row flex-wrap items-center gap-4">
         {(socialLinksData as SocialLink[]).map((link) => (
-          <TextLink key={link.name} href={link.url} external>
-            {link.name}
-          </TextLink>
+          <span
+            key={link.name}
+            onClick={() =>
+              posthog.capture('social_link_clicked', { platform: link.name, url: link.url })
+            }
+          >
+            <TextLink href={link.url} external>
+              {link.name}
+            </TextLink>
+          </span>
         ))}
       </div>
     </div>

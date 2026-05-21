@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { client } from '@/sanity/client'
 import { BOOKING_QUERY } from '@/sanity/queries'
+import { HeroCtaButtons } from '@/components/HeroCtaButtons'
 
 const options = { next: { revalidate: 86400 } }
 
@@ -34,25 +34,7 @@ export async function Hero() {
         bets, embedded on bigger ones. Either way, I deliver working products — not tickets closed.
       </p>
 
-      <div className="flex flex-col sm:flex-row gap-4">
-        {bookingUrl && (
-          <Link
-            href={bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            // TODO(a11y): bg-green-600 text-white fails WCAG AA — consider green-700/green-800 in light mode
-            className="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
-          >
-            Book a 30-min call →
-          </Link>
-        )}
-        <a
-          href="#featured-projects"
-          className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-jetbrains-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"
-        >
-          See recent work
-        </a>
-      </div>
+      <HeroCtaButtons bookingUrl={bookingUrl} />
     </section>
   )
 }
