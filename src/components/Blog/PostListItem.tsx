@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import type { BlogPost } from '@/types'
 import { formatPostDate } from '@/sanity/utils'
 
@@ -18,6 +21,13 @@ export default function PostListItem({ post, index }: Props) {
     <Link
       href={href}
       className="group block border-t border-border dark:border-ink-border hover:bg-muted dark:hover:bg-ink-surface transition-colors duration-150"
+      onClick={() =>
+        posthog.capture('blog_post_clicked', {
+          post_title: post.title,
+          post_slug: post.slug.current,
+          category: firstCategory,
+        })
+      }
     >
       <div className="py-8 px-2 flex flex-col gap-3 md:grid md:grid-cols-[200px_1fr] md:gap-12 md:items-start">
         {/* Left column — entry meta */}
