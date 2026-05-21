@@ -13,8 +13,7 @@
       "mcp__MCP_DOCKER__browser_console_messages",
       "mcp__MCP_DOCKER__browser_evaluate",
       "mcp__MCP_DOCKER__browser_click",
-      "mcp__MCP_DOCKER__browser_snapshot",
-      "Read(//Users/zr87/.claude/plugins/cache/compound-engineering-plugin/compound-engineering/3.5.0/skills/ce-commit-push-pr/references/**)"
+      "mcp__MCP_DOCKER__browser_snapshot"
     ]
   },
   "hooks": {
