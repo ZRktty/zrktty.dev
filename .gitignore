@@ -49,3 +49,4 @@ next-env.d.ts
 .claude/settings.local.json
 .claude/todos.jsontmp/
 .env*.local
+.env.local
