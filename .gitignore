@@ -47,6 +47,7 @@ next-env.d.ts
 
 # claude
 .claude/settings.local.json
+.claude/skills/
 .claude/todos.jsontmp/
 .env*.local
 .env.local
