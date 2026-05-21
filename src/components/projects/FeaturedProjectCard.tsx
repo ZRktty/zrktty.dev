@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import posthog from 'posthog-js'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 import { Project } from '@/sanity/types'
 import { urlFor } from '@/sanity/utils'
 import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
@@ -27,7 +28,7 @@ export function FeaturedProjectCard({ project, index }: FeaturedProjectCardProps
       href={`/projects/${project.slug?.current ?? ''}`}
       className="group flex flex-col border border-border dark:border-ink-border transition-colors duration-200 hover:border-green-600 dark:hover:border-ink-accent"
       onClick={() =>
-        posthog.capture('project_card_clicked', {
+        posthog.capture(AnalyticsEvent.ProjectCardClicked, {
           project_title: project.title,
           project_slug: project.slug?.current,
           is_featured: true,

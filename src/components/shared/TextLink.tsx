@@ -6,22 +6,29 @@ interface TextLinkProps {
   children: React.ReactNode
   external?: boolean
   className?: string
+  onClick?: () => void
 }
 
-export function TextLink({ href, children, external = false, className }: TextLinkProps) {
+export function TextLink({ href, children, external = false, className, onClick }: TextLinkProps) {
   const base =
     'font-jetbrains-mono font-medium text-sm text-muted-foreground transition-colors duration-200 line-grow hover:text-green-600 dark:hover:text-ink-accent'
 
   if (external) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={cn(base, className)}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(base, className)}
+        onClick={onClick}
+      >
         {children}
       </a>
     )
   }
 
   return (
-    <Link href={href} className={cn(base, className)}>
+    <Link href={href} className={cn(base, className)} onClick={onClick}>
       {children}
     </Link>
   )

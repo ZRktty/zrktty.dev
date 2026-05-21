@@ -5,6 +5,7 @@ import { useTheme } from 'next-themes'
 import { flushSync } from 'react-dom'
 import posthog from 'posthog-js'
 import { Button } from '@/components/ui/button'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 
 export default function ThemeSelector() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -18,7 +19,7 @@ export default function ThemeSelector() {
     document.documentElement.style.setProperty('--x', `${x}px`)
     document.documentElement.style.setProperty('--y', `${y}px`)
 
-    posthog.capture('theme_toggled', { theme: next })
+    posthog.capture(AnalyticsEvent.ThemeToggled, { theme: next })
 
     if (!document.startViewTransition) {
       setTheme(next)

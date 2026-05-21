@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import posthog from 'posthog-js'
 import type { BlogPost } from '@/types'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 import { formatPostDate } from '@/sanity/utils'
 
 interface Props {
@@ -22,7 +23,7 @@ export default function PostListItem({ post, index }: Props) {
       href={href}
       className="group block border-t border-border dark:border-ink-border hover:bg-muted dark:hover:bg-ink-surface transition-colors duration-150"
       onClick={() =>
-        posthog.capture('blog_post_clicked', {
+        posthog.capture(AnalyticsEvent.BlogPostClicked, {
           post_title: post.title,
           post_slug: post.slug.current,
           category: firstCategory,

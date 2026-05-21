@@ -5,6 +5,7 @@ import posthog from 'posthog-js'
 import type { SocialLink } from '@/types'
 import socialLinksData from '@/data/socialLinks.json'
 import { TextLink } from '@/components/shared/TextLink'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 
 const PLATFORM_LABELS: Record<string, string> = {
   linkedin: 'LinkedIn',
@@ -34,16 +35,19 @@ const SocialLinks: React.FC<Props> = ({ links }) => {
         <p className="font-jetbrains-mono font-medium text-sm text-foreground mb-2">Socials</p>
         <div className="flex flex-row flex-wrap items-center gap-4">
           {validLinks.map((link) => (
-            <span
+            <TextLink
               key={link.platform}
+              href={link.url}
+              external
               onClick={() =>
-                posthog.capture('social_link_clicked', { platform: link.platform, url: link.url })
+                posthog.capture(AnalyticsEvent.SocialLinkClicked, {
+                  platform: link.platform,
+                  url: link.url,
+                })
               }
             >
-              <TextLink href={link.url} external>
-                {PLATFORM_LABELS[link.platform] ?? link.platform}
-              </TextLink>
-            </span>
+              {PLATFORM_LABELS[link.platform] ?? link.platform}
+            </TextLink>
           ))}
         </div>
       </div>
@@ -55,16 +59,19 @@ const SocialLinks: React.FC<Props> = ({ links }) => {
       <p className="font-jetbrains-mono font-medium text-sm text-foreground mb-2">Socials</p>
       <div className="flex flex-row flex-wrap items-center gap-4">
         {(socialLinksData as SocialLink[]).map((link) => (
-          <span
+          <TextLink
             key={link.name}
+            href={link.url}
+            external
             onClick={() =>
-              posthog.capture('social_link_clicked', { platform: link.name, url: link.url })
+              posthog.capture(AnalyticsEvent.SocialLinkClicked, {
+                platform: link.platform,
+                url: link.url,
+              })
             }
           >
-            <TextLink href={link.url} external>
-              {link.name}
-            </TextLink>
-          </span>
+            {link.name}
+          </TextLink>
         ))}
       </div>
     </div>
