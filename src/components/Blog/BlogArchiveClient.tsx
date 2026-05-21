@@ -4,6 +4,7 @@ import { useState } from 'react'
 import posthog from 'posthog-js'
 import type { BlogPost } from '@/types'
 import { BLOG_PAGE_SIZE } from '@/constants'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 import CategoryFilter, { ALL_LABEL } from './CategoryFilter'
 import PostListItem from './PostListItem'
 
@@ -29,7 +30,7 @@ export default function BlogArchiveClient({ posts, categories }: Props) {
   function handleCategoryChange(cat: string) {
     setActiveCategory(cat)
     setVisibleCount(BLOG_PAGE_SIZE)
-    posthog.capture('blog_category_filtered', { category: cat })
+    posthog.capture(AnalyticsEvent.BlogCategoryFiltered, { category: cat })
   }
 
   return (
@@ -56,7 +57,7 @@ export default function BlogArchiveClient({ posts, categories }: Props) {
             type="button"
             onClick={() => {
               setVisibleCount((n) => n + BLOG_PAGE_SIZE)
-              posthog.capture('blog_load_more_clicked')
+              posthog.capture(AnalyticsEvent.BlogLoadMoreClicked)
             }}
             className={`${IBM_MONO} px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-green-600 dark:text-ink-accent border border-border dark:border-ink-border rounded-none hover:bg-muted dark:hover:bg-ink-surface transition-colors duration-150`}
           >

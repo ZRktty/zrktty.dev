@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import posthog from 'posthog-js'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 
 interface Props {
   bookingUrl: string | null
@@ -17,7 +18,7 @@ export function HeroCtaButtons({ bookingUrl }: Props) {
           rel="noopener noreferrer"
           // TODO(a11y): bg-green-600 text-white fails WCAG AA — consider green-700/green-800 in light mode
           className="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
-          onClick={() => posthog.capture('book_call_clicked', { location: 'hero' })}
+          onClick={() => posthog.capture(AnalyticsEvent.BookCallClicked, { location: 'hero' })}
         >
           Book a 30-min call →
         </Link>

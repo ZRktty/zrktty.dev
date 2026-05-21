@@ -5,6 +5,7 @@
 /** A social link entry as stored in src/data/socialLinks.json */
 export interface SocialLink {
   name: string
+  platform: string
   url: string
   color: string
 }

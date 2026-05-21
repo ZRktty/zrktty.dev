@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import posthog from 'posthog-js'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
 import { AboutPageData } from '@/types'
 import { CVDownload } from './CVDownload'
 
@@ -69,7 +70,9 @@ export function ContactBlock({ bookingUrl, contactEmail, cvFile }: Props) {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
-              onClick={() => posthog.capture('book_call_clicked', { location: 'contact' })}
+              onClick={() =>
+                posthog.capture(AnalyticsEvent.BookCallClicked, { location: 'contact' })
+              }
             >
               Book a 30-min call →
             </Link>
@@ -78,7 +81,7 @@ export function ContactBlock({ bookingUrl, contactEmail, cvFile }: Props) {
             <a
               href={`mailto:${contactEmail.split('?')[0]}`}
               className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-jetbrains-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"
-              onClick={() => posthog.capture('contact_email_clicked')}
+              onClick={() => posthog.capture(AnalyticsEvent.ContactEmailClicked)}
             >
               Email me directly
             </a>
