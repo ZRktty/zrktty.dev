@@ -34,9 +34,10 @@
 
 ### Must be added manually (not in Docker catalog)
 
-| MCP        | Setup                                                             | When to use                                                                                                                         |
-| ---------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Sanity** | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
+| MCP         | Setup                                                             | When to use                                                                                                                         |
+| ----------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Sanity**  | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
+| **PostHog** | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching analytics — query events, inspect funnels, check feature flags, review session replays, diagnose tracking gaps  |
 
 > **GitHub**: do NOT add a GitHub MCP. Use `gh` CLI via Bash for all GitHub operations (branch push, PR create, CI status). The Copilot MCP endpoint does not support Claude Code's OAuth flow.
 
@@ -46,7 +47,7 @@
 /mcp
 ```
 
-Project-scoped MCPs (vercel, sanity, next-devtools from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, Playwright, etc.) only need to be enabled for tickets that use them.
+Project-scoped MCPs (vercel, sanity, posthog, next-devtools from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, Playwright, etc.) only need to be enabled for tickets that use them.
 
 ---
 
