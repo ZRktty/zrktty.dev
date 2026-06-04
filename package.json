@@ -12,7 +12,8 @@
     "security:scan": "gitleaks detect --source=. --verbose",
     "security:baseline": "gitleaks detect --source . --report-path .gitleaks-report.json",
     "export:banner": "bun scripts/export-banner.ts",
-    "tunnel": "ngrok http 3000 --domain=commonly-amazing-monkey.ngrok-free.app"
+    "tunnel": "ngrok http 3000 --domain=commonly-amazing-monkey.ngrok-free.app",
+    "setup": "bun install && node scripts/init-claude.mjs"
   },
   "lint-staged": {
     "src/!(components/ui)/**/*.{ts,tsx,js,jsx,mjs,cjs}": [
