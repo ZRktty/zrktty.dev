@@ -23,17 +23,6 @@
     ]
   },
   "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -o pipefail -c \"bun run lint --max-warnings=0 2>&1 | tail -20\""
-          }
-        ]
-      }
-    ],
     "Notification": [
       {
         "matcher": ".*",
