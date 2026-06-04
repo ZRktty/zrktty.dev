@@ -169,31 +169,35 @@ No type prefix. No slash. Underscore after ticket number. Kebab-case description
 
 ---
 
-## Hooks — `.claude/settings.json`
+## Hooks — `.claude/settings.example.json` → `.claude/settings.local.json`
 
-Commit this file. It makes the agent self-correct automatically.
+Hooks live in `.claude/settings.example.json` (committed) and materialize into `.claude/settings.local.json` (gitignored) via `bun run setup`. The init script replaces `$PWD` with absolute paths and merges hook entries idempotently.
 
 ```json
 {
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read|Grep|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $PWD/.claude/hooks/block-env-access.mjs"
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "bun run lint --max-warnings=0 2>&1 | tail -20"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "matcher": ".*",
-        "hooks": [
+            "command": "bash -o pipefail -c \"bun run lint --max-warnings=0 2>&1 | tail -20\""
+          },
           {
             "type": "command",
-            "command": "osascript -e 'display notification \"Claude Code needs your input\" with title \"zrktty.dev\" sound name \"Glass\"'"
+            "command": "node $PWD/.claude/hooks/typecheck.mjs"
           }
         ]
       }
@@ -202,8 +206,11 @@ Commit this file. It makes the agent self-correct automatically.
 }
 ```
 
-- **Lint hook** — runs `bun run lint` after every file write, surfaces errors immediately
-- **Notification hook** — macOS alert whenever the agent pauses at an approval checkpoint
+- **Dotenv block** (PreToolUse) — prevents accidental `.env*` file reads
+- **Lint hook** (PostToolUse) — runs `bun run lint` after every file write, surfaces errors immediately
+- **Typecheck hook** (PostToolUse) — runs `bunx tsc` on `.ts`/`.tsx` edits, blocks commits with type errors
+
+`.claude/settings.json` (also committed) contains only `enabledPlugins`, `permissions`, and the macOS `Notification` hook.
 
 ---
 
