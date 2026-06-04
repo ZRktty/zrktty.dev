@@ -22,8 +22,13 @@ process.stdin.on('end', () => {
     process.exit(0)
   }
 
-  const fp = payload?.tool_input?.file_path || ''
-  if (!/\.tsx?$/.test(fp)) {
+  // Handle Write/Edit (single file_path) and MultiEdit (edits[].file_path array)
+  const singleFile = payload?.tool_input?.file_path || ''
+  const multiFiles = payload?.tool_input?.edits?.map((e) => e.file_path) || []
+  const allFiles = singleFile ? [singleFile] : multiFiles
+
+  const tsFiles = allFiles.filter((f) => /\.tsx?$/.test(f))
+  if (tsFiles.length === 0) {
     process.exit(0)
   }
 
@@ -62,10 +67,11 @@ process.stdin.on('end', () => {
 
   const body = kept.join('\n')
   const truncated = body.length > 4000 ? body.slice(0, 4000) + '\n…(truncated)' : body
+  const fileDesc = tsFiles.length === 1 ? tsFiles[0] : `${tsFiles.length} files`
   console.log(
     JSON.stringify({
       decision: 'block',
-      reason: `tsc found ${errorCount} type error${errorCount === 1 ? '' : 's'} after editing ${fp}. Fix before continuing:\n\n${truncated}`,
+      reason: `tsc found ${errorCount} type error${errorCount === 1 ? '' : 's'} after editing ${fileDesc}. Fix before continuing:\n\n${truncated}`,
     }),
   )
   process.exit(0)
