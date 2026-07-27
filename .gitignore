@@ -51,3 +51,11 @@ next-env.d.ts
 .claude/todos.jsontmp/
 .env*.local
 .env.local
+
+
+# CV related
+cv/
+src/components/cv/
+src/app/cv/
+src/app/cover-letter/
+docs/jobdesc/
