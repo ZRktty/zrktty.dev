@@ -1,4 +1,4 @@
-import { AboutPageData } from '@/types'
+import type { AboutPageData } from '@/types'
 
 interface Props {
   beliefs: NonNullable<AboutPageData['beliefs']>
@@ -21,7 +21,7 @@ export function Beliefs({ beliefs }: Props) {
 
       <div className="flex flex-col gap-8 max-w-[640px]">
         {beliefs.map((b, i) => (
-          <div key={i}>
+          <div key={b._key}>
             <p className="font-jetbrains-mono text-[15px] font-bold text-foreground dark:text-white mb-2">
               <span className="text-muted-foreground dark:text-ink-dim mr-3">
                 {String(i + 1).padStart(2, '0')}.

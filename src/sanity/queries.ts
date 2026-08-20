@@ -153,11 +153,12 @@ export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   cvFile { asset->{ url, originalFilename } },
   socialLinks[]{ platform, url },
   "authorBio": *[_type == "author"][0].bio[_type == "block"] {
+    _key,
     "text": pt::text(@)
   },
-  beliefs[]{ claim, body },
+  beliefs[]{ _key, claim, body },
   toolkitRows[]{ category, tools },
-  testimonials[]{ text, attribution, role, year },
+  testimonials[]{ _key, text, attribution, role, year },
   outsideBlocks[]{ title, body },
   externalLinks[]{ label, url }
 }`

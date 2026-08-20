@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { AboutPageData } from '@/types'
+import type { AboutPageData } from '@/types'
 import { AvailabilityBadge } from './AvailabilityBadge'
 
 interface Props {
@@ -24,9 +24,9 @@ export function AboutHero({ data }: Props) {
           {data.authorBio && data.authorBio.length > 0 ? (
             data.authorBio
               .filter((b) => b.text.trim())
-              .map((block, i) => (
+              .map((block) => (
                 <p
-                  key={i}
+                  key={block._key}
                   className="text-[16px] text-foreground dark:text-ink-text leading-relaxed mb-4 max-w-[540px]"
                 >
                   {block.text}

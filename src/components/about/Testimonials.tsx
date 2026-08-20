@@ -3,7 +3,7 @@
 // 1–2 sentences about working together? Here's a draft you
 // can edit: ..."
 
-import { AboutPageData } from '@/types'
+import type { AboutPageData } from '@/types'
 
 interface Props {
   testimonials: NonNullable<AboutPageData['testimonials']>
@@ -24,8 +24,8 @@ export function Testimonials({ testimonials }: Props) {
       </div>
 
       <div className="flex flex-col gap-10 max-w-[620px]">
-        {testimonials.map((q, i) => (
-          <blockquote key={i} className="border-l-2 border-border dark:border-ink-border pl-6">
+        {testimonials.map((q) => (
+          <blockquote key={q._key} className="border-l-2 border-border dark:border-ink-border pl-6">
             <p className="font-jetbrains-mono text-[15px] text-foreground dark:text-white leading-relaxed mb-4">
               &ldquo;{q.text}&rdquo;
             </p>
