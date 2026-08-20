@@ -7,7 +7,9 @@ The wizard has completed a deep integration of PostHog analytics into zrktty.dev
 | ------------------------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | `book_call_clicked`      | Primary CTA clicked in the hero section                                                   | `src/components/HeroCtaButtons.tsx`               |
 | `book_call_clicked`      | Primary CTA clicked in the contact/about section                                          | `src/components/about/ContactBlock.tsx`           |
-| `contact_email_clicked`  | "Email me directly" link clicked                                                          | `src/components/about/ContactBlock.tsx`           |
+| `contact_form_opened`    | Contact sheet opened (with `location` of the trigger)                                     | `src/components/contact/ContactSheetProvider.tsx` |
+| `contact_form_submitted` | Contact form delivered (with `location`)                                                  | `src/components/contact/ContactForm.tsx`          |
+| `contact_form_failed`    | Contact form rejected (with `location` and `reason`: `network` or `rejected`)             | `src/components/contact/ContactForm.tsx`          |
 | `cv_downloaded`          | CV download link clicked                                                                  | `src/components/about/CVDownload.tsx`             |
 | `social_link_clicked`    | Social media link clicked (with `platform` and `url` properties)                          | `src/components/SocialLinks.tsx`                  |
 | `project_card_clicked`   | Featured project card clicked (with `project_title`, `project_slug`, `is_featured: true`) | `src/components/projects/FeaturedProjectCard.tsx` |
@@ -23,6 +25,9 @@ We've built some insights and a dashboard for you to keep an eye on user behavio
 
 - [Analytics basics dashboard](/dashboard/696886)
 - [Lead gen CTAs over time](/insights/BRBraJjs) — `book_call_clicked` + `contact_email_clicked` trend
+  - ⚠️ `contact_email_clicked` was retired in ZRKTTYDEV-1 when the mailto link became a contact
+    sheet. The insight needs repointing at `contact_form_submitted` (or `contact_form_opened`
+    for top-of-funnel); historical `contact_email_clicked` data stays valid up to 2026-08-20.
 - [CV downloads](/insights/Xxedr2iN) — total CV download count (bold number)
 - [Content engagement](/insights/114VOq7j) — project card + blog post clicks over time
 - [Social link clicks by platform](/insights/cbkPn0cv) — `social_link_clicked` broken down by platform

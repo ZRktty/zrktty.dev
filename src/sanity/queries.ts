@@ -134,13 +134,22 @@ export const AVAILABILITY_QUERY = `*[_type == "aboutMe"][0] { availability, soci
 
 export const BOOKING_QUERY = `*[_type == "aboutMe"][0] { bookingUrl }`
 
+/**
+ * Server-only. The destination for contact form mail — never projected into a page query,
+ * so the address never reaches a client bundle or the RSC payload.
+ *
+ * Pinned to `_id == "aboutMe"` on purpose: a second, stray `aboutMe` document exists in
+ * `production` with a null `contactEmail`, and an unordered `*[_type == "aboutMe"][0]`
+ * picks between them by `_id` sort luck.
+ */
+export const CONTACT_EMAIL_QUERY = `*[_id == "aboutMe"][0].contactEmail`
+
 export const ABOUT_QUERY = `*[_type == "aboutMe"][0] {
   name,
   metaStrip,
   photo { asset->{ url }, alt },
   availability,
   bookingUrl,
-  contactEmail,
   cvFile { asset->{ url, originalFilename } },
   socialLinks[]{ platform, url },
   "authorBio": *[_type == "author"][0].bio[_type == "block"] {

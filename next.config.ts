@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next'
+import { withBotId } from 'botid/next/config'
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -31,4 +32,5 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 }
 
-export default nextConfig
+// withBotId injects its own rewrites — the PostHog /ingest/* rewrites above are preserved.
+export default withBotId(nextConfig)

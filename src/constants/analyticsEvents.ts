@@ -1,6 +1,8 @@
 export enum AnalyticsEvent {
   BookCallClicked = 'book_call_clicked',
-  ContactEmailClicked = 'contact_email_clicked',
+  ContactFormOpened = 'contact_form_opened',
+  ContactFormSubmitted = 'contact_form_submitted',
+  ContactFormFailed = 'contact_form_failed',
   CvDownloaded = 'cv_downloaded',
   ThemeToggled = 'theme_toggled',
   SocialLinkClicked = 'social_link_clicked',

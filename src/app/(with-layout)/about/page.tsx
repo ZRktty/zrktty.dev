@@ -1,5 +1,4 @@
 import { client } from '@/sanity/client'
-import { splitEmail } from '@/lib/contact/obfuscate'
 import { ABOUT_QUERY } from '@/sanity/queries'
 import { AboutPageData } from '@/types'
 import { AboutHero } from '@/components/about/AboutHero'
@@ -29,11 +28,7 @@ export default async function AboutPage() {
         <Toolkit rows={data?.toolkitRows ?? []} />
         <Testimonials testimonials={data?.testimonials ?? []} />
         <OutsideWork blocks={data?.outsideBlocks ?? []} links={data?.externalLinks ?? []} />
-        <ContactBlock
-          bookingUrl={data?.bookingUrl}
-          emailParts={splitEmail(data?.contactEmail)}
-          cvFile={data?.cvFile}
-        />
+        <ContactBlock bookingUrl={data?.bookingUrl} cvFile={data?.cvFile} />
       </main>
     </div>
   )

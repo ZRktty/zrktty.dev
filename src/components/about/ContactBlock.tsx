@@ -2,10 +2,11 @@
 
 import Link from 'next/link'
 import posthog from 'posthog-js'
+import { ContactTriggerButton } from '@/components/contact'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
-import { AboutPageData, EmailParts } from '@/types'
+import { CTA_SOLID_CLASSES } from '@/constants/ctaClasses'
+import { AboutPageData } from '@/types'
 import { CVDownload } from './CVDownload'
-import { RevealEmail } from './RevealEmail'
 
 const fits = [
   'Solo build, end-to-end. Idea to production, one person.',
@@ -19,13 +20,15 @@ const notFits = [
   "Projects that won't tell me why before what.",
 ]
 
+/** Identifies this placement in contact-form analytics */
+const TRIGGER_LOCATION = 'about-contact'
+
 interface Props {
   bookingUrl?: string | null
-  emailParts?: EmailParts | null
   cvFile?: AboutPageData['cvFile']
 }
 
-export function ContactBlock({ bookingUrl, emailParts, cvFile }: Props) {
+export function ContactBlock({ bookingUrl, cvFile }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
@@ -62,26 +65,21 @@ export function ContactBlock({ bookingUrl, emailParts, cvFile }: Props) {
         </div>
       </div>
 
-      {(bookingUrl || emailParts || cvFile?.asset?.url) && (
-        // TODO(a11y): bg-green-600 with white text on CTAs below WCAG AA — consider green-700/green-800 in light mode
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          {bookingUrl && (
-            <Link
-              href={bookingUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 bg-green-600 dark:bg-ink-accent text-white dark:text-ink-bg font-jetbrains-mono font-bold text-sm rounded-none transition-opacity hover:opacity-90"
-              onClick={() =>
-                posthog.capture(AnalyticsEvent.BookCallClicked, { location: 'contact' })
-              }
-            >
-              Book a 30-min call →
-            </Link>
-          )}
-          {emailParts && <RevealEmail parts={emailParts} />}
-          <CVDownload url={cvFile?.asset?.url} originalFilename={cvFile?.asset?.originalFilename} />
-        </div>
-      )}
+      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        {bookingUrl && (
+          <Link
+            href={bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={CTA_SOLID_CLASSES}
+            onClick={() => posthog.capture(AnalyticsEvent.BookCallClicked, { location: 'contact' })}
+          >
+            Book a 30-min call →
+          </Link>
+        )}
+        <ContactTriggerButton location={TRIGGER_LOCATION} />
+        <CVDownload url={cvFile?.asset?.url} originalFilename={cvFile?.asset?.originalFilename} />
+      </div>
 
       {/* TODO(zoli): review closing line wording */}
       <p className="text-[13px] text-muted-foreground dark:text-ink-dim max-w-[420px] leading-relaxed">
