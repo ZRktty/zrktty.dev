@@ -99,11 +99,11 @@ the moment it returns a response, dropping a batched event. Server code talks to
   open always starts on a clean form.
 - Route behaviour by curl: 400 with per-field errors on bad input ✓, silent 200 when the honeypot
   is filled ✓, 500 + `smtp-config-missing` when unconfigured ✓.
+- **Live send** — a real submission from localhost returned `{"ok":true}` and delivered through
+  cPanel SMTP to `hello@zrktty.dev` ✓ (2026-08-20).
 
 ## NOT yet verified
 
-- **A successful send.** The SMTP variables are set on Production and Preview but not Development,
-  so localhost cannot send. No message has completed the full path end to end on any environment.
 - **BotID.** `checkBotId()` always returns `isBot: false` in dev. The first real test is on the
   preview deploy: submitting the form in a browser must succeed while
   `curl -X POST <preview>/api/contact` must return **403**. A 403 from curl is the pass condition.
