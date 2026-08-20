@@ -59,3 +59,5 @@ src/components/cv/
 src/app/cv/
 src/app/cover-letter/
 docs/jobdesc/
+# playwright mcp session output (snapshots, console logs)
+/.playwright-mcp/
