@@ -13,8 +13,11 @@
 **Repo:** <https://github.com/ZRktty/zrktty.dev>  
 **Studio repo:** <https://github.com/ZRktty/studio-zoltanrakottyai.dev>  
 **Sanity project ID:** `8tbsip27` · dataset: `production`  
-**Jira board:** <https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board>  
-**Epic:** ZR-21
+**Tracker:** Plane — project **ZRktty.dev** (`ZRKTTYDEV`)  
+<https://app.plane.so/zrktty/projects/62ee9d97-66ff-4a9d-9cb2-78ba066b5008>
+
+> Jira is gone — the account was cancelled on 2026-08-20. Plane is the only tracker. Work items
+> numbered `ZR-XX` in `docs/` predate the migration and have no live ticket behind them.
 
 ---
 
@@ -26,18 +29,18 @@
 
 | MCP                     | When to use                                                                                                                                                 |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Atlassian**           | Every session — read/transition Jira tickets, update status, add comments                                                                                   |
 | **next-devtools-mcp**   | Every session with dev server running — query live Next.js errors, routes, hydration issues. Configured in `.mcp.json` via `bunx next-devtools-mcp@latest`. |
 | **Fetch**               | When reading a URL inline — shadcn docs, Next.js API reference, etc.                                                                                        |
 | **Sequential Thinking** | Complex planning — use before writing the plan for any ticket with >5 implementation steps                                                                  |
 
 ### Must be added manually (not in Docker catalog)
 
-| MCP            | Setup                                                             | When to use                                                                                                                         |
-| -------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Sanity**     | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
-| **PostHog**    | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching analytics — query events, inspect funnels, check feature flags, review session replays, diagnose tracking gaps  |
-| **Playwright** | ✅ Configured in `.mcp.json` via `bunx @playwright/mcp@latest`    | Every UI ticket — self-QA responsive check after implementation, before owner handoff                                               |
+| MCP            | Setup                                                                                                                                                                                                                             | When to use                                                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Sanity**     | ✅ Configured in `.mcp.json` — already connected, no setup needed                                                                                                                                                                 | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
+| **PostHog**    | ✅ Configured in `.mcp.json` — already connected, no setup needed                                                                                                                                                                 | Any ticket touching analytics — query events, inspect funnels, check feature flags, review session replays, diagnose tracking gaps  |
+| **Playwright** | ✅ Configured in `.mcp.json` via `bunx @playwright/mcp@latest`                                                                                                                                                                    | Every UI ticket — self-QA responsive check after implementation, before owner handoff                                               |
+| **Plane**      | ⚠️ `plane-local`, configured **user-level** in `~/.claude.json`, not in this repo's `.mcp.json`. Runs the local Docker image `plane-mcp-server:local` with an env file outside the repo, so it exists only on the owner's machine | Every session — read work items, create them, move state. Replaces the old Atlassian/Jira MCP entirely                              |
 
 > **Playwright must run headed, never headless.** `@playwright/mcp` is headed by default — do not add `--headless`. Do **not** use the Playwright bundled in the Docker MCP profile: it runs inside a container with no display, so it is always headless.
 
@@ -49,7 +52,26 @@
 /mcp
 ```
 
-Project-scoped MCPs (vercel, sanity, posthog, next-devtools, playwright from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, etc.) only need to be enabled for tickets that use them.
+Project-scoped MCPs (vercel, sanity, posthog, next-devtools, playwright from `.mcp.json`) must be
+connected, as must the user-level `plane-local`. Docker-profile MCPs only need to be enabled for tickets that use
+them. **Do not add an Atlassian MCP** — there is no Jira account any more.
+
+### Plane IDs — do not re-derive
+
+| Thing               | UUID                                   |
+| ------------------- | -------------------------------------- |
+| Workspace slug      | `zrktty`                               |
+| Project `ZRKTTYDEV` | `62ee9d97-66ff-4a9d-9cb2-78ba066b5008` |
+| State — Backlog     | `7221cf45-ed6b-426a-af4f-31a9b5f8de11` |
+| State — Todo        | `0782eafe-7ff2-4f63-87c7-a74cf5b887ad` |
+| State — In Progress | `21a749a2-5612-48df-8a9f-ef9bf5c37133` |
+| State — Done        | `375e58b8-19b1-4aeb-b985-7c2af26f0562` |
+| State — Cancelled   | `6760cfe2-f28d-47f7-882f-1c84a414f8dd` |
+
+Work item URL shape: `https://app.plane.so/zrktty/projects/62ee9d97-66ff-4a9d-9cb2-78ba066b5008/issues/{work_item_uuid}`
+
+Move a work item's state with `mcp__plane-local__update_work_item(project_id, work_item_id, state=<uuid>)`.
+There is a second Plane project, `ZRKTT` — that one is the untouched Plane demo. Never file work there.
 
 ---
 
@@ -101,7 +123,7 @@ src/
   types/
     index.ts                # all shared TypeScript types
   hooks/                    # custom React hooks
-docs/                       # agent plan files: ZR-XX-plan.md per ticket
+docs/                       # agent plan files: ZRKTTYDEV-N-plan.md per ticket
 .claude/
   settings.json             # hooks config
 ```
@@ -132,13 +154,14 @@ Tailwind convention: default = mobile (`375px`), `md:` = tablet, `lg:` = desktop
 ### Commits — conventional commits (recommended)
 
 ```text
-feat(ZR-XX): short description
-fix(ZR-XX): short description
-chore(ZR-XX): tooling, config, deps
-refactor(ZR-XX): restructure without behaviour change
+feat(ZRKTTYDEV-N): short description
+fix(ZRKTTYDEV-N): short description
+chore(ZRKTTYDEV-N): tooling, config, deps
+refactor(ZRKTTYDEV-N): restructure without behaviour change
 ```
 
-Jira ticket key always in scope. Message in lowercase.
+Plane work item key always in scope, `N` being its `sequence_id`. Message in lowercase.
+Repo-wide chores with no work item behind them may use a bare `chore:` scope.
 
 ### When to commit
 
@@ -160,14 +183,14 @@ Never commit a broken build. Never commit mid-thought. Never batch multiple logi
 ### Branch naming
 
 ```text
-ZR{number}_{kebab-case-description}
+ZRKTTYDEV{number}_{kebab-case-description}
 
-ZR33_mcp-setup-claude-md
-ZR22_project-setup-nextjs-upgrade
-ZR24_homepage-hero-section
+ZRKTTYDEV1_contact-form-sheet
+ZRKTTYDEV2_homepage-hero-tweak
 ```
 
-No type prefix. No slash. Underscore after ticket number. Kebab-case description.
+No type prefix. No slash. Underscore after the work item number. Kebab-case description.
+Branches named `ZR{number}_…` are pre-migration history — do not create new ones.
 
 ---
 
@@ -213,26 +236,26 @@ Commit this file. It makes the agent self-correct automatically.
 
 ### Step 0 — Orient yourself
 
-1. Via **Atlassian MCP**: check the board <https://zoltanrakottyai.atlassian.net/jira/core/projects/ZR/board>
-2. Find the first ticket that is:
-   - **In Progress** → resume it (check if `docs/ZR-XX-plan.md` exists)
-   - **To Do** → pick the next one by board order within epic ZR-21
-3. Read the full ticket description.
-4. Check if `docs/ZR-XX-plan.md` exists — if so, read it first.
+1. Via **Plane MCP**: `mcp__plane-local__list_work_items(project_id="62ee9d97-66ff-4a9d-9cb2-78ba066b5008", expand="state")`
+2. Find the first work item that is:
+   - **In Progress** → resume it (check if `docs/ZRKTTYDEV-N-plan.md` exists)
+   - **Todo** → pick the next one by `sort_order`
+3. Read the full work item description (`description_stripped` is the readable form).
+4. Check if `docs/ZRKTTYDEV-N-plan.md` exists — if so, read it first.
 5. Decide if `bun run dev` must be running for this ticket (yes for all UI work).
 
 ---
 
 ### Step 1 — Write the plan
 
-Create `docs/ZR-{KEY}-plan.md` before touching any code:
+Create `docs/ZRKTTYDEV-{N}-plan.md` before touching any code:
 
 ```markdown
-# Plan: ZR-XX — {Ticket title}
+# Plan: ZRKTTYDEV-N — {Work item title}
 
 ## Ticket
 
-{Jira URL}
+{Plane work item URL}
 
 ## Summary
 
@@ -266,7 +289,7 @@ Use **Sanity MCP** to read the actual schema before writing any GROQ or TypeScri
 
 ### Step 2 — Ask for approval ⛔ STOP
 
-> **"Plan ready for ZR-XX. Please review `docs/ZR-XX-plan.md` and reply 'approved' to proceed, or give feedback."**
+> **"Plan ready for ZRKTTYDEV-N. Please review `docs/ZRKTTYDEV-N-plan.md` and reply 'approved' to proceed, or give feedback."**
 
 Do not write any production code until the owner says "approved".
 
@@ -276,8 +299,8 @@ Do not write any production code until the owner says "approved".
 
 Once approved:
 
-1. **Atlassian MCP**: move ticket → **In Progress**
-2. `git checkout -b ZR{number}_{kebab-case-description}`
+1. **Plane MCP**: move the work item → **In Progress** (`state="21a749a2-5612-48df-8a9f-ef9bf5c37133"`)
+2. `git checkout -b ZRKTTYDEV{number}_{kebab-case-description}`
 3. Implement per the plan — lint hook runs automatically after each file write
 4. For schema changes: use **Sanity MCP** to verify schema is valid before writing queries
 5. When done: `bun run build` — fix all errors before proceeding to Step 4
@@ -304,7 +327,7 @@ Check for: layout overflow, broken flex/grid, cut-off text, images not loading, 
 
 Fix any issues found. Then say:
 
-> **"ZR-XX complete. Playwright check passed at all 5 viewports, no hydration errors. Please review on `bun run dev` at localhost:3000 and reply 'looks good' to create the PR, or describe what to change."**
+> **"ZRKTTYDEV-N complete. Playwright check passed at all 5 viewports, no hydration errors. Please review on `bun run dev` at localhost:3000 and reply 'looks good' to create the PR, or describe what to change."**
 
 ---
 
@@ -318,18 +341,18 @@ Apply changes, re-run Playwright check, then:
 
 ### Step 6 — Create PR
 
-1. Push branch: `git push -u origin ZRxx_...`
+1. Push branch: `git push -u origin ZRKTTYDEV{n}_...`
 2. **`gh` CLI**: create PR
 
    ```bash
-   gh pr create --title "feat(ZR-XX): {ticket title lowercase}" --base main --body "..."
+   gh pr create --title "feat(ZRKTTYDEV-N): {work item title lowercase}" --base main --body "..."
    ```
 
    Body must include:
 
    ```markdown
-   Closes ZR-XX
-   {Jira URL}
+   Closes ZRKTTYDEV-N
+   {Plane work item URL}
 
    ## What was built
 
@@ -350,8 +373,8 @@ Apply changes, re-run Playwright check, then:
 
 When owner confirms merge:
 
-1. **Atlassian MCP**: move ticket → **Done**
-2. Delete branch: `git branch -d ZRxx_... && git push origin --delete ZRxx_...`
+1. **Plane MCP**: move the work item → **Done** (`state="375e58b8-19b1-4aeb-b985-7c2af26f0562"`)
+2. Delete branch: `git branch -d ZRKTTYDEV{n}_... && git push origin --delete ZRKTTYDEV{n}_...`
 3. Return to **Step 0**
 
 ---
@@ -434,7 +457,7 @@ studio/
 
    ```bash
    git -C studio add schemaTypes/myType.ts schemaTypes/index.ts
-   git -C studio commit -m "feat(ZR-XX): add myType schema"
+   git -C studio commit -m "feat(ZRKTTYDEV-N): add myType schema"
    git -C studio push origin main
    ```
 
