@@ -27,17 +27,19 @@
 | MCP                     | When to use                                                                                                                                                 |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Atlassian**           | Every session — read/transition Jira tickets, update status, add comments                                                                                   |
-| **Playwright**          | Every UI ticket — self-QA responsive check after implementation, before owner handoff                                                                       |
 | **next-devtools-mcp**   | Every session with dev server running — query live Next.js errors, routes, hydration issues. Configured in `.mcp.json` via `bunx next-devtools-mcp@latest`. |
 | **Fetch**               | When reading a URL inline — shadcn docs, Next.js API reference, etc.                                                                                        |
 | **Sequential Thinking** | Complex planning — use before writing the plan for any ticket with >5 implementation steps                                                                  |
 
 ### Must be added manually (not in Docker catalog)
 
-| MCP         | Setup                                                             | When to use                                                                                                                         |
-| ----------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Sanity**  | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
-| **PostHog** | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching analytics — query events, inspect funnels, check feature flags, review session replays, diagnose tracking gaps  |
+| MCP            | Setup                                                             | When to use                                                                                                                         |
+| -------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Sanity**     | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching Sanity schemas, GROQ queries, or content — gives full schema awareness, live query execution, document patching |
+| **PostHog**    | ✅ Configured in `.mcp.json` — already connected, no setup needed | Any ticket touching analytics — query events, inspect funnels, check feature flags, review session replays, diagnose tracking gaps  |
+| **Playwright** | ✅ Configured in `.mcp.json` via `bunx @playwright/mcp@latest`    | Every UI ticket — self-QA responsive check after implementation, before owner handoff                                               |
+
+> **Playwright must run headed, never headless.** `@playwright/mcp` is headed by default — do not add `--headless`. Do **not** use the Playwright bundled in the Docker MCP profile: it runs inside a container with no display, so it is always headless.
 
 > **GitHub**: do NOT add a GitHub MCP. Use `gh` CLI via Bash for all GitHub operations (branch push, PR create, CI status). The Copilot MCP endpoint does not support Claude Code's OAuth flow.
 
@@ -47,7 +49,7 @@
 /mcp
 ```
 
-Project-scoped MCPs (vercel, sanity, posthog, next-devtools from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, Playwright, etc.) only need to be enabled for tickets that use them.
+Project-scoped MCPs (vercel, sanity, posthog, next-devtools, playwright from `.mcp.json`) must be connected. Docker-profile MCPs (Atlassian, etc.) only need to be enabled for tickets that use them.
 
 ---
 

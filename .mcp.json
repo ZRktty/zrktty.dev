@@ -8,6 +8,15 @@
       "command": "bunx",
       "args": ["next-devtools-mcp@latest"]
     },
+    "playwright": {
+      "command": "bunx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser=chrome",
+        "--viewport-size=375,667",
+        "--save-session"
+      ]
+    },
     "sanity": {
       "type": "http",
       "url": "https://mcp.sanity.io"
