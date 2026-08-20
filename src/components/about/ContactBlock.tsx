@@ -3,8 +3,9 @@
 import Link from 'next/link'
 import posthog from 'posthog-js'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
-import { AboutPageData } from '@/types'
+import { AboutPageData, EmailParts } from '@/types'
 import { CVDownload } from './CVDownload'
+import { RevealEmail } from './RevealEmail'
 
 const fits = [
   'Solo build, end-to-end. Idea to production, one person.',
@@ -20,11 +21,11 @@ const notFits = [
 
 interface Props {
   bookingUrl?: string | null
-  contactEmail?: string | null
+  emailParts?: EmailParts | null
   cvFile?: AboutPageData['cvFile']
 }
 
-export function ContactBlock({ bookingUrl, contactEmail, cvFile }: Props) {
+export function ContactBlock({ bookingUrl, emailParts, cvFile }: Props) {
   return (
     <section className="py-16 md:py-24 border-t border-border dark:border-ink-border">
       <div className="mb-10">
@@ -61,7 +62,7 @@ export function ContactBlock({ bookingUrl, contactEmail, cvFile }: Props) {
         </div>
       </div>
 
-      {(bookingUrl || contactEmail || cvFile?.asset?.url) && (
+      {(bookingUrl || emailParts || cvFile?.asset?.url) && (
         // TODO(a11y): bg-green-600 with white text on CTAs below WCAG AA — consider green-700/green-800 in light mode
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           {bookingUrl && (
@@ -77,15 +78,7 @@ export function ContactBlock({ bookingUrl, contactEmail, cvFile }: Props) {
               Book a 30-min call →
             </Link>
           )}
-          {contactEmail && (
-            <a
-              href={`mailto:${contactEmail.split('?')[0]}`}
-              className="inline-flex items-center justify-center px-6 py-3 border border-foreground dark:border-white text-foreground dark:text-white font-jetbrains-mono text-sm rounded-none transition-colors hover:border-green-600 hover:text-green-600 dark:hover:border-ink-accent dark:hover:text-ink-accent"
-              onClick={() => posthog.capture(AnalyticsEvent.ContactEmailClicked)}
-            >
-              Email me directly
-            </a>
-          )}
+          {emailParts && <RevealEmail parts={emailParts} />}
           <CVDownload url={cvFile?.asset?.url} originalFilename={cvFile?.asset?.originalFilename} />
         </div>
       )}

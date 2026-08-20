@@ -30,6 +30,12 @@ export interface ExperienceItem {
   order?: number
 }
 
+/** An email address split into its parts so it is never serialized whole to the client. */
+export interface EmailParts {
+  user: string
+  domain: string
+}
+
 /** Shape returned by ABOUT_QUERY */
 export interface AboutPageData {
   name: string
