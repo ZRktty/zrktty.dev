@@ -102,13 +102,27 @@ the moment it returns a response, dropping a batched event. Server code talks to
 - **Live send** — a real submission from localhost returned `{"ok":true}` and delivered through
   cPanel SMTP to `hello@zrktty.dev` ✓ (2026-08-20).
 
-## NOT yet verified
+## Verified on production — 2026-08-20, after PR #39 merged
 
-- **BotID.** `checkBotId()` always returns `isBot: false` in dev. The first real test is on the
-  preview deploy: submitting the form in a browser must succeed while
-  `curl -X POST <preview>/api/contact` must return **403**. A 403 from curl is the pass condition.
-- **PostHog delivery.** A test exception was sent and `captureServerException` resolved cleanly, but
-  the PostHog MCP was not connected, so arrival was never confirmed in the UI.
+Run against live `zrktty.dev`, not a preview:
+
+- `/about` source: **0** `mailto:`, **0** email addresses ✓
+- `curl -X POST https://zrktty.dev/api/contact` → **HTTP/2 403** `{"ok":false,"error":"Request denied."}` ✓
+- Real browser submission → "Message sent." ✓, mail delivered to `zoltan@zrktty.dev` ✓
+- `contact_form_opened` and `contact_form_submitted` present in PostHog ✓, and the
+  `captureServerException` smoke test arrived in error tracking ✓
+- 0 console errors, 0 warnings ✓
+
+### What BotID Basic actually stops
+
+The production form was submitted successfully through **Playwright-driven Chrome** — real browser
+automation — and BotID did not block it. curl is refused, CDP-driven Chrome is not. That is Basic
+behaving as designed: it filters unsophisticated scripted traffic, while Deep Analysis (paid Vercel
+tier) is the one aimed at browser automation.
+
+So the protection boundary is: cheap high-volume spam, yes; someone who bothers to drive a real
+browser, no. The honeypot and the 20-character minimum sit behind it. This raises the WAF rate
+limit from a nice-to-have to the main remaining mitigation — see follow-ups.
 
 ## Gotchas discovered — do not re-derive
 
@@ -130,9 +144,11 @@ the moment it returns a response, dropping a batched event. Server code talks to
 
 ## Follow-ups
 
-- **Rate-limit `/api/contact`** — a Vercel WAF rule, ~10 requests per 10 minutes per IP. This
-  matters more with SMTP than it would have with an API service: shared cPanel hosting has an hourly
-  send cap, and exhausting it takes out normal mail too. Stage with `--rate-limit-action log` first.
+- **Rate-limit `/api/contact`** — a Vercel WAF rule, ~10 requests per 10 minutes per IP. Now the
+  highest-value item left: BotID Basic does not stop browser automation (see above), so this is what
+  caps the damage from the case it misses. It also matters more with SMTP than it would have with an
+  API service — shared cPanel hosting has an hourly send cap, and exhausting it takes out normal mail
+  too. Stage with `--rate-limit-action log` first.
 - **Remove the unused Resend resource** — `vercel integration remove resend/resend-email --yes`,
   plus `RESEND_API_KEY` and `RESEND_EMAIL_DOMAIN`. Free plan, no DNS was ever added, but it leaves a
   live API key attached to a service nothing uses.
