@@ -1,36 +1,28 @@
 # Plan: ZR-49 — hide the business email behind an alias, then a contact sheet
 
-> ⚠️ **ZR-49 is an inferred ticket number.** Atlassian MCP was not authorized last session, so the
-> number was guessed from the highest existing `docs/ZR-*-plan.md` (ZR-48). Verify it on the board
-> and, if wrong, rename the branch and amend both commit messages before opening the PR.
+> ⚠️ **ZR-49 is an inferred ticket number.** Atlassian MCP is still unauthorized, so the number was
+> guessed from the highest existing `docs/ZR-*-plan.md` (ZR-48). Verify it on the board and, if
+> wrong, rename the branch and amend all three commit messages before merging PR #37.
 
 ---
 
 ## 🔴 NEXT SESSION — START HERE
 
-Paste this as the first message:
+Phase 1 is **done and PR'd**: <https://github.com/ZRktty/zrktty.dev/pull/37>. Paste this as the
+first message:
 
 ```text
-Resume ZR-49. Read docs/ZR-49-plan.md first — it has full context.
+Resume ZR-49 Phase 2 — the global contact sheet + Vercel BotID + Resend.
+Read docs/ZR-49-plan.md first; the full spec is under "Phase 2".
 
-Branch ZR49_contact-email-obfuscation is checked out with 2 commits. Phase 1
-(email obfuscation hotfix) is code-complete and the alias is already live in
-Sanity. Two things to do, in order:
-
-1. Finish the Phase 1 self-QA: `bun run dev`, then use the Playwright MCP
-   (now configured in .mcp.json — must run HEADED, never headless) to check
-   /about at 375, 393, 360, 768 and 1280. Confirm no horizontal overflow, the
-   "Email me directly" button is not clipped, and clicking it reveals
-   hello@zrktty.dev. Then open the PR.
-
-2. Start Phase 2: the global contact sheet + Vercel BotID + Resend. The full
-   spec is in this file under "Phase 2".
+Phase 1 (email obfuscation hotfix) is merged/PR'd as #37 — do not redo it.
+Phase 2 deletes both files it added. Branch off main once #37 merges.
 
 Also confirm the real Jira number — ZR-49 was inferred, not verified.
 ```
 
-**Restart was required** because `.mcp.json` gained a `playwright` entry and MCP servers only
-connect at startup. Verify with `/mcp` that `playwright` is connected before starting.
+**Playwright MCP** is configured in `.mcp.json` and must run **headed, never headless**. It only
+connects at startup, so verify with `/mcp` that `playwright` is connected before starting.
 
 ---
 
@@ -53,12 +45,13 @@ Phase 2 is what actually closes the hole.
 
 ---
 
-## ✅ Phase 1 — DONE (committed, not yet PR'd)
+## ✅ Phase 1 — DONE (PR #37, awaiting review)
 
 Commits on `ZR49_contact-email-obfuscation`:
 
 - `72888c2` fix(ZR-49): stop shipping contact email as a scrapeable mailto link
 - `766e794` chore(ZR-49): add project-scoped playwright mcp, headed only
+- `f66d0b6` chore(ZR-49): ignore playwright mcp session output
 
 ### Files created
 
@@ -88,14 +81,23 @@ Commits on `ZR49_contact-email-obfuscation`:
 - 375px (headless, before the headed-only rule): no horizontal overflow, button 311×46 inside
   viewport, JetBrains Mono inherited, transparent background.
 
-### ⛔ Still outstanding for Phase 1
+### ✅ Phase 1 self-QA — complete (2026-08-20)
 
-- [ ] **Headed** Playwright check at 393 / 360 / 768 / 1280 (375 was measured, but headless).
-- [ ] Click-through test: button reveals `hello@zrktty.dev` and opens the mail client.
-- [ ] Confirm the real Jira number; rename branch + amend commits if it is not ZR-49.
-- [ ] `git push -u origin ZR49_…` and `gh pr create`.
+Headed Chrome via Playwright MCP against `localhost:3000/about`:
 
----
+- 375 ✓ 393 ✓ 360 ✓ 768 ✓ 1280 ✓ — `scrollWidth === innerWidth` at every width, no element past
+  the viewport edge, CTA fully inside the viewport (311×46 at 375, 296×46 at 360, 193×46 at
+  desktop), JetBrains Mono inherited.
+- Click-through: the button reveals `hello@zrktty.dev`, swaps to `<a href="mailto:hello@zrktty.dev">`,
+  and fires the mail-client navigation.
+- Console: 46 messages, 0 errors, 0 warnings — no hydration errors.
+- Served HTML: 0 `mailto:`, 0 contiguous addresses; ships only as
+  `"emailParts":{"user":"hello","domain":"zrktty.dev"}`.
+- Pushed + PR'd as #37. `f66d0b6` also gitignores `/.playwright-mcp/` session output.
+
+**Still unresolved:** the Jira number. Atlassian MCP is unauthorized in the Claude connector
+settings, so ZR-49 remains inferred. If it is wrong, rename the branch and amend all three commits
+before merging #37.
 
 ## Phase 2 — contact sheet + BotID + Resend (not started)
 
