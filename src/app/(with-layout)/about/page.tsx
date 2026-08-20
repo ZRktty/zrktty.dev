@@ -1,12 +1,12 @@
-import { client } from '@/sanity/client'
-import { ABOUT_QUERY } from '@/sanity/queries'
-import { AboutPageData } from '@/types'
 import { AboutHero } from '@/components/about/AboutHero'
 import { Beliefs } from '@/components/about/Beliefs'
-import { Toolkit } from '@/components/about/Toolkit'
-import { Testimonials } from '@/components/about/Testimonials'
-import { OutsideWork } from '@/components/about/OutsideWork'
 import { ContactBlock } from '@/components/about/ContactBlock'
+import { OutsideWork } from '@/components/about/OutsideWork'
+import { Testimonials } from '@/components/about/Testimonials'
+import { Toolkit } from '@/components/about/Toolkit'
+import { client } from '@/sanity/client'
+import { ABOUT_QUERY } from '@/sanity/queries'
+import type { AboutPageData } from '@/types'
 
 export const metadata = {
   title: 'About — Zoltán Rakottyai',

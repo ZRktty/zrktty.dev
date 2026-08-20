@@ -1,5 +1,5 @@
-import type { NextConfig } from 'next'
 import { withBotId } from 'botid/next/config'
+import type { NextConfig } from 'next'
 
 // Anti-clickjacking. The site is never framed — no iframes, no Sanity Presentation
 // tool — so both framing controls are set to deny outright.

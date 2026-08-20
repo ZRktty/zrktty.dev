@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { MobileNavProvider } from '@/components/mobile-nav'
 import { ContactSheetProvider } from '@/components/contact'
+import Footer from '@/components/Footer'
+import Header from '@/components/Header'
+import { MobileNavProvider } from '@/components/mobile-nav'
 import { client } from '@/sanity/client'
 import { AVAILABILITY_QUERY } from '@/sanity/queries'
 

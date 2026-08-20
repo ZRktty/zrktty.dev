@@ -1,11 +1,11 @@
 'use client'
 
-import React from 'react'
 import posthog from 'posthog-js'
-import type { SocialLink } from '@/types'
-import socialLinksData from '@/data/socialLinks.json'
+import type React from 'react'
 import { TextLink } from '@/components/shared/TextLink'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
+import socialLinksData from '@/data/socialLinks.json'
+import type { SocialLink } from '@/types'
 
 const PLATFORM_LABELS: Record<string, string> = {
   linkedin: 'LinkedIn',

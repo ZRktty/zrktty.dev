@@ -1,9 +1,9 @@
-import { client } from '@/sanity/client'
-import { PROJECTS_QUERY, PROJECTS_COUNT_QUERY } from '@/sanity/queries'
-import { Project } from '@/sanity/types'
-import { ProjectsGrid } from '@/components/projects/ProjectsGrid'
 import { PaginationNav } from '@/components/projects/PaginationNav'
+import { ProjectsGrid } from '@/components/projects/ProjectsGrid'
 import { PROJECTS_PAGE_SIZE } from '@/constants'
+import { client } from '@/sanity/client'
+import { PROJECTS_COUNT_QUERY, PROJECTS_QUERY } from '@/sanity/queries'
+import type { Project } from '@/sanity/types'
 
 const options = { next: { revalidate: 60 } }
 

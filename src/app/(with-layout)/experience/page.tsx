@@ -1,6 +1,6 @@
+import { ExperienceList } from '@/components/experience/ExperienceList'
 import { client } from '@/sanity/client'
 import { EXPERIENCE_QUERY } from '@/sanity/queries'
-import { ExperienceList } from '@/components/experience/ExperienceList'
 import type { ExperienceItem } from '@/types'
 
 export default async function ExperiencePage() {

@@ -1,7 +1,7 @@
+import { FeaturedProjects } from '@/components/FeaturedProjects'
 import Hero from '@/components/Hero'
 import { HowIWork } from '@/components/HowIWork'
 import { Services } from '@/components/Services'
-import { FeaturedProjects } from '@/components/FeaturedProjects'
 
 export default function Home() {
   return (

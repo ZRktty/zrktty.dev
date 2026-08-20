@@ -1,18 +1,19 @@
-import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Image from 'next/image'
-import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { client } from '@/sanity/client'
-import { PROJECT_QUERY, PROJECTS_SLUGS_QUERY, NEXT_PROJECT_QUERY } from '@/sanity/queries'
-import { Project } from '@/sanity/types'
+import { NEXT_PROJECT_QUERY, PROJECT_QUERY, PROJECTS_SLUGS_QUERY } from '@/sanity/queries'
+import type { Project } from '@/sanity/types'
 
 const fetchOptions = { next: { revalidate: 60 } }
-import { NextProjectRef } from '@/types'
-import { urlFor } from '@/sanity/utils'
+
+import { NextProjectNav } from '@/components/projects/NextProjectNav'
 import { RenderBodyContent } from '@/components/RenderBodyContent'
 import { TechTag } from '@/components/shared/TechTag'
-import { NextProjectNav } from '@/components/projects/NextProjectNav'
 import { TextLink } from '@/components/shared/TextLink'
-import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
+import { HERO_IMAGE_HEIGHT, HERO_IMAGE_WIDTH } from '@/constants'
+import { urlFor } from '@/sanity/utils'
+import type { NextProjectRef } from '@/types'
 
 interface Props {
   params: Promise<{ slug: string }>

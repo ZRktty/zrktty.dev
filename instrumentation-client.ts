@@ -1,5 +1,5 @@
-import posthog from 'posthog-js'
 import { initBotId } from 'botid/client/core'
+import posthog from 'posthog-js'
 import { CONTACT_API_PATH } from '@/constants/contact'
 
 const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN

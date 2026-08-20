@@ -1,7 +1,7 @@
-import { client } from '@/sanity/client'
 import { createImageUrlBuilder, type SanityImageSource } from '@sanity/image-url'
-import type { BlockContent } from '@/sanity/types'
 import { WORDS_PER_MINUTE } from '@/constants'
+import { client } from '@/sanity/client'
+import type { BlockContent } from '@/sanity/types'
 
 const { projectId, dataset } = client.config()
 const builder = projectId && dataset ? createImageUrlBuilder({ projectId, dataset }) : null

@@ -1,18 +1,18 @@
-import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { SimilarPostNav } from '@/components/Blog/SimilarPostNav'
+import { RenderBodyContent } from '@/components/RenderBodyContent'
+import { TechTag } from '@/components/shared/TechTag'
+import { HERO_IMAGE_HEIGHT, HERO_IMAGE_WIDTH } from '@/constants'
 import { client } from '@/sanity/client'
 import {
   POST_DETAIL_QUERY,
   POST_SLUGS_QUERY,
   SIMILAR_POSTS_BY_CATEGORY_QUERY,
 } from '@/sanity/queries'
-import { urlFor, estimateReadTime, formatPostDate } from '@/sanity/utils'
-import { RenderBodyContent } from '@/components/RenderBodyContent'
-import { TechTag } from '@/components/shared/TechTag'
-import { SimilarPostNav } from '@/components/Blog/SimilarPostNav'
-import { HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT } from '@/constants'
+import { estimateReadTime, formatPostDate, urlFor } from '@/sanity/utils'
 import type { BlogPostDetail, BlogPostSimilar } from '@/types'
 
 const fetchOptions = { next: { revalidate: 60 } }

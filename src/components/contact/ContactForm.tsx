@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import posthog from 'posthog-js'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -15,7 +15,7 @@ import {
   MAX_NAME_LENGTH,
 } from '@/constants/contact'
 import { contactFormSchema } from '@/lib/contact/schema'
-import { ContactErrorResponse, ContactResponse } from '@/types'
+import type { ContactErrorResponse, ContactResponse } from '@/types'
 
 const MESSAGE_ROWS = 6
 

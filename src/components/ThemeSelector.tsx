@@ -2,8 +2,8 @@
 
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { flushSync } from 'react-dom'
 import posthog from 'posthog-js'
+import { flushSync } from 'react-dom'
 import { Button } from '@/components/ui/button'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
 

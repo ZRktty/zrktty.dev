@@ -3,11 +3,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import posthog from 'posthog-js'
-import { AnalyticsEvent } from '@/constants/analyticsEvents'
-import { Project } from '@/sanity/types'
-import { urlFor } from '@/sanity/utils'
-import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
 import { TechTagList } from '@/components/shared/TechTagList'
+import { PROJECT_CARD_IMAGE_HEIGHT, PROJECT_CARD_IMAGE_WIDTH } from '@/constants'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
+import type { Project } from '@/sanity/types'
+import { urlFor } from '@/sanity/utils'
 
 interface FeaturedProjectCardProps {
   project: Project

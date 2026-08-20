@@ -5,7 +5,7 @@ import posthog from 'posthog-js'
 import { ContactTriggerButton } from '@/components/contact'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
 import { CTA_SOLID_CLASSES } from '@/constants/ctaClasses'
-import { AboutPageData } from '@/types'
+import type { AboutPageData } from '@/types'
 import { CVDownload } from './CVDownload'
 
 const fits = [

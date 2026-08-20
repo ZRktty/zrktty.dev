@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { client } from '@/sanity/client'
 import { HOMEPAGE_PROJECTS_QUERY } from '@/sanity/queries'
-import { Project } from '@/sanity/types'
+import type { Project } from '@/sanity/types'
 import { ProjectsGrid } from './ProjectsGrid'
 
 const options = { next: { revalidate: 60 } }

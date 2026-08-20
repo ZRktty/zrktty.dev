@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import posthog from 'posthog-js'
-import type { BlogPost } from '@/types'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
 import { formatPostDate } from '@/sanity/utils'
+import type { BlogPost } from '@/types'
 
 interface Props {
   post: BlogPost

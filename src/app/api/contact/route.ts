@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server'
 import { checkBotId } from 'botid/server'
+import { NextResponse } from 'next/server'
 import { CONTACT_FROM_NAME, CONTACT_SUBJECT_PREFIX, HONEYPOT_FIELD_NAME } from '@/constants/contact'
 import { captureServerException } from '@/lib/analytics/server'
 import { createTransport, readSmtpCredentials } from '@/lib/contact/mailer'
 import { contactFormSchema, honeypotSchema } from '@/lib/contact/schema'
 import { client } from '@/sanity/client'
 import { CONTACT_EMAIL_QUERY } from '@/sanity/queries'
-import { ContactResponse } from '@/types'
+import type { ContactResponse } from '@/types'
 
 /** The destination changes about never, but a stale forwarder should not survive a deploy cycle. */
 const DESTINATION_REVALIDATE_SECONDS = 3600

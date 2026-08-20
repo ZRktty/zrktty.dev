@@ -1,6 +1,6 @@
+import { HeroCtaButtons } from '@/components/HeroCtaButtons'
 import { client } from '@/sanity/client'
 import { BOOKING_QUERY } from '@/sanity/queries'
-import { HeroCtaButtons } from '@/components/HeroCtaButtons'
 
 const options = { next: { revalidate: 86400 } }
 

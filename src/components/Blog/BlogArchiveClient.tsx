@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import posthog from 'posthog-js'
-import type { BlogPost } from '@/types'
+import { useState } from 'react'
 import { BLOG_PAGE_SIZE } from '@/constants'
 import { AnalyticsEvent } from '@/constants/analyticsEvents'
+import type { BlogPost } from '@/types'
 import CategoryFilter, { ALL_LABEL } from './CategoryFilter'
 import PostListItem from './PostListItem'
 

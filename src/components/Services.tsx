@@ -1,7 +1,7 @@
+import { TechTagList } from '@/components/shared/TechTagList'
 import { client } from '@/sanity/client'
 import { SERVICES_QUERY } from '@/sanity/queries'
-import { ServiceItem } from '@/types'
-import { TechTagList } from '@/components/shared/TechTagList'
+import type { ServiceItem } from '@/types'
 
 const options = { next: { revalidate: 60 } }
 
