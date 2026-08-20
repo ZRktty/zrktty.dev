@@ -31,11 +31,6 @@ export interface ExperienceItem {
 }
 
 /** An email address split into its parts so it is never serialized whole to the client. */
-export interface EmailParts {
-  user: string
-  domain: string
-}
-
 /** Shape returned by ABOUT_QUERY */
 export interface AboutPageData {
   name: string
@@ -43,7 +38,6 @@ export interface AboutPageData {
   photo?: { asset: { url: string }; alt?: string } | null
   availability?: string
   bookingUrl?: string | null
-  contactEmail?: string | null
   cvFile?: { asset: { url: string; originalFilename?: string } } | null
   socialLinks?: Array<{ platform: string; url: string }>
   authorBio?: Array<{ text: string }>
@@ -53,6 +47,21 @@ export interface AboutPageData {
   outsideBlocks?: Array<{ title: string; body: string }>
   externalLinks?: Array<{ label: string; url: string }>
 }
+
+/** Result of a POST to the contact API — discriminated on `ok` */
+export interface ContactSuccessResponse {
+  ok: true
+}
+
+export interface ContactErrorResponse {
+  ok: false
+  /** Human-readable, safe to render in the form */
+  error: string
+  /** Present only for validation failures, keyed by form field */
+  fieldErrors?: Partial<Record<'name' | 'email' | 'message', string>>
+}
+
+export type ContactResponse = ContactSuccessResponse | ContactErrorResponse
 
 /** Shape returned by SERVICES_QUERY */
 export interface ServiceItem {
