@@ -20,13 +20,21 @@ export const MAX_MESSAGE_LENGTH = 4000
 export const CONTACT_API_PATH = '/api/contact'
 
 /**
- * Resend's shared sender. Works without any DNS, but an unverified Resend account may
- * only send to its own owner address. Swap to `Contact form <contact@send.zrktty.dev>`
- * once the `send.zrktty.dev` subdomain is verified — the subdomain is deliberate, it
- * leaves the apex SPF that cPanel mail depends on untouched.
+ * Display name on the From header. The address itself is not configurable — cPanel only
+ * lets an authenticated session send as its own mailbox, so the route uses `SMTP_USER`.
+ * Hardcoding a second address here would just produce a mismatch cPanel rejects.
  */
-export const CONTACT_FROM_ADDRESS = 'zrktty.dev <onboarding@resend.dev>'
+export const CONTACT_FROM_NAME = 'zrktty.dev contact form'
 
 export const CONTACT_SUBJECT_PREFIX = '[zrktty.dev]'
+
+/** cPanel's implicit-TLS port. On 587 nodemailer must start unencrypted and STARTTLS up. */
+export const SMTP_SECURE_PORT = 465
+
+/**
+ * A hung mail server must not hold a serverless function open — the platform would let it
+ * run for minutes while the visitor stares at a spinner.
+ */
+export const SMTP_TIMEOUT_MS = 10_000
 
 export const CONTACT_TRIGGER_DEFAULT_LABEL = 'Send me a message'

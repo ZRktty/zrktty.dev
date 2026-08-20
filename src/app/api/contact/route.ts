@@ -1,11 +1,7 @@
 import { NextResponse } from 'next/server'
 import { checkBotId } from 'botid/server'
-import { Resend } from 'resend'
-import {
-  CONTACT_FROM_ADDRESS,
-  CONTACT_SUBJECT_PREFIX,
-  HONEYPOT_FIELD_NAME,
-} from '@/constants/contact'
+import { CONTACT_FROM_NAME, CONTACT_SUBJECT_PREFIX, HONEYPOT_FIELD_NAME } from '@/constants/contact'
+import { createTransport, readSmtpCredentials } from '@/lib/contact/mailer'
 import { contactFormSchema, honeypotSchema } from '@/lib/contact/schema'
 import { client } from '@/sanity/client'
 import { CONTACT_EMAIL_QUERY } from '@/sanity/queries'
@@ -57,9 +53,9 @@ export async function POST(request: Request) {
     )
   }
 
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
-    console.error('[contact] RESEND_API_KEY is not set')
+  const credentials = readSmtpCredentials()
+  if (!credentials) {
+    console.error('[contact] SMTP_HOST, SMTP_USER or SMTP_PASSWORD is not set')
     return json({ ok: false, error: GENERIC_FAILURE }, 500)
   }
 
@@ -74,16 +70,18 @@ export async function POST(request: Request) {
   }
 
   const { name, email, message } = parsed.data
-  const { error } = await new Resend(apiKey).emails.send({
-    from: CONTACT_FROM_ADDRESS,
-    to: destination,
-    replyTo: email,
-    subject: `${CONTACT_SUBJECT_PREFIX} ${name}`,
-    text: `${message}\n\n—\n${name} <${email}>`,
-  })
-
-  if (error) {
-    console.error('[contact] resend rejected the send:', error.name, error.message)
+  try {
+    await createTransport(credentials).sendMail({
+      // cPanel only permits the authenticated mailbox in From. The visitor's address goes
+      // in Reply-To, so hitting reply answers them rather than this mailbox.
+      from: `${CONTACT_FROM_NAME} <${credentials.user}>`,
+      to: destination,
+      replyTo: `${name} <${email}>`,
+      subject: `${CONTACT_SUBJECT_PREFIX} ${name}`,
+      text: `${message}\n\n—\n${name} <${email}>`,
+    })
+  } catch (error) {
+    console.error('[contact] smtp send failed:', error)
     return json({ ok: false, error: GENERIC_FAILURE }, 500)
   }
 
