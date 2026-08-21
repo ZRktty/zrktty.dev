@@ -1,12 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import { useTheme } from 'next-themes'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
-import { vs as vsLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { motion } from 'framer-motion'
-import { Copy, Check } from 'lucide-react'
+import { Check, Copy } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { useState } from 'react'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vscDarkPlus, vs as vsLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const CHIP_FONT = 'var(--font-ibm-plex-mono), ui-monospace, monospace'
 
@@ -53,6 +52,7 @@ export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps)
 
       {/* Copy button — top right */}
       <button
+        type="button"
         onClick={handleCopy}
         className="absolute right-0 top-0 flex items-center gap-1.5 border-b border-l border-border/30 bg-border/30 px-3 py-1 text-foreground/60 transition-colors hover:text-foreground cursor-pointer"
         style={{ fontFamily: CHIP_FONT }}

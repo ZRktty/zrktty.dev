@@ -6,13 +6,15 @@ interface TechTagListProps {
 }
 
 export function TechTagList({ items, label }: TechTagListProps) {
-  const filtered = items?.filter((item) => item.trim()) ?? []
+  const filtered = [...new Set(items?.filter((item) => item.trim()) ?? [])]
   if (filtered.length === 0) return null
   return (
-    <div role="list" aria-label={label} className="flex flex-wrap gap-2">
-      {filtered.map((item, i) => (
-        <TechTag key={`${i}-${item}`} label={item} role="listitem" />
+    <ul aria-label={label} className="flex list-none flex-wrap gap-2">
+      {filtered.map((item) => (
+        <li key={item}>
+          <TechTag label={item} />
+        </li>
       ))}
-    </div>
+    </ul>
   )
 }

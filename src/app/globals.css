@@ -1,7 +1,7 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@plugin '@tailwindcss/typography';
-@plugin 'tailwindcss-animate';
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -140,7 +140,7 @@
     text-decoration: none;
   }
   .line-grow::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     bottom: -2px;

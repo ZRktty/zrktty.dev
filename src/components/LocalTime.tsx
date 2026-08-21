@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import type React from 'react'
+import { useEffect, useState } from 'react'
 
 const formatTimeString = (date: Date, locale: string = 'en-US') => {
   return new Intl.DateTimeFormat(locale, {

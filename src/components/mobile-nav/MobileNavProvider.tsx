@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useCallback, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { NavContext } from './NavContext'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import ThemeSelector from '@/components/ThemeSelector'
 import { BREAKPOINT_MD, NAV_ITEMS } from '@/constants'
 import { cn } from '@/lib/utils'
+import { NavContext } from './NavContext'
 
 const TRANSITION_MS = 400
 
@@ -125,17 +125,18 @@ export function MobileNavProvider({ children }: Props) {
 
         {/* Click-to-close overlay — sits above the inert rotating content */}
         {isAnimate && (
-          <div
+          <button
+            type="button"
             aria-label="Close navigation"
-            role="button"
-            tabIndex={0}
             onClick={close}
-            onKeyDown={(e) => e.key === 'Enter' && close()}
             style={{
               position: 'absolute',
               inset: 0,
               zIndex: 500,
               cursor: 'pointer',
+              background: 'transparent',
+              border: 'none',
+              padding: 0,
             }}
           />
         )}
@@ -151,7 +152,7 @@ export function MobileNavProvider({ children }: Props) {
           className="fixed top-1/2 -translate-y-1/2 right-[10%] md:hidden"
           style={{ zIndex: 60, pointerEvents: isAnimate ? 'auto' : 'none' }}
         >
-          <ul className="list-none flex flex-col items-start" role="list">
+          <ul className="list-none flex flex-col items-start">
             {NAV_ITEMS.map(({ label, href }, i) => {
               const delay = i * 0.04
               const isActive = href === '/' ? pathname === href : pathname.startsWith(href)

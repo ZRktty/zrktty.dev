@@ -1,4 +1,4 @@
-import { AboutPageData } from '@/types'
+import type { AboutPageData } from '@/types'
 
 interface Props {
   rows: NonNullable<AboutPageData['toolkitRows']>

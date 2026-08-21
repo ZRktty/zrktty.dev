@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { client } from '@/sanity/client'
-import { TextLink } from '@/components/shared/TextLink'
 import { TechTagList } from '@/components/shared/TechTagList'
+import { TextLink } from '@/components/shared/TextLink'
+import { client } from '@/sanity/client'
 import { HOMEPAGE_PROJECTS_QUERY } from '@/sanity/queries'
-import { Project } from '@/sanity/types'
+import type { Project } from '@/sanity/types'
 
 const options = { next: { revalidate: 60 } }
 

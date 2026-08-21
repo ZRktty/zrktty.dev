@@ -37,5 +37,5 @@ for (const [key, value] of Object.entries(expanded)) {
   }
 }
 
-writeFileSync(localPath, JSON.stringify(local, null, 2) + '\n')
+writeFileSync(localPath, `${JSON.stringify(local, null, 2)}\n`)
 console.log(`Wrote ${localPath}`)

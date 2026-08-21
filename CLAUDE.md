@@ -85,7 +85,10 @@ bun add <pkg>                        # add a package
 bun add -d <pkg>                     # add dev dependency
 bun run dev                          # local dev server
 bun run build                        # production build check
-bun run lint                         # eslint
+bun run lint                         # eslint (next-specific rules)
+bun run check                        # biome — format + lint + import sort, read-only
+bun run check:fix                    # biome — apply safe fixes
+bun run format                       # biome formatter only
 bunx sanity schema extract           # extract schema from studio/ submodule
 bunx sanity typegen generate         # generate types → studio/sanity.types.ts, then cp to src/sanity/types.ts
 bunx shadcn@latest add <component>   # add shadcn component
@@ -134,7 +137,10 @@ docs/                       # agent plan files: ZRKTTYDEV-N-plan.md per ticket
 - Props typed with `interface` (use `type` only for unions)
 - Named exports only — default exports only for Next.js pages/layouts
 - Use `shadcn/ui` before writing any custom UI primitive
-- Import order convention: React → Next → third-party → internal (`@/`)
+- Import order: **Biome's default sort** — do not hand-order imports. `bun run check:fix`
+  (or the lint-staged hook) sorts them; roughly external packages alphabetically by
+  specifier, then internal `@/` paths, with `import type` separated. Prettier is gone —
+  Biome is the single formatter, configured in `biome.json`.
 
 ### Mobile-first responsive
 

@@ -1,5 +1,5 @@
-import React from 'react'
 import { Analytics } from '@vercel/analytics/next'
+import type React from 'react'
 import SocialLinks from '@/components/SocialLinks'
 
 export default function MaintenancePage() {

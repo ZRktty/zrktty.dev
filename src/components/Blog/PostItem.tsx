@@ -1,10 +1,10 @@
-import React from 'react'
-import { Card, CardHeader, CardContent, CardFooter } from '@/components/ui/card'
 import Image from 'next/image'
-import { Post } from '@/sanity/types'
-import { urlFor } from '@/sanity/utils'
 import Link from 'next/link'
-import { POST_COVER_IMAGE_WIDTH, POST_COVER_IMAGE_HEIGHT } from '@/constants'
+import type React from 'react'
+import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import { POST_COVER_IMAGE_HEIGHT, POST_COVER_IMAGE_WIDTH } from '@/constants'
+import type { Post } from '@/sanity/types'
+import { urlFor } from '@/sanity/utils'
 
 // Type for the fetched data with the excerpt field
 export interface PostWithExcerpt extends Post {

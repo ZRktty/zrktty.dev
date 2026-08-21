@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { AboutPageData } from '@/types'
+import type { AboutPageData } from '@/types'
 
 interface Props {
   blocks: NonNullable<AboutPageData['outsideBlocks']>

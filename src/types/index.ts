@@ -40,10 +40,16 @@ export interface AboutPageData {
   bookingUrl?: string | null
   cvFile?: { asset: { url: string; originalFilename?: string } } | null
   socialLinks?: Array<{ platform: string; url: string }>
-  authorBio?: Array<{ text: string }>
-  beliefs?: Array<{ claim: string; body: string }>
+  authorBio?: Array<{ _key: string; text: string }>
+  beliefs?: Array<{ _key: string; claim: string; body: string }>
   toolkitRows?: Array<{ category: string; tools: string }>
-  testimonials?: Array<{ text: string; attribution: string; role: string; year: string }>
+  testimonials?: Array<{
+    _key: string
+    text: string
+    attribution: string
+    role: string
+    year: string
+  }>
   outsideBlocks?: Array<{ title: string; body: string }>
   externalLinks?: Array<{ label: string; url: string }>
 }

@@ -1,10 +1,10 @@
 'use client'
 
 import { MainNav } from '@/components/MainNav'
-import { StatusBadge } from '@/components/StatusBadge'
-import ThemeSelector from './ThemeSelector'
-import Logo from './Logo'
 import { HamburgerButton } from '@/components/mobile-nav'
+import { StatusBadge } from '@/components/StatusBadge'
+import Logo from './Logo'
+import ThemeSelector from './ThemeSelector'
 
 interface HeaderProps {
   availability: string | null

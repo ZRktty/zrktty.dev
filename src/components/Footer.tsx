@@ -1,10 +1,10 @@
 'use client'
 
-import React from 'react'
+import type React from 'react'
 import LocalTime from '@/components/LocalTime'
 import SiteVersion from '@/components/SiteVersion'
-import { Separator } from '@/components/ui/separator'
 import SocialLinks from '@/components/SocialLinks'
+import { Separator } from '@/components/ui/separator'
 
 interface FooterProps {
   links?: Array<{ platform: string; url: string }>

@@ -1,5 +1,5 @@
-import type { NextConfig } from 'next'
 import { withBotId } from 'botid/next/config'
+import type { NextConfig } from 'next'
 
 const SANITY_IMAGE_HOST = 'cdn.sanity.io'
 // Dev-only: @vercel/analytics pulls its debug build from this host. In production it

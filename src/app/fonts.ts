@@ -1,4 +1,4 @@
-import { IBM_Plex_Sans, IBM_Plex_Mono, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
+import { IBM_Plex_Mono, IBM_Plex_Sans, JetBrains_Mono, Space_Grotesk } from 'next/font/google'
 
 export const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],

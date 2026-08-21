@@ -1,6 +1,6 @@
-import { Project } from '@/sanity/types'
-import { ProjectCard } from './ProjectCard'
+import type { Project } from '@/sanity/types'
 import { FeaturedProjectCard } from './FeaturedProjectCard'
+import { ProjectCard } from './ProjectCard'
 
 interface ProjectsGridProps {
   projects: Project[]

@@ -27,7 +27,7 @@ export const BLOG_PAGE_SIZE = 10
 export const BREAKPOINT_MD = 768
 
 export { AnalyticsEvent } from './analyticsEvents'
-export { CTA_SOLID_CLASSES, CTA_OUTLINE_CLASSES } from './ctaClasses'
+export { CTA_OUTLINE_CLASSES, CTA_SOLID_CLASSES } from './ctaClasses'
 
 /** Site-wide navigation items — single source of truth for header and mobile menu */
 export const NAV_ITEMS = [

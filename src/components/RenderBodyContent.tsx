@@ -1,5 +1,6 @@
+import { PortableText, type PortableTextComponents } from '@portabletext/react'
+import type { ArbitraryTypedObject, PortableTextBlock } from '@portabletext/types'
 import Image from 'next/image'
-import { PortableText, PortableTextComponents } from '@portabletext/react'
 import { CodeBlock } from '@/components/CodeBlock'
 import { urlFor } from '@/sanity/utils'
 
@@ -30,8 +31,7 @@ const components: PortableTextComponents = {
 }
 
 interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any[]
+  value: Array<PortableTextBlock | ArbitraryTypedObject>
 }
 
 export const RenderBodyContent = ({ value }: Props) => {

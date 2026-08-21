@@ -3,11 +3,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import posthog from 'posthog-js'
-import { AnalyticsEvent } from '@/constants/analyticsEvents'
-import { Project } from '@/sanity/types'
-import { urlFor } from '@/sanity/utils'
-import { PROJECT_CARD_IMAGE_WIDTH, PROJECT_CARD_IMAGE_HEIGHT } from '@/constants'
 import { TechTagList } from '@/components/shared/TechTagList'
+import { PROJECT_CARD_IMAGE_HEIGHT, PROJECT_CARD_IMAGE_WIDTH } from '@/constants'
+import { AnalyticsEvent } from '@/constants/analyticsEvents'
+import type { Project } from '@/sanity/types'
+import { urlFor } from '@/sanity/utils'
 
 interface ProjectCardProps {
   project: Project
@@ -15,9 +15,9 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
-  const showImage = !!project.thumbnail
-  const imageUrl = showImage
-    ? urlFor(project.thumbnail!)
+  const thumbnail = project.thumbnail
+  const imageUrl = thumbnail
+    ? urlFor(thumbnail)
         ?.width(PROJECT_CARD_IMAGE_WIDTH)
         .height(PROJECT_CARD_IMAGE_HEIGHT)
         .fit('max')

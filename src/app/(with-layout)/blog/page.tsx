@@ -1,7 +1,7 @@
-import { client } from '@/sanity/client'
-import { POSTS_QUERY, BLOG_CATEGORIES_QUERY } from '@/sanity/queries'
-import type { BlogPost } from '@/types'
 import BlogArchiveClient from '@/components/Blog/BlogArchiveClient'
+import { client } from '@/sanity/client'
+import { BLOG_CATEGORIES_QUERY, POSTS_QUERY } from '@/sanity/queries'
+import type { BlogPost } from '@/types'
 
 const options = { next: { revalidate: 30 } }
 
