@@ -3,11 +3,13 @@
 import { motion } from 'framer-motion'
 import { Check, Copy } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useState } from 'react'
+import { useState, useSyncExternalStore } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus, vs as vsLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const CHIP_FONT = 'var(--font-ibm-plex-mono), ui-monospace, monospace'
+
+const subscribeNoop = () => () => {}
 
 interface CodeBlockProps {
   language?: string
@@ -18,9 +20,15 @@ interface CodeBlockProps {
 export const CodeBlock = ({ language = 'text', code, filename }: CodeBlockProps) => {
   const { resolvedTheme } = useTheme()
   const [copied, setCopied] = useState(false)
+  // false on the server and during hydration, true after; next-themes already knows
+  // resolvedTheme on the first client render, so gating on it alone breaks hydration
+  const isHydrated = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  )
 
-  // resolvedTheme is undefined until next-themes hydrates on the client
-  if (!resolvedTheme) return null
+  if (!isHydrated || !resolvedTheme) return null
 
   const isDark = resolvedTheme === 'dark'
   const selectedTheme = isDark ? vscDarkPlus : vsLight
