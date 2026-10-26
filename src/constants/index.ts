@@ -13,6 +13,9 @@ export const HERO_IMAGE_HEIGHT = 700
 /** Average reading speed used to estimate blog post read time */
 export const WORDS_PER_MINUTE = 200
 
+/** Primary accent (red) — used where Tailwind theme tokens are unavailable, e.g. the global error boundary */
+export const ACCENT_RED = '#E53935'
+
 /** Dimensions for project card thumbnails */
 export const PROJECT_CARD_IMAGE_WIDTH = 935
 export const PROJECT_CARD_IMAGE_HEIGHT = 526
